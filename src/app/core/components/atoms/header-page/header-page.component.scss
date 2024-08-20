@@ -1,0 +1,43 @@
+.header__container {
+    background-color: rgb(0, 80, 151);
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    align-items: center;
+
+    &-logo {
+    }
+
+    &-options {
+        ul {
+            color: white;
+            grid-column: 4;
+            gap: 20px;
+            display: flex;
+            list-style-type: none;
+            align-items: center;
+            li {
+                cursor: pointer;
+                padding: 10px;
+
+                &:hover {
+                    border-radius: 20px;
+                    background-color: #0d5598;
+                }
+            }
+
+            p-dropdown {
+                padding: 10px;
+
+                svg {
+                    background-color: red;
+                }
+
+                &:hover {
+                    border-radius: 20px;
+                    background-color: #0d5598;
+                }
+            }
+        }
+    }
+}
