@@ -6,7 +6,7 @@
                 @if(option.type === 'button'){
                     <li>{{ option.name }}</li>
                 }@else if (option.type === 'dropdown') {
-                    <p-dropdown
+                    <p-dropdown 
                         [options]="option.options"
                         placeholder="Español"
                         optionLabel="name"

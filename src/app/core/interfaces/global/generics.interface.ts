@@ -9,3 +9,8 @@ interface IIdiomas {
     name : string;
     cod : string
 }
+
+export interface IImageSlide {
+    imgRoute : string;
+    alt : string
+}

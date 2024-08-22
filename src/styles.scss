@@ -6,36 +6,9 @@
 /* Reset CSS */
 @layer reset {
     button,
-    input {
+    input,
+    select {
         /* CSS to Reset */
-    }
-}
-
-.p-dropdown {
-    border-radius: 4px;
-    grid-column: 2;
-    gap: 4px;
-    display: flex;
-    align-items: center;
-}
-
-.p-dropdown-items {
-    background-color: white;
-    padding: 1rem;
-    text-align: left;
-    border-radius: 10px;
-    margin-top: 10px;
-    width: 10rem;
-}
-
-.p-dropdown-item {
-    color: black;
-    padding: 10px;
-
-    &:hover {
-        padding: 10px;
-        border-radius: 10px;
-        background-color: gray;
     }
 }
 

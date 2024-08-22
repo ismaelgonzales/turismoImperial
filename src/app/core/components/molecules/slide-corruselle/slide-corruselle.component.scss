@@ -1,0 +1,41 @@
+.swiper-slider {
+    width: 100%;
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        &-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+
+            &-xs {
+                max-height: 20vh;
+            }
+
+            &-sm {
+                max-height: 40vh;
+            }
+
+            &-lg {
+                max-height: 50vh;
+            }
+
+            &-xl {
+                max-height: 65vh;
+            }
+
+            &-2xl {
+                max-height: 90vh;
+            }
+        }
+    }
+}

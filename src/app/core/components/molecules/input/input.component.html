@@ -1,0 +1,10 @@
+<div class="input__content">
+    <label for="{{ idInput }}" class="input__label">{{ label }}</label>
+    <input pInputText type="{{ type }}" id="{{ idInput }}" />
+
+    @if(smallEnabled){
+    <small id="{{ idSmall }}">
+        {{ smallText }}
+    </small>
+    }
+</div>

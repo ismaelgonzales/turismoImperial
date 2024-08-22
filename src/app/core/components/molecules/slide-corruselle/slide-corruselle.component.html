@@ -1,0 +1,12 @@
+<swiper-container class="swiper-slider" init="false">
+    @for(image of images; track $index){
+    <swiper-slide class="swiper-slide">
+        <div class="swiper-slide-container">
+            <img
+                class="swiper-slide-img swiper-slide-img-{{ slideDimension }}"
+                [src]="image.imgRoute"
+                [alt]="image.alt" />
+        </div>
+    </swiper-slide>
+    }
+</swiper-container>

@@ -1,0 +1,25 @@
+.searchBar__container {
+    display: flex;
+    padding-left: 35vh;
+    padding-right: 35vh;
+    margin-top: -20px;
+    z-index: 1;
+}
+
+app-dropdown {
+    z-index: 1;
+    flex: 1;
+}
+
+app-input-calendar {
+    flex: 1;
+}
+
+app-input-calendar {
+    z-index: 1;
+}
+
+app-button {
+    z-index: 1;
+    flex: 1;
+}

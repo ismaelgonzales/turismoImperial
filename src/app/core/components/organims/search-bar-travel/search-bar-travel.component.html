@@ -1,0 +1,13 @@
+<div class="searchBar__container">
+    <app-dropdown
+        [labelIn]="'Origen *'"
+        [placeHolder]="'Saliendo desde'"
+        [padding]="'md'"
+        [borderEnabled]="true"
+        [borderBottomLeft]="true"
+        [borderTopLeft]="true"></app-dropdown>
+    <app-dropdown [labelIn]="'Destino *'" [placeHolder]="'Hacia'" [padding]="'md'" [borderEnabled]="true"></app-dropdown>
+    <app-input-calendar [labelIn]="'Salida'" [padding]="'md'" [borderEnabled]="true"></app-input-calendar>
+    <app-input-calendar [labelIn]="'Retorno (Opcional)'" [padding]="'md'" [borderEnabled]="true"></app-input-calendar>
+    <app-button [borderTopRight]="true" [borderBottomRight]="true" [label]="'Buscar'"></app-button>
+</div>

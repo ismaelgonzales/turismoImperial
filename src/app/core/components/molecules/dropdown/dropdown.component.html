@@ -1,0 +1,24 @@
+<div class="dropdown-container">
+    @if(labelIn){
+        <label for="">{{labelIn.toUpperCase()}}</label>
+    }
+    <p-dropdown
+        [style]="{
+            'background-color': 'white',
+            border: borderEnabled ? '1px solid red' : 'none',
+            'border-top-left-radius': borderTopLeft ? borderRadius : '0',
+            'border-top-right-radius': borderTopRight ? borderRadius : '0',
+            'border-bottom-left-radius': borderBottomLeft ? borderRadius : '0',
+            'border-bottom-right-radius': borderBottomRight
+                ? borderRadius
+                : '0',
+            'padding-top': '25px' ,
+            'padding-bottom' : getPadding()
+        }"
+        [options]="options"
+        [checkmark]="checkMark"
+        optionLabel="{{ optionLabel }}"
+        [showClear]="showClear"
+        placeholder="{{ placeHolder }}">
+    </p-dropdown>
+</div>

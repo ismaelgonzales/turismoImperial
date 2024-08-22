@@ -1,0 +1,47 @@
+.principal__body {
+    z-index: 2;
+    position: relative;
+    border: 1;
+    margin-top: 90px;
+
+    &-section {
+        padding-left: 35vh;
+        padding-right: 35vh;
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+
+    &-info {
+        h1 {
+            font-size: xx-large;
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        p {
+            text-align: left;
+        }
+    }
+
+    &-cards {
+        display: flex;
+        grid-column: 4;
+        gap: 15px;
+    }
+
+    &-credit-card {
+        height: 10px;
+        grid-column: 8;
+        gap: 40px;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        margin: auto;
+        padding: 2.5em 0px;
+    }
+}

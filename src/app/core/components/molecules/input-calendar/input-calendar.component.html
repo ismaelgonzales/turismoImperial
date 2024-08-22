@@ -1,0 +1,27 @@
+<div class="input-calendar__container">
+    <div class="input-calendar__wrapper">
+        <input
+            type="date"
+            id="inputDate"
+            class="input-calendar__input"
+            [style]="{
+                'background-color': 'white',
+                border: borderEnabled ? '1px solid red' : 'none',
+                'border-top-left-radius': borderTopLeft ? borderRadius : '0',
+                'border-top-right-radius': borderTopRight ? borderRadius : '0',
+                'border-bottom-left-radius': borderBottomLeft
+                    ? borderRadius
+                    : '0',
+                'border-bottom-right-radius': borderBottomRight
+                    ? borderRadius
+                    : '0',
+                'padding-top': '25px',
+                'padding-bottom': getPadding()
+            }"
+        />
+        <label for="inputDate" class="input-calendar__label">{{ labelIn.toUpperCase() }}</label>
+    </div>
+</div>
+
+
+
