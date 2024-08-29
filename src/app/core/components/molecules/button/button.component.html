@@ -1,4 +1,4 @@
-<button pButton pRipple label="{{label}}" [style]="{
+<button pButton pRipple  [class]="colorBg"  [style]="{
     border: borderEnabled ? '1px solid red' : 'none',
     'border-top-left-radius': borderTopLeft ? borderRadius : '0',
     'border-top-right-radius': borderTopRight ? borderRadius : '0',
@@ -9,5 +9,6 @@
         ? borderRadius
         : '0'
 }" >
-
+    
+    <a [class]="colorBg"> {{label}}</a>
 </button>

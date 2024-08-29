@@ -21,6 +21,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -40,6 +41,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([SpinnerInterceptor])
     ),
+    provideAnimations(),
+    provideToastr(), 
 
 
   ],

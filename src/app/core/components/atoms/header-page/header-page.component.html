@@ -2,17 +2,16 @@
     <div class="header__container-logo">LOGO DE EMPRESA</div>
     <div class="header__container-options">
         <ul>
-            @for(option of Options; track $index){ 
-                @if(option.type === 'button'){
-                    <li>{{ option.name }}</li>
-                }@else if (option.type === 'dropdown') {
-                    <p-dropdown 
-                        [options]="option.options"
-                        placeholder="Español"
-                        optionLabel="name"
-                        [showClear]="false"></p-dropdown>
-                } 
-            }
+            @for(option of Options; track $index){ @if(option.type ===
+            'button'){
+            <li (click)="onRoute(option.route)">{{ option.name }}</li>
+            }@else if (option.type === 'dropdown') {
+            <p-dropdown
+                [options]="option.options"
+                placeholder="Español"
+                optionLabel="name"
+                [showClear]="false"></p-dropdown>
+            } }
         </ul>
     </div>
 </header>

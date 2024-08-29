@@ -1,0 +1,28 @@
+<div
+    class="wrapper__principal bg-cover bg-no-repeat bg-center min-h-screen flex items-center justify-center">
+    <div [class]="'container max-w-96 p-10 rounded-lg ' + principalColor">
+        <h1 class="title text-center text-2xl">Ingresa</h1>
+        <form>
+            <app-input
+                colorLabelInput="white"
+                label="Usuario"
+                class="row flex justify-center"></app-input>
+            <app-input
+                colorLabelInput="white"
+                label="Contrasena"
+                class="row flex justify-center"
+                type="password"></app-input>
+        </form>
+        <a class="flex justify-center">Eres nuevo? Create una cuenta aqui</a>
+        <div class="mt-4 d-sm-flex justify-center">
+            <button mat-raised-button color="primary" class="w-100"></button>
+        </div>
+        <app-button
+            [colorBgButton]="'secondary'"
+            [borderTopRight]="true"
+            [borderBottomRight]="true"
+            [borderBottomLeft]="true"
+            [borderTopLeft]="true"
+            [label]="'Iniciar Sesion'"></app-button>
+    </div>
+</div>
