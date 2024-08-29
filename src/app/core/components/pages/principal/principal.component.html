@@ -13,7 +13,7 @@
     </div>
     <app-search-bar-travel></app-search-bar-travel>
     <section class="principal__body-section">
-        <div class="principal__body-info">
+        <div class="principal__body-title">
             <h1>A viajar seguro!</h1>
             <p>
                 Preocupados por nuestros pasajeros y colaboradores en brindarles
@@ -23,7 +23,7 @@
         </div>
     </section>
     <section class="principal__body-section">
-        <div class="principal__body-info">
+        <div class="principal__body-title">
             <h2>Vive la emocion de viajar</h2>
         </div>
         <div class="principal__body-cards">
@@ -33,7 +33,12 @@
             <app-card></app-card>
         </div>
     </section>
-
+    <section class="principal__body-section">
+        <div class="principal__body-title">
+            <h2>¿Por qué escogernos?</h2>
+            <app-indicators [svg]="'data'" [title]="'data'"></app-indicators>
+        </div>
+    </section>
     <section class="principal__body-section">
         <div class="principal__body-credit-card">
             <svg
@@ -554,4 +559,7 @@
             </svg>
         </div>
     </section>
+    
 </main>
+<app-robot></app-robot>
+

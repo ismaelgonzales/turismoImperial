@@ -1,0 +1,16 @@
+.robot__container {
+    position: fixed;
+    bottom: -6rem; /* Posiciona el robot en la parte inferior */
+    right: -7rem; /* Posiciona el robot en la parte derecha */
+    z-index: 50;
+    margin: 0;
+
+    &-selector {
+        top: 0;
+        cursor: pointer;
+    }
+
+    &-img {
+        transform: scale(0.5);
+    }
+}
