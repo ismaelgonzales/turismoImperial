@@ -18,7 +18,7 @@ import { IndicatorsComponent } from '../../organims/indicators/indicators.compon
         SearchBarTravelComponent,
         CardComponent,
         RobotComponent,
-        IndicatorsComponent
+        IndicatorsComponent,
     ],
     templateUrl: './principal.component.html',
     styleUrl: './principal.component.scss',
@@ -26,11 +26,11 @@ import { IndicatorsComponent } from '../../organims/indicators/indicators.compon
 export class PrincipalComponent {
     public imagesSlide: IImageSlide[] = [
         {
-            imgRoute: '/img/slider/slide1.jpeg',
+            imgRoute: '/img/slider/slide3.jpg',
             alt: 'Bus1',
         },
         {
-            imgRoute: '/img/slider/slide2.jpg',
+            imgRoute: '/img/slider/slide4.jpg',
             alt: 'Bus2',
         },
     ];

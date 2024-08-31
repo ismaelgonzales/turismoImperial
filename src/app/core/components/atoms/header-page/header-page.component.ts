@@ -32,6 +32,11 @@ export class HeaderPageComponent {
             type: 'button',
             route: 'login',
         },
+        {
+            name: 'Registro',
+            type: 'button',
+            route: 'register',
+        },
     ];
 
     public onRoute(route: string | undefined): void {
