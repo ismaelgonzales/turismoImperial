@@ -26,12 +26,28 @@ import { IndicatorsComponent } from '../../organims/indicators/indicators.compon
 export class PrincipalComponent {
     public imagesSlide: IImageSlide[] = [
         {
-            imgRoute: '/img/slider/slide3.jpg',
+            imgRoute: '/img/imperial/slider/slide1.jpg',
             alt: 'Bus1',
         },
         {
-            imgRoute: '/img/slider/slide4.jpg',
+            imgRoute: '/img/imperial/slider/slide2.jpg',
             alt: 'Bus2',
+        },
+        {
+            imgRoute: '/img/imperial/slider/slide3.jpg',
+            alt: 'Bus3',
+        },
+        {
+            imgRoute: '/img/imperial/slider/slide4.jpg',
+            alt: 'Bus4',
+        },
+        {
+            imgRoute: '/img/imperial/slider/slide5.jpg',
+            alt: 'Bus5',
+        },
+        {
+            imgRoute: '/img/slider/slide3.jpg',
+            alt: 'Bus6',
         },
     ];
 }

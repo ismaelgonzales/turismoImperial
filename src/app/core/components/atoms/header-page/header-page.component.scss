@@ -10,9 +10,11 @@
     align-items: center;
     width: 100%;
     overflow: visible;
-    height: 65px;
+    height: 90px;
 
     &-logo {
+        width: 200px;
+        height: auto;
     }
 
     &-options {
