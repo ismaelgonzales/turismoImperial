@@ -5,8 +5,12 @@ import { SlideCorruselleComponent } from '../../molecules/slide-corruselle/slide
 import { IImageSlide } from '../../../interfaces/global/generics.interface';
 import { SearchBarTravelComponent } from '../../organims/search-bar-travel/search-bar-travel.component';
 import { CardComponent } from '../../molecules/card/card.component';
+import { Card1Component } from '../../molecules/card1/card1.component';
+import { Card2Component } from '../../molecules/card2/card2.component';
+import { Card3Component } from '../../molecules/card3/card3.component';
 import { RobotComponent } from '../../organims/robot/robot.component';
 import { IndicatorsComponent } from '../../organims/indicators/indicators.component';
+import { FooterPageComponent } from '../../atoms/footer-page/footer-page.component';
 
 @Component({
     selector: 'app-principal',
@@ -17,8 +21,12 @@ import { IndicatorsComponent } from '../../organims/indicators/indicators.compon
         SlideCorruselleComponent,
         SearchBarTravelComponent,
         CardComponent,
+        Card1Component,
+        Card2Component,
+        Card3Component,
         RobotComponent,
         IndicatorsComponent,
+        FooterPageComponent,
     ],
     templateUrl: './principal.component.html',
     styleUrl: './principal.component.scss',

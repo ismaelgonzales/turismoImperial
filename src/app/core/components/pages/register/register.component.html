@@ -31,7 +31,9 @@
                 class="row flex justify-center"
                 type="password"></app-input>
         </form>
-        <a class="flex justify-center">¿Tienes una cuenta? Iniciar sesión</a>
+        <a class="flex justify-center" routerLink="/login"
+            >¿Tienes una cuenta? Iniciar sesión aqui</a
+        >
         <div class="mt-4 d-sm-flex justify-center">
             <button mat-raised-button color="primary" class="w-100"></button>
         </div>
@@ -42,5 +44,14 @@
             [borderBottomLeft]="true"
             [borderTopLeft]="true"
             [label]="'Registarse'"></app-button>
+        <app-button
+            class="card flex mt-4"
+            routerLink="/"
+            [colorBgButton]="'secondary'"
+            [borderTopRight]="true"
+            [borderBottomRight]="true"
+            [borderBottomLeft]="true"
+            [borderTopLeft]="true"
+            [label]="'Volver al Inicio'"></app-button>
     </div>
 </div>

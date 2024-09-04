@@ -7,6 +7,8 @@ import * as constantsShared from '../../../../shared/constants';
 import { ButtonComponent } from '../../molecules/button/button.component';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { ButtonModule } from 'primeng/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-register',
@@ -16,6 +18,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
         ButtonComponent,
         InputGroupAddonModule,
         InputGroupModule,
+        ButtonModule,
+        RouterModule,
     ],
     templateUrl: './register.component.html',
     styleUrl: './register.component.scss',

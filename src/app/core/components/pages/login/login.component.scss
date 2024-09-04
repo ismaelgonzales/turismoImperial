@@ -1,7 +1,20 @@
 .wrapper__principal {
     background-image: url('/img/slider/slide3.jpg');
 }
+img {
+    width: auto;
+    height: auto;
+
+    margin-bottom: 3rem;
+}
 
 mat-spinner {
     font-size: 1px;
+}
+h1 {
+    color: white;
+}
+
+a {
+    color: white;
 }

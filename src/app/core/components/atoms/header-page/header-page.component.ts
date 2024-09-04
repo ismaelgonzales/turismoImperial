@@ -33,7 +33,7 @@ export class HeaderPageComponent {
             route: 'login',
         },
         {
-            name: 'Registro',
+            name: 'Registrate',
             type: 'button',
             route: 'register',
         },

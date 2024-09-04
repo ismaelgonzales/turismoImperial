@@ -1,0 +1,84 @@
+<footer class="footer__container">
+    <div class="footer__container-logo">
+        <img src="img/imperial/LogoImperial.png" alt="LogoImperial" />
+    </div>
+    <div class="footer__container-options">
+        <ul class="footer-links">
+            <ng-container *ngFor="let option of FooterOptions; let i = index">
+                <ng-container *ngIf="i < 4">
+                    <li>
+                        <ng-container *ngIf="option.type === 'link'">
+                            <a [routerLink]="option.route" class="footer-link">
+                                {{ option.name }}
+                            </a>
+                        </ng-container>
+                        <ng-container *ngIf="option.type === 'text'">
+                            <span class="footer-text">
+                                {{ option.name }}
+                            </span>
+                        </ng-container>
+                    </li>
+                </ng-container>
+            </ng-container>
+        </ul>
+        <div class="more-links" *ngIf="FooterOptions.length > 4">
+            <ul>
+                <ng-container
+                    *ngFor="let option of FooterOptions; let i = index">
+                    <ng-container *ngIf="i >= 4">
+                        <li>
+                            <ng-container *ngIf="option.type === 'link'">
+                                <a
+                                    [routerLink]="option.route"
+                                    class="footer-link">
+                                    {{ option.name }}
+                                </a>
+                            </ng-container>
+                            <ng-container *ngIf="option.type === 'text'">
+                                <span class="footer-text">
+                                    {{ option.name }}
+                                </span>
+                            </ng-container>
+                        </li>
+                    </ng-container>
+                </ng-container>
+            </ul>
+            <button class="show-more" (click)="toggleMoreLinks()">
+                {{ showMoreLinks ? 'Mostrar menos' : 'Mostrar más' }}
+            </button>
+        </div>
+    </div>
+    <div class="footer__container-social">
+        <a
+            href="https://facebook.com"
+            class="social-icon"
+            target="_blank"
+            aria-label="Facebook">
+            <img src="img/imperial/social/facebook.png" alt="Facebook" />
+        </a>
+        <a
+            href="https://twitter.com"
+            class="social-icon"
+            target="_blank"
+            aria-label="Twitter">
+            <img src="img/imperial/social/twitter.png" alt="Twitter" />
+        </a>
+        <a
+            href="https://instagram.com"
+            class="social-icon"
+            target="_blank"
+            aria-label="Instagram">
+            <img src="img/imperial/social/instagram.png" alt="Instagram" />
+        </a>
+        <a
+            href="https://linkedin.com"
+            class="social-icon"
+            target="_blank"
+            aria-label="LinkedIn">
+            <img src="img/imperial/social/linkedin.png" alt="LinkedIn" />
+        </a>
+    </div>
+    <div class="footer__container-copyright">
+        <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+    </div>
+</footer>

@@ -1,7 +1,8 @@
 <div
     class="wrapper__principal bg-cover bg-no-repeat bg-center min-h-screen flex items-center justify-center">
     <div [class]="'container max-w-96 p-10 rounded-lg ' + principalColor">
-        <h1 class="title text-center text-2xl">Ingresa</h1>
+        <img src="img\imperial\LogoImperial.png" alt="LogoImperial" />
+        <h1 class="title text-center text-2xl">Bienvenido</h1>
         <form>
             <app-input
                 colorLabelInput="white"
@@ -13,7 +14,10 @@
                 class="row flex justify-center"
                 type="password"></app-input>
         </form>
-        <a class="flex justify-center">Eres nuevo? Create una cuenta aqui</a>
+        <a class="card flex justify-center gap-3" routerLink="/register"
+            >Eres nuevo? Create una cuenta aqui
+        </a>
+
         <div class="mt-4 d-sm-flex justify-center">
             <button mat-raised-button color="primary" class="w-100"></button>
         </div>
@@ -23,6 +27,17 @@
             [borderBottomRight]="true"
             [borderBottomLeft]="true"
             [borderTopLeft]="true"
-            [label]="'Iniciar Sesion'"></app-button>
+            [label]="'Iniciar Sesión'">
+        </app-button>
+        <app-button
+            class="card flex mt-4"
+            routerLink="/"
+            [colorBgButton]="'secondary'"
+            [borderTopRight]="true"
+            [borderBottomRight]="true"
+            [borderBottomLeft]="true"
+            [borderTopLeft]="true"
+            [label]="'Volver al Inicio'">
+        </app-button>
     </div>
 </div>
