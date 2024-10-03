@@ -3,10 +3,10 @@
     <div [class]="'container max-w-96 p-10 rounded-lg ' + principalColor">
         <img src="img\imperial\LogoImperial.png" alt="LogoImperial" />
         <h1 class="title text-center text-2xl">Bienvenido</h1>
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <app-input
                 colorLabelInput="white"
-                label="Usuario"
+                label="Username"
                 class="row flex justify-center"></app-input>
             <app-input
                 colorLabelInput="white"
@@ -14,14 +14,21 @@
                 class="row flex justify-center"
                 type="password"></app-input>
         </form>
-        <a class="card flex justify-center gap-3" routerLink="/register"
-            >Eres nuevo? Create una cuenta aqui
-        </a>
-
-        <div class="mt-4 d-sm-flex justify-center">
-            <button mat-raised-button color="primary" class="w-100"></button>
+        <div *ngIf="errorMessage" class="text-yellow-500 text-center mt-2">
+            {{ errorMessage }}
+        </div>
+        <a class="flex justify-center">¿Eres nuevo? </a>
+        <div class="mt-4 d-sm-flex flex justify-center pb-5">
+            <button
+                mat-raised-button
+                color="primary"
+                class="w-100"
+                routerLink="/register">
+                Create una cuenta
+            </button>
         </div>
         <app-button
+            (click)="onLogin()"
             [colorBgButton]="'secondary'"
             [borderTopRight]="true"
             [borderBottomRight]="true"

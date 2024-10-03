@@ -2,7 +2,7 @@
     class="wrapper__principal bg-cover bg-no-repeat bg-center min-h-screen flex items-center justify-center">
     <div [class]="'container max-w-96 p-10 rounded-lg ' + principalColor">
         <h1 class="title text-center text-2xl">Registro de Usuario</h1>
-        <form>
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
             <app-input
                 colorLabelInput="white"
                 label="Nombres"
@@ -11,10 +11,7 @@
                 colorLabelInput="white"
                 label="Apellidos"
                 class="row flex justify-center"></app-input>
-            <app-input
-                colorLabelInput="white"
-                label="Usuario"
-                class="row flex justify-center"></app-input>
+
             <app-input
                 colorLabelInput="white"
                 label="Correo Electrónico"
@@ -24,18 +21,19 @@
                 label="Contraseña"
                 class="row flex justify-center"
                 type="password"></app-input>
-
-            <app-input
-                colorLabelInput="white"
-                label="Confirmar Contraseña"
-                class="row flex justify-center"
-                type="password"></app-input>
         </form>
-        <a class="flex justify-center" routerLink="/login"
-            >¿Tienes una cuenta? Iniciar sesión aqui</a
-        >
-        <div class="mt-4 d-sm-flex justify-center">
-            <button mat-raised-button color="primary" class="w-100"></button>
+        <div *ngIf="errorMessage" class="text-red-500 text-center mt-2">
+            {{ errorMessage }}
+        </div>
+        <a class="flex justify-center">¿Tienes una cuenta? </a>
+        <div class="mt-4 d-sm-flex flex justify-center pb-5">
+            <button
+                mat-raised-button
+                color="primary"
+                class="w-100"
+                routerLink="/login">
+                Iniciar sesión
+            </button>
         </div>
         <app-button
             [colorBgButton]="'secondary'"

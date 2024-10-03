@@ -1,6 +1,6 @@
 <div class="dropdown-container">
     @if(labelIn){
-        <label for="">{{labelIn.toUpperCase()}}</label>
+    <label for="">{{ labelIn.toUpperCase() }}</label>
     }
     <p-dropdown
         [style]="{
@@ -12,10 +12,10 @@
             'border-bottom-right-radius': borderBottomRight
                 ? borderRadius
                 : '0',
-            'padding-top': '25px' ,
-            'padding-bottom' : getPadding()
+            'padding-top': '25px',
+            'padding-bottom': getPadding()
         }"
-        [options]="options"
+        [options]="rutas"
         [checkmark]="checkMark"
         optionLabel="{{ optionLabel }}"
         [showClear]="showClear"

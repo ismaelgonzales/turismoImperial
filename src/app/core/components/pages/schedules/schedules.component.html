@@ -1,0 +1,42 @@
+<div class="card">
+    <p-table [value]="rutasbuses" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>OrigenId</th>
+                <th>Origen</th>
+                <th>CiudadDestinoId</th>
+                <th>Destino</th>
+                <th>TotalBusesDiarios</th>
+                <th>DuracionMin</th>
+                <th>PrimeraHoraSalida</th>
+                <th>UltimaHoraSalida</th>
+                <th>PrecioMinimo</th>
+                <th>DuracionPromedio</th>
+                <th>DistanciaKm</th>
+                <th>TerminalSaliente</th>
+                <th>TerminalEntrante</th>
+                <th>Popular</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ruta>
+            <tr>
+                <td>{{ ruta.idRutasBuses }}</td>
+                <td>{{ ruta.ciudadOrigenId }}</td>
+                <td>{{ ruta.origen }}</td>
+                <td>{{ ruta.ciudadDestinoId }}</td>
+                <td>{{ ruta.destino }}</td>
+                <td>{{ ruta.totalBusesDiarios }}</td>
+                <td>{{ ruta.duracionMin }}</td>
+                <td>{{ ruta.primeraHoraSalida }}</td>
+                <td>{{ ruta.ultimaHoraSalida }}</td>
+                <td>{{ ruta.precioMinimo }}</td>
+                <td>{{ ruta.duracionPromedio }}</td>
+                <td>{{ ruta.distanciaKm }}</td>
+                <td>{{ ruta.terminalSaliente }}</td>
+                <td>{{ ruta.terminalEntrante }}</td>
+                <td>{{ ruta.popular }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -23,7 +23,7 @@ export class ButtonComponent {
                 this.colorBg = 'bg-red-500 text-white';
                 break;
             case 'secondary':
-                this.colorBg = 'bg-[#f2a516] text-black';
+                this.colorBg = 'bg-[#f2a516] text-white';
                 break;
             case 'white':
                 this.colorBg = 'bg-white text-black';

@@ -25,7 +25,7 @@ export class HeaderPageComponent {
         {
             name: 'Contáctanos',
             type: 'button',
-            route: '',
+            route: 'contact',
         },
         {
             name: 'Iniciar sesión',

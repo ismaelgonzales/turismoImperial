@@ -20,22 +20,22 @@ export class FooterPageComponent {
         {
             name: 'Servicio al Cliente',
             type: 'link',
-            route: '/register',
+            route: '/contact',
         },
         {
             name: 'Acerca de Nosotros',
             type: 'link',
-            route: '/register',
+            route: '/contact',
         },
         {
             name: 'Política de Privacidad',
             type: 'link',
-            route: '/register',
+            route: '/contact',
         },
         {
             name: 'Términos y Condiciones',
             type: 'link',
-            route: '/register',
+            route: '/contact',
         },
         {
             name: 'DIRECCIÓN: Calle Pisac 284 Int. 2 Urb, Ate 15012',

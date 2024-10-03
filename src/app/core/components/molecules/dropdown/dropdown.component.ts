@@ -1,5 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
+
+export interface Rutas {
+    nombre: string;
+    codigo: string;
+}
 @Component({
     selector: 'app-dropdown',
     standalone: true,
@@ -7,7 +12,21 @@ import { DropdownModule } from 'primeng/dropdown';
     templateUrl: './dropdown.component.html',
     styleUrl: './dropdown.component.scss',
 })
-export class DropdownComponent {
+export class DropdownComponent implements OnInit {
+    rutas: Rutas[] | undefined;
+
+    selecionaRutas: Rutas | undefined;
+
+    ngOnInit() {
+        this.rutas = [
+            { nombre: 'New York', codigo: 'NY' },
+            { nombre: 'Rome', codigo: 'RM' },
+            { nombre: 'London', codigo: 'LDN' },
+            { nombre: 'Istanbul', codigo: 'IST' },
+            { nombre: 'Paris', codigo: 'PRS' },
+        ];
+    }
+
     @Input() options: any[] = [];
     @Input() optionLabel: string = '';
     @Input() formControlName: string = '';

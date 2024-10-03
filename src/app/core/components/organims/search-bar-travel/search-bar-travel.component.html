@@ -6,8 +6,24 @@
         [borderEnabled]="true"
         [borderBottomLeft]="true"
         [borderTopLeft]="true"></app-dropdown>
-    <app-dropdown [labelIn]="'Destino *'" [placeHolder]="'Hacia'" [padding]="'md'" [borderEnabled]="true"></app-dropdown>
-    <app-input-calendar [labelIn]="'Salida'" [padding]="'md'" [borderEnabled]="true"></app-input-calendar>
-    <app-input-calendar [labelIn]="'Retorno (Opcional)'" [padding]="'md'" [borderEnabled]="true"></app-input-calendar>
-    <app-button [colorBgButton]="'principal'" [borderTopRight]="true" [borderBottomRight]="true" [label]="'Buscar'"></app-button>
+    <app-dropdown
+        [labelIn]="'Destino *'"
+        [placeHolder]="'Hacia'"
+        [padding]="'md'"
+        [borderEnabled]="true"></app-dropdown>
+    <app-input-calendar
+        [labelIn]="'Salida'"
+        [padding]="'md'"
+        [borderEnabled]="true"></app-input-calendar>
+    <app-input-calendar
+        [labelIn]="'Retorno (Opcional)'"
+        [padding]="'md'"
+        [borderEnabled]="true"></app-input-calendar>
+    <app-button
+        routerLink="/schedules"
+        routerLinkActive="active"
+        [colorBgButton]="'principal'"
+        [borderTopRight]="true"
+        [borderBottomRight]="true"
+        [label]="'Buscar'"></app-button>
 </div>
