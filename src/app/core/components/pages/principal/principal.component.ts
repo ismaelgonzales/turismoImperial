@@ -34,27 +34,33 @@ import { FooterPageComponent } from '../../atoms/footer-page/footer-page.compone
 export class PrincipalComponent {
     public imagesSlide: IImageSlide[] = [
         {
-            imgRoute: '/img/imperial/slider/slide1.jpg',
+            imgRoute:
+                'https://res.cloudinary.com/dd6ferfis/image/upload/v1728709354/slide1_kydgds.jpg',
             alt: 'Bus1',
         },
         {
-            imgRoute: '/img/imperial/slider/slide2.jpg',
+            imgRoute:
+                'https://res.cloudinary.com/dd6ferfis/image/upload/v1728784240/slide2_giduxc.jpg',
             alt: 'Bus2',
         },
         {
-            imgRoute: '/img/imperial/slider/slide3.jpg',
+            imgRoute:
+                'https://res.cloudinary.com/dd6ferfis/image/upload/v1728786636/slide3_estnf9.jpg',
             alt: 'Bus3',
         },
         {
-            imgRoute: '/img/imperial/slider/slide4.jpg',
+            imgRoute:
+                'https://res.cloudinary.com/dd6ferfis/image/upload/v1728786647/slide4_ko77ua.jpg',
             alt: 'Bus4',
         },
         {
-            imgRoute: '/img/imperial/slider/slide5.jpg',
+            imgRoute:
+                'https://res.cloudinary.com/dd6ferfis/image/upload/v1728786659/slide5_zyevlv.jpg',
             alt: 'Bus5',
         },
         {
-            imgRoute: '/img/slider/slide3.jpg',
+            imgRoute:
+                'https://res.cloudinary.com/dd6ferfis/image/upload/v1728787647/slide6_x3thzt.jpg',
             alt: 'Bus6',
         },
     ];

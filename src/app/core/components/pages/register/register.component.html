@@ -2,7 +2,7 @@
     class="wrapper__principal bg-cover bg-no-repeat bg-center min-h-screen flex items-center justify-center">
     <div [class]="'container max-w-96 p-10 rounded-lg ' + principalColor">
         <h1 class="title text-center text-2xl">Registro de Usuario</h1>
-        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <form [formGroup]="registerForm">
             <app-input
                 colorLabelInput="white"
                 label="Nombres"

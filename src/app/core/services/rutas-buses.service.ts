@@ -1,17 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
+
+import { RutasBuses } from '../interfaces/RutasBuses.interface';
 
 @Injectable({
     providedIn: 'root',
 })
 export class RutasBusesService {
-    private apiUrl = 'https://localhost:7216/RutasBuses';
+    private endpoint: string = environment.endPoint;
+    private apiUrl: string = this.endpoint + 'RutasBuses/';
 
     constructor(private http: HttpClient) {}
 
-    // Obtener todas las rutasbuses
-    getRutasBuses(): Observable<any> {
-        return this.http.get<any>(this.apiUrl);
+    getList(): Observable<RutasBuses[]> {
+        return this.http.get<RutasBuses[]>(`${this.endpoint}RutasBuses`);
+    }
+
+    add(request: RutasBuses): Observable<RutasBuses> {
+        return this.http.post<RutasBuses>(`${this.apiUrl}Agregar`, request);
+    }
+
+    delete(IdRutasBuses: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}Eliminar/${IdRutasBuses}`);
     }
 }

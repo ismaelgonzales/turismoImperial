@@ -15,12 +15,9 @@ export class HeaderPageComponent {
 
     public Options: IHeaderOptions[] = [
         {
-            name: 'Español',
-            type: 'dropdown',
-            options: [
-                { name: 'Español', cod: 'ES' },
-                { name: 'English', cod: 'EN' },
-            ],
+            name: 'Inicio',
+            type: 'button',
+            route: '/',
         },
         {
             name: 'Contáctanos',
@@ -43,5 +40,9 @@ export class HeaderPageComponent {
         if (route) {
             this._route.navigate([route]);
         }
+    }
+
+    public goToHome(): void {
+        this._route.navigate(['principal']);
     }
 }

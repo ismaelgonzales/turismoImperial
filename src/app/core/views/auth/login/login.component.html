@@ -1,0 +1,103 @@
+<app-header-page />
+<section
+    src="https://res.cloudinary.com/dd6ferfis/image/upload/v1728709354/slide1_kydgds.jpg">
+    <div
+        class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a
+            href="#"
+            class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        </a>
+        <div
+            class="w-full bg-red-950 rounded-lg shadow dark:border md:nt-0 sm:max-w-md xl:p-0 dark:bg-red-950 dark:border-red-600">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <div class="flex items-center flex-col gap-y-4">
+                    <img
+                        class="w-27 h-20 mr-2"
+                        src="https://res.cloudinary.com/dd6ferfis/image/upload/v1728702908/LogoImperial_rtgf6p.png"
+                        alt="logo" />
+                    <h1
+                        class="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
+                        Inicia Session
+                    </h1>
+                </div>
+
+                <form
+                    class="space-y-4 md:space-y-6"
+                    [formGroup]="form"
+                    (ngSubmit)="submit()">
+                    <div>
+                        <label
+                            for="email"
+                            class="block mb-2 text-sm font-medium text-white dark:text-white"
+                            >Tu correo</label
+                        >
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-red-950 focus:border-red-950 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-red-950 dark:focus:border-red-950"
+                            placeholder="nombre@compañia.com"
+                            formControlName="email" />
+                        @if(isRequired('email')) {
+                        <small class="text-yellow-950"
+                            >Este campo es requerido</small
+                        >
+                        } @if(hasEmailError()) {
+                        <small class="text-yellow-950"
+                            >El correo debe ser valido</small
+                        >
+                        }
+                    </div>
+                    <div>
+                        <label
+                            for="password"
+                            class="block mb-2 text-sm font-medium text-white dark:text-white"
+                            >Contraseña</label
+                        >
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="•••••••••••"
+                            formControlName="password"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-red-950 focus:border-red-950 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-red-950 dark:focus:border-red-950" />
+
+                        @if(isRequired('password')) {
+                        <small class="text-yellow-950"
+                            >Este campo es requerido</small
+                        >
+                        }
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full text-white bg-yellow-950 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800">
+                        Iniciar Session
+                    </button>
+                    <p
+                        class="text-sm font-light text-white dark:text-white text-center">
+                        Aún no tienes una cuenta?
+                        <a
+                            routerLink="/register"
+                            class="font-medium text-yellow-950 hover:underline hover:text-yellow-600 dark:text-yellow-950"
+                            >Crea tu cuenta</a
+                        >
+                    </p>
+                    <div class="flex items-center flex-col gap-y-4">
+                        <h1
+                            class="text-xl font-bold leading-tight tracking-tight text-white md:text-1xl">
+                            Iniciar sesión con una red social
+                        </h1>
+                        <app-google-button (onClick)="submitWithGoogle()" />
+                        <p
+                            class="text-xl font-bold leading-tight tracking-tight text-white dark:text-white md:text-1xl">
+                            O
+                        </p>
+                        <app-facebook-button (onClick)="submitWithFacebook()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer-page />

@@ -1,24 +1,67 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { GeneralResponse } from '../models/general-response.model';
+import { LoginRequest } from '../models/login-request.model';
+import { LoginResponse } from '../models/login-response.model';
+import { ApiUrlConstants } from '../../shared/constants/general.constants';
+// import {
+//     createUserWithEmailAndPassword,
+//     getAuth,
+//     GoogleAuthProvider,
+//     signInWithPopup,
+//     signOut,
+// } from 'firebase/auth';
 
+import {
+    Auth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+    FacebookAuthProvider,
+} from '@angular/fire/auth';
+import { Usuario } from '../interfaces/Usuario.interface';
+
+export interface User {
+    email: string;
+    password: string;
+}
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    private apiUrl = 'https://localhost:7216/Usuario';
+    private _auth = inject(Auth);
 
-    constructor(private http: HttpClient) {}
-
-    // Método para registrar un usuario
-    register(userData: any): Observable<any> {
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post(`${this.apiUrl}/register`, userData, { headers });
+    signUp(user: User) {
+        return createUserWithEmailAndPassword(
+            this._auth,
+            user.email,
+            user.password,
+        );
     }
 
-    // Método para autenticar (iniciar sesión)
-    login(credentials: any): Observable<any> {
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post(`${this.apiUrl}/login`, credentials, { headers });
+    signIn(user: User) {
+        return signInWithEmailAndPassword(
+            this._auth,
+            user.email,
+            user.password,
+        );
+    }
+
+    signInWithGoogle() {
+        const provider = new GoogleAuthProvider();
+
+        provider.setCustomParameters({ prompt: 'select_account' });
+
+        return signInWithPopup(this._auth, provider);
+    }
+
+    signInWithFacebook() {
+        const provider = new FacebookAuthProvider();
+
+        // provider.setCustomParameters({ prompt: 'select_account' });
+
+        return signInWithPopup(this._auth, provider);
     }
 }

@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { RutasBuses } from '../../../interfaces/RutasBuses.interface';
 import { RutasBusesService } from '../../../services/rutas-buses.service';
 import { TableModule } from 'primeng/table';
 import { HeaderPageComponent } from '../../atoms/header-page/header-page.component';
 import { ButtonComponent } from '../../molecules/button/button.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SearchBarTravelComponent } from '../../organims/search-bar-travel/search-bar-travel.component';
+import { RutaDetallesComponent } from '../../organims/ruta-detalles/ruta-detalles.component';
+import { CardPrimeNgComponent } from '../../organims/card-prime-ng/card-prime-ng.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
     selector: 'app-schedules',
     standalone: true,
@@ -15,51 +20,104 @@ import { CommonModule } from '@angular/common';
         RouterModule,
         HeaderPageComponent,
         CommonModule,
+        SearchBarTravelComponent,
+        RutaDetallesComponent,
+        CardPrimeNgComponent,
+        ReactiveFormsModule,
     ],
     templateUrl: './schedules.component.html',
     styleUrl: './schedules.component.scss',
-
-    providers: [RutasBusesService],
 })
 export class SchedulesComponent implements OnInit {
-    // buses: any[] = []; // Arreglo para almacenar los datos obtenidos de la API
+    listaRutasBuses: RutasBuses[] = [];
+    formularioRutasBuses: FormGroup;
 
-    // constructor(private busService: BusesService) {}
-
-    // ngOnInit(): void {
-    //     // Llamar al servicio para obtener los datos de los buses cuando se inicialice el componente
-    //     this.busService.getBuses().subscribe({
-    //         next: data => {
-    //             this.buses = data; // Asignar los datos de la API a la variable 'buses'
-    //             console.log(this.buses); // Verificar los datos recibidos en la consola
-    //         },
-    //         error: error => {
-    //             console.error('Error al obtener los datos de la API', error);
-    //         },
-    //     });
-    // }
-
-    rutasbuses: any[] = [];
-    constructor(private rutasBusesService: RutasBusesService) {}
-    ngOnInit(): void {
-        this.rutasBusesService.getRutasBuses().subscribe({
+    constructor(
+        private _rutasbusesService: RutasBusesService,
+        private fb: FormBuilder,
+    ) {
+        this.formularioRutasBuses = this.fb.group({
+            IdRutasBuses: [0],
+            CiudadOrigenId: ['', Validators.required],
+            Origen: ['', Validators.required],
+            CiudadDestinoId: ['', Validators.required],
+            Destino: ['', Validators.required],
+            TotalBusesDiarios: ['', Validators.required],
+            DuracionMin: ['', Validators.required],
+            PrimeraHoraSalida: ['', Validators.required],
+            UltimaHoraSalida: ['', Validators.required],
+            PrecioMinimo: ['', Validators.required],
+            PrecioPromedio: ['', Validators.required],
+            DuracionPromedio: ['', Validators.required],
+            DistanciaKm: ['', Validators.required],
+            TerminalSaliente: ['', Validators.required],
+            TerminalEntrante: ['', Validators.required],
+            Popular: ['', Validators.required],
+        });
+    }
+    obtenerRutasBuses() {
+        this._rutasbusesService.getList().subscribe({
             next: data => {
-                this.rutasbuses = data;
-                console.log(this.rutasbuses);
+                this.listaRutasBuses = data;
             },
-            error: error => {
-                console.error('Error al obtener los datos de la API', error);
+            error: e => {},
+        });
+    }
+    ngOnInit(): void {
+        this.obtenerRutasBuses();
+    }
+
+    agregarRutasBuses() {
+        const Request: RutasBuses = {
+            IdRutasBuses: 0,
+            CiudadOrigenId: 0,
+            Origen: this.formularioRutasBuses.value.Origen,
+            CiudadDestinoId: 0,
+            Destino: this.formularioRutasBuses.value.Destino,
+            TotalBusesDiarios: 0,
+            DuracionMin: this.formularioRutasBuses.value.DuracionMin,
+            PrimeraHoraSalida:
+                this.formularioRutasBuses.value.PrimeraHoraSalida,
+            UltimaHoraSalida: this.formularioRutasBuses.value.UltimaHoraSalida,
+            PrecioMinimo: this.formularioRutasBuses.value.PrecioMinimo,
+            PrecioPromedio: this.formularioRutasBuses.value.Precio,
+            DuracionPromedio: this.formularioRutasBuses.value.DuracionPromedio,
+            DistanciaKm: this.formularioRutasBuses.value.DistanciaKm,
+            TerminalSaliente: this.formularioRutasBuses.value.TerminalSaliente,
+            TerminalEntrante: this.formularioRutasBuses.value.TerminalEntrante,
+            Popular: this.formularioRutasBuses.value.Popular,
+        };
+        this._rutasbusesService.add(Request).subscribe({
+            next: data => {
+                this.listaRutasBuses.push(data);
+                this.formularioRutasBuses.patchValue({
+                    Origen: '',
+                    Destino: '',
+                    DuracionMin: '',
+                    PrimeraHoraSalida: '',
+                    UltimaHoraSalida: '',
+                    PrecioMinimo: '',
+                    PrecioPromedio: '',
+                    DuracionPromedio: '',
+                    DistanciaKm: '',
+                    TerminalSaliente: '',
+                    TerminalEntrante: '',
+                    Popular: false,
+                });
             },
+            error: e => {},
         });
     }
 
-    // rutasbuses!: RutasBuses[];
-
-    // constructor(private rutasBusesService: RutasBusesService) {}
-
-    // ngOnInit() {
-    //     this.rutasBusesService.getRutasBuses().subscribe(data => {
-    //         this.rutasbuses = data;
-    //     });
-    // }
+    eliminarRutasBuses(RutasBuses: RutasBuses) {
+        this._rutasbusesService.delete(RutasBuses.IdRutasBuses).subscribe({
+            next: data => {
+                const nuevaLista = this.listaRutasBuses.filter(
+                    item => item.IdRutasBuses !== RutasBuses.IdRutasBuses,
+                );
+                this.listaRutasBuses = nuevaLista;
+            },
+            error: e => {},
+        });
+    }
 }
