@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
-import path from 'path';
-import { LoginComponent } from './core/views/auth/login/login.component';
-import { TemplateComponent } from './core/views/dashboard/template/template.component';
-import { MantUsuarioListComponent } from './core/views/Mantenimiento/mant-usuario-list/mant-usuario-list.component';
-import { MantPersonaListComponent } from './core/views/Mantenimiento/mant-persona-list/mant-persona-list.component';
-import { MantColaboradorListComponent } from './core/views/Mantenimiento/mant-colaborador-list/mant-colaborador-list.component';
+
+import { MantUsuarioListComponent } from './core/components/admin/Mantenimiento/mant-usuario-list/mant-usuario-list.component';
+import { MantPersonaListComponent } from './core/components/admin/Mantenimiento/mant-persona-list/mant-persona-list.component';
+import { MantColaboradorListComponent } from './core/components/admin/Mantenimiento/mant-colaborador-list/mant-colaborador-list.component';
+
 import { privateGuard, publicGuard } from './core/guards/auth.guard';
+import { AccesoGuard } from './core/guards/acceso.guard';
+import { AuthenticatedGuard } from './core/guards/authenticated.guard';
 
 export const routes: Routes = [
     {
@@ -18,32 +19,20 @@ export const routes: Routes = [
         },
     },
     {
-        path: 'dashlogin',
+        path: 'login',
 
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/login/login.component'
-            );
-            return m.LoginComponent;
-        },
+        loadComponent: () =>
+            import('./core/views/auth/login/login.component').then(
+                c => c.LoginComponent,
+            ),
     },
     {
-        path: 'footer',
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/atoms/footer-page/footer-page.component'
-            );
-            return m.FooterPageComponent;
-        },
-    },
-    {
-        path: 'dashregister',
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/register/register.component'
-            );
-            return m.RegisterComponent;
-        },
+        path: 'register',
+
+        loadComponent: () =>
+            import('./core/views/auth/register/register.component').then(
+                c => c.RegisterComponent,
+            ),
     },
     {
         path: 'schedules',
@@ -93,93 +82,123 @@ export const routes: Routes = [
         },
     },
     {
-        path: 'dashboard',
-
-        loadComponent: () =>
-            import('./core/views/dashboard/template/template.component').then(
-                c => c.TemplateComponent,
-            ),
-    },
-    {
-        path: 'login',
-
-        loadComponent: () =>
-            import('./core/views/auth/login/login.component').then(
-                c => c.LoginComponent,
-            ),
-    },
-    {
-        path: 'register',
-
-        loadComponent: () =>
-            import('./core/views/auth/register/register.component').then(
-                c => c.RegisterComponent,
-            ),
+        path: 'rutas',
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/rutas/rutas.component'
+            );
+            return m.RutasComponent;
+        },
     },
 
-    // {
-    //     path: 'auth',
-    //     component: LoginComponent,
-    // },
-    // {
-    //     path: 'dashboard',
-    //     component: TemplateComponent,
-    //     children: [
-    //         {
-    //             path: 'mantenimiento',
-    //             children: [
-    //                 { path: 'usuario', component: MantUsuarioListComponent },
-    //                 { path: 'persona', component: MantPersonaListComponent },
-    //                 {
-    //                     path: 'colaborador',
-    //                     component: MantColaboradorListComponent,
-    //                 },
-    //             ],
-    //         },
-    //     ],
-    // },
     {
+        path: 'seleccion-asientos',
+
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/seleccion-asientos/seleccion-asientos.component'
+            );
+            return m.SeleccionAsientosComponent;
+        },
+    },
+    {
+        path: 'datos-pasajero',
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/datos-pasajero/datos-pasajero.component'
+            );
+            return m.DatosPasajeroComponent;
+        },
+    },
+    {
+        path: 'dashlogin',
+
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/login/login.component'
+            );
+            return m.LoginComponent;
+        },
+        canActivate: [AuthenticatedGuard],
+    },
+    {
+        path: 'dashregister',
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/register/register.component'
+            );
+            return m.RegisterComponent;
+        },
+    },
+    {
+        canActivate: [AccesoGuard],
         path: 'admin',
-        loadComponent: () =>
-            import('./core/components/pages/admin/admin.component').then(
-                c => c.AdminComponent,
-            ),
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/admin/admin.component'
+            );
+            return m.AdminComponent;
+        },
 
         children: [
             {
                 path: 'dashboard',
-                loadComponent: () =>
-                    import(
+                loadComponent: async () => {
+                    const m = await import(
                         './core/components/admin/dashboard-adm/dashboard-adm.component'
-                    ).then(c => c.DashboardAdmComponent),
+                    );
+                    return m.DashboardAdmComponent;
+                },
+                canActivate: [AccesoGuard],
             },
             {
                 path: 'opcion-2',
-                loadComponent: () =>
-                    import(
+                loadComponent: async () => {
+                    const m = await import(
                         './core/components/admin/op-2-dash/op-2-dash.component'
-                    ).then(c => c.Op2DashComponent),
+                    );
+                    return m.Op2DashComponent;
+                },
+                canActivate: [AccesoGuard],
             },
             {
                 path: 'opcion-3',
-                loadComponent: () =>
-                    import(
+                loadComponent: async () => {
+                    const m = await import(
                         './core/components/admin/op-3-dash/op-3-dash.component'
-                    ).then(c => c.Op3DashComponent),
+                    );
+                    return m.Op3DashComponent;
+                },
+                canActivate: [AccesoGuard],
             },
             {
                 path: 'opcion-4',
-                loadComponent: () =>
-                    import(
+                loadComponent: async () => {
+                    const m = await import(
                         './core/components/admin/op-4-dash/op-4-dash.component'
-                    ).then(c => c.Op4DashComponent),
+                    );
+                    return m.Op4DashComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+            {
+                path: 'mantenimiento',
+                children: [
+                    { path: 'usuario', component: MantUsuarioListComponent },
+                    { path: 'persona', component: MantPersonaListComponent },
+                    {
+                        path: 'colaborador',
+                        component: MantColaboradorListComponent,
+                    },
+                ],
+                canActivate: [AccesoGuard],
             },
         ],
     },
 
-    {
-        path: '**',
-        redirectTo: '',
-        pathMatch: 'full',
-    },
+    // {
+    //     path: '**',
+    //     redirectTo: '',
+    //     pathMatch: 'full',
+    // },
 ];

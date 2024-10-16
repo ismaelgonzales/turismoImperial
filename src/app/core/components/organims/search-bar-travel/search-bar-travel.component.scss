@@ -1,4 +1,6 @@
 .searchBar__container {
+    position: sticky;
+    top: 0;
     display: flex;
     padding-left: 35vh;
     padding-right: 35vh;
@@ -9,7 +11,6 @@
 app-dropdown {
     z-index: 1;
     flex: 1;
-
 }
 
 app-input-calendar {
