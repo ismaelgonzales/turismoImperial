@@ -1,4 +1,3 @@
-import { UserResponse } from './user-response.model';
 import { UsuarioResponse } from './usuario-response.model';
 
 export class LoginResponse {

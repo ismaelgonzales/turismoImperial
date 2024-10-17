@@ -10,7 +10,7 @@ import { RutasBuses } from '../interfaces/RutasBuses.interface';
 })
 export class RutasBusesService {
     private endpoint: string = environment.endPoint;
-    private apiUrl: string = this.endpoint + 'RutasBuses/';
+    private apiUrl: string = this.endpoint + 'RutasBuses';
 
     constructor(private http: HttpClient) {}
 

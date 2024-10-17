@@ -34,16 +34,16 @@ export const routes: Routes = [
                 c => c.RegisterComponent,
             ),
     },
-    {
-        path: 'schedules',
-        canActivateChild: [publicGuard()],
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/schedules/schedules.component'
-            );
-            return m.SchedulesComponent;
-        },
-    },
+    // {
+    //     path: 'schedules',
+    //     canActivateChild: [publicGuard()],
+    //     loadComponent: async () => {
+    //         const m = await import(
+    //             './core/components/pages/schedules/schedules.component'
+    //         );
+    //         return m.SchedulesComponent;
+    //     },
+    // },
     {
         path: 'seats',
         loadComponent: async () => {
@@ -196,9 +196,9 @@ export const routes: Routes = [
         ],
     },
 
-    // {
-    //     path: '**',
-    //     redirectTo: '',
-    //     pathMatch: 'full',
-    // },
+    {
+        path: '**',
+        redirectTo: '',
+        pathMatch: 'full',
+    },
 ];

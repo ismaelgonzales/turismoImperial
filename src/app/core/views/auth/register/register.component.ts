@@ -1,14 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { HeaderPageComponent } from '../../../components/atoms/header-page/header-page.component';
-import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { Usuario } from '../../../interfaces/Usuario.interface';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { toast } from 'ngx-sonner';

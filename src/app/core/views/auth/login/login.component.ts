@@ -2,20 +2,11 @@ import { Component, inject } from '@angular/core';
 import { HeaderPageComponent } from '../../../components/atoms/header-page/header-page.component';
 import { SharedModule } from '../../../models/shared/shared.module';
 import { FacebookButtonComponent } from '../ui/facebook-button/facebook-button.component';
-import {
-    FormBuilder,
-    FormGroup,
-    FormControl,
-    Validators,
-    ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { LoginRequest } from '../../../models/login-request.model';
-import { GeneralResponse } from '../../../models/general-response.model';
-import { LoginResponse } from '../../../models/login-response.model';
+
 import { Router, RouterLink } from '@angular/router';
-import { SessionService } from '../../../services/session.service';
-import { SessionConstants } from '../../../../shared/constants/general.constants';
+
 import { NgIf } from '@angular/common';
 import { GoogleButtonComponent } from '../ui/google-button/google-button.component';
 import { toast } from 'ngx-sonner';

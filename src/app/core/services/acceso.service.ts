@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { RegisterRequest } from '../models/register-request.model';
 import { LoginRequest } from '../models/login-request.model';
 import { ApiUrlConstants } from '../../shared/constants/general.constants';
 import { GeneralResponse } from '../models/general-response.model';
 import { LoginResponse } from '../models/login-response.model';
+import { catchError, tap } from 'rxjs/operators';
 import { RegisterResponse } from '../models/register-response.model';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+
 @Injectable({
     providedIn: 'root',
 })
@@ -32,11 +33,14 @@ export class AccesoService {
                         this.setToken(response.token);
                     }
                 }),
+                catchError(this.handleError),
             );
     }
 
-    register(request: RegisterRequest): Observable<RegisterResponse> {
-        return this.http.post<RegisterResponse>(this.REGISTER_URL, request);
+    register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
+        return this.http
+            .post<RegisterResponse>(this.REGISTER_URL, registerRequest)
+            .pipe(catchError(this.handleError));
     }
 
     private setToken(token: string): void {
@@ -66,5 +70,16 @@ export class AccesoService {
     logout(): void {
         localStorage.removeItem(this.tokenKey);
         this.router.navigate(['/dashlogin']);
+    }
+
+    private handleError(error: HttpErrorResponse): Observable<never> {
+        let errorMessage = 'Ocurrió un error desconocido';
+        if (error.error instanceof ErrorEvent) {
+            errorMessage = `Error del cliente: ${error.error.message}`;
+        } else {
+            errorMessage = `Código del servidor: ${error.status}, mensaje: ${error.message}`;
+        }
+        console.error(errorMessage);
+        return throwError(errorMessage);
     }
 }
