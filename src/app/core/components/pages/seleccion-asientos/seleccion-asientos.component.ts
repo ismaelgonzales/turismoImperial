@@ -3,6 +3,8 @@ import { HeaderPageComponent } from '../../atoms/header-page/header-page.compone
 import { ProgressBarComponent } from '../../organims/progress-bar/progress-bar.component';
 import { DetalladoCompraComponent } from '../../organims/detallado-compra/detallado-compra.component';
 import { NgClass, NgFor } from '@angular/common';
+import { FooterPageComponent } from '../../atoms/footer-page/footer-page.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
     selector: 'app-seleccion-asientos',
@@ -13,22 +15,40 @@ import { NgClass, NgFor } from '@angular/common';
         DetalladoCompraComponent,
         NgFor,
         NgClass,
+        FooterPageComponent,
     ],
     templateUrl: './seleccion-asientos.component.html',
-    styleUrl: './seleccion-asientos.component.scss',
+    styleUrls: ['./seleccion-asientos.component.scss'],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SeleccionAsientosComponent {
     selectedButtons: number[] = [];
+    pasajerosSeleccionados: { pasajero: number; monto: number }[] = [];
+    totalAmount: number = 0;
 
     toggleButton(buttonNumber: number) {
+        const piso1Precio = 40;
+        const piso2Precio = 30;
+        let monto = 0;
+
+        if (buttonNumber <= 12) {
+            monto = piso1Precio;
+        } else {
+            monto = piso2Precio;
+        }
+
         if (this.selectedButtons.includes(buttonNumber)) {
-            // Si el botón ya está seleccionado, lo deseleccionamos
             this.selectedButtons = this.selectedButtons.filter(
                 num => num !== buttonNumber,
             );
+            this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(
+                p => p.pasajero !== buttonNumber,
+            );
+            this.totalAmount -= monto;
         } else if (this.selectedButtons.length < 4) {
-            // Si no está seleccionado y hay espacio, lo seleccionamos
             this.selectedButtons.push(buttonNumber);
+            this.pasajerosSeleccionados.push({ pasajero: buttonNumber, monto });
+            this.totalAmount += monto;
         }
     }
 

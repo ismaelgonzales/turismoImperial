@@ -3,11 +3,11 @@ import { Component, Input, input, OnInit } from '@angular/core';
 import { IRutas } from '../../../models/rutas-model';
 import { ApiService } from '../../../services/api.service';
 import { RouterModule } from '@angular/router';
-
+import { RouterLink } from '@angular/router';
 @Component({
     selector: 'app-detalle-ruta',
     standalone: true,
-    imports: [NgFor, RouterModule],
+    imports: [NgFor, RouterModule, RouterLink],
     templateUrl: './detalle-ruta.component.html',
     styleUrl: './detalle-ruta.component.scss',
 })

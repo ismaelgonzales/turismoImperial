@@ -1,5 +1,48 @@
-app-header-page />
-<app-progress-bar />
+<app-header-page />
+<!-- <app-progress-bar /> -->
+
+<ol
+    class="flex p-36 items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+    <li
+        class="flex md:w-full items-center sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+        <span
+            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            <span class="me-2">1</span>
+
+            Selección
+            <span class="hidden sm:inline-flex sm:ms-2">Asientos</span>
+        </span>
+    </li>
+    <li
+        class="flex md:w-full items-center text-red-950 dark:text-red-950 after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+        <span
+            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            <svg
+                class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+            </svg>
+            Datos <span class="hidden sm:inline-flex sm:ms-2">Pasajero</span>
+        </span>
+    </li>
+    <li
+        class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+        <span
+            class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            <span class="me-2">2</span>
+            Pago
+        </span>
+    </li>
+    <li class="flex items-center">
+        <span class="me-2">3</span>
+        Comprobante
+    </li>
+</ol>
+
 <div class="min-w-screen min-h-screen bg-gray-50">
     <div
         class="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
@@ -7,10 +50,12 @@ app-header-page />
             <div class="-mx-3 md:flex items-start">
                 <div
                     class="px-3 md:w-7/12 lg:pr-10 rounded-lg bg-white border border-gray-200 p-3">
-                    <div class="lg:col-span-2">
+                    <div
+                        class="lg:col-span-2"
+                        *ngFor="let pasajero of pasajeros; let i = index">
                         <div class="w-full flex mb-3 items-center border-b-2">
                             <span class="text-gray-600 font-semibold"
-                                >Pasajero 1</span
+                                >Pasajero {{ i + 1 }}</span
                             >
                         </div>
                         <div
@@ -18,22 +63,29 @@ app-header-page />
                             <div class="md:col-span-3">
                                 <input
                                     type="text"
-                                    name="nacionalidad"
-                                    id="nacionalidad"
+                                    [(ngModel)]="pasajero.nacionalidad"
+                                    name="nacionalidad{{ i }}"
+                                    id="nacionalidad{{ i }}"
                                     class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                    value=""
                                     placeholder="Nacionalidad*" />
                             </div>
                             <div class="md:col-span-3">
                                 <div
                                     class="h-10 bg-gray-50 flex border border-gray-200 rounded-xl items-center mt-1">
                                     <select
+                                        [(ngModel)]="pasajero.tipoDocumento"
                                         class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
-                                        id="grid-state">
-                                        <option>DNI</option>
-                                        <option>Pasaporte</option>
-                                        <option>Cédula de identidad</option>
-                                        <option>Carnet de extranjeria</option>
+                                        id="documentType{{ i }}">
+                                        <option value="DNI">DNI</option>
+                                        <option value="Pasaporte">
+                                            Pasaporte
+                                        </option>
+                                        <option value="Cédula de identidad">
+                                            Cédula de identidad
+                                        </option>
+                                        <option value="Carnet de extranjeria">
+                                            Carnet de extranjería
+                                        </option>
                                     </select>
 
                                     <button
@@ -57,57 +109,49 @@ app-header-page />
                             <div class="md:col-span-3">
                                 <input
                                     type="number"
-                                    name="email"
-                                    id="email"
+                                    [(ngModel)]="pasajero.numeroDocumento"
+                                    name="numeroDocumento{{ i }}"
+                                    id="numeroDocumento{{ i }}"
                                     class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                    value=""
-                                    placeholder="Numero de documento" />
+                                    placeholder="Número de documento" />
                             </div>
                             <div class="md:col-span-3">
                                 <input
                                     type="text"
-                                    name="nombre"
-                                    id="nombre"
+                                    [(ngModel)]="pasajero.nombre"
+                                    name="nombre{{ i }}"
+                                    id="nombre{{ i }}"
                                     class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                    value=""
                                     placeholder="Nombres*" />
                             </div>
                             <div class="md:col-span-3">
                                 <input
                                     type="text"
-                                    name="apellido"
-                                    id="apellido"
+                                    [(ngModel)]="pasajero.apellido"
+                                    name="apellido{{ i }}"
+                                    id="apellido{{ i }}"
                                     class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                    value=""
                                     placeholder="Apellidos*" />
                             </div>
                             <div class="md:col-span-3">
                                 <input
                                     type="date"
-                                    name="fechaDeNacimiento"
-                                    id="fechaDeNacimiento"
+                                    [(ngModel)]="pasajero.fechaDeNacimiento"
+                                    name="fechaDeNacimiento{{ i }}"
+                                    id="fechaDeNacimiento{{ i }}"
                                     class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                    value=""
                                     placeholder="Fecha de nacimiento*" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="px-3 md:w-5/12">
-                    <app-detallado-compra />
+                    <app-detallado-compra
+                        [pasajerosSeleccionados]="pasajerosSeleccionados"
+                        [totalAmount]="totalAmount"></app-detallado-compra>
                 </div>
             </div>
         </div>
     </div>
-    <div class="p-5">
-        <div class="text-center text-gray-400 text-sm">
-            <a
-                href="https://www.buymeacoffee.com/scottwindon"
-                target="_blank"
-                class="focus:outline-none underline text-gray-400"
-                ><i class="mdi mdi-beer-outline"></i>Buy me a beer</a
-            >
-            and help support open-resource
-        </div>
-    </div>
 </div>
+<app-footer-page />
