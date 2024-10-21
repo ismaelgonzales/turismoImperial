@@ -12,7 +12,7 @@ import { ApiUrlConstants } from '../../shared/constants/general.constants';
 //     signInWithPopup,
 //     signOut,
 // } from 'firebase/auth';
-
+import { Router } from '@angular/router';
 import {
     Auth,
     createUserWithEmailAndPassword,
@@ -20,6 +20,7 @@ import {
     signInWithPopup,
     GoogleAuthProvider,
     FacebookAuthProvider,
+    signOut,
 } from '@angular/fire/auth';
 import { Usuario } from '../interfaces/Usuario.interface';
 
@@ -32,6 +33,16 @@ export interface User {
 })
 export class AuthService {
     private _auth = inject(Auth);
+    constructor(private auth: Auth) {}
+    signOut() {
+        return signOut(this.auth)
+            .then(() => {
+                console.log('Sesión cerrada exitosamente');
+            })
+            .catch(error => {
+                console.error('Error al cerrar sesión: ', error);
+            });
+    }
 
     signUp(user: User) {
         return createUserWithEmailAndPassword(

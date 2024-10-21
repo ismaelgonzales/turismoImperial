@@ -5,7 +5,9 @@ import { DetalladoCompraComponent } from '../../organims/detallado-compra/detall
 import { NgClass, NgFor } from '@angular/common';
 import { FooterPageComponent } from '../../atoms/footer-page/footer-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import { SeleccionAsientosService } from '../../../services/seleccion-asientos.service';
+import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 @Component({
     selector: 'app-seleccion-asientos',
     standalone: true,
@@ -16,6 +18,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
         NgFor,
         NgClass,
         FooterPageComponent,
+        RouterLink,
     ],
     templateUrl: './seleccion-asientos.component.html',
     styleUrls: ['./seleccion-asientos.component.scss'],
@@ -25,6 +28,12 @@ export class SeleccionAsientosComponent {
     selectedButtons: number[] = [];
     pasajerosSeleccionados: { pasajero: number; monto: number }[] = [];
     totalAmount: number = 0;
+    selectedPasajeros: any[] = [];
+
+    constructor(
+        private seleccionAsientosService: SeleccionAsientosService,
+        private router: Router,
+    ) {}
 
     toggleButton(buttonNumber: number) {
         const piso1Precio = 40;
@@ -54,5 +63,13 @@ export class SeleccionAsientosComponent {
 
     isSelected(buttonNumber: number): boolean {
         return this.selectedButtons.includes(buttonNumber);
+    }
+
+    onContinuar() {
+        this.seleccionAsientosService.setSelectedPasajeros(
+            this.selectedPasajeros,
+            this.totalAmount,
+        );
+        this.router.navigate(['/datos-pasajero']);
     }
 }

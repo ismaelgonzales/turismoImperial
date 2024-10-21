@@ -31,7 +31,7 @@ export const publicGuard = (): CanActivateFn => {
         return authState.authState$.pipe(
             map(state => {
                 if (state) {
-                    router.navigateByUrl('/login');
+                    router.navigateByUrl('/seleccion-asientos');
                     return false;
                 }
 

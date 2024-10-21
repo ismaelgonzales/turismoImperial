@@ -19,6 +19,7 @@ export const routes: Routes = [
         },
     },
     {
+        canActivate: [publicGuard],
         path: 'login',
 
         loadComponent: () =>
@@ -27,6 +28,7 @@ export const routes: Routes = [
             ),
     },
     {
+        canActivate: [publicGuard],
         path: 'register',
 
         loadComponent: () =>
@@ -73,6 +75,7 @@ export const routes: Routes = [
         },
     },
     {
+        canActivate: [privateGuard()],
         path: 'contact',
         loadComponent: async () => {
             const m = await import(
@@ -92,6 +95,7 @@ export const routes: Routes = [
     },
 
     {
+        canActivate: [privateGuard()],
         path: 'seleccion-asientos',
 
         loadComponent: async () => {
@@ -102,6 +106,7 @@ export const routes: Routes = [
         },
     },
     {
+        canActivate: [privateGuard()],
         path: 'datos-pasajero',
         loadComponent: async () => {
             const m = await import(

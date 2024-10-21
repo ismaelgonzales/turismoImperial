@@ -24,52 +24,19 @@ import { FormsModule } from '@angular/forms';
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DatosPasajeroComponent implements OnInit {
-    selectedButtons: number[] = [];
-    pasajerosSeleccionados: { pasajero: number; monto: number }[] = [];
-    totalAmount: number = 0;
     pasajeros: any[] = [];
+    totalAmount: number = 0;
 
     constructor(
         private router: Router,
         private seleccionAsientosService: SeleccionAsientosService,
     ) {
         this.pasajeros = this.seleccionAsientosService.getSelectedPasajeros();
-        // this.totalAmount = this.seleccionAsientosService.getTotalAmount();
-    }
-    toggleButton(buttonNumber: number) {
-        const piso1Precio = 40;
-        const piso2Precio = 30;
-        let monto = 0;
-
-        // Determinamos el monto del asiento seleccionado
-        if (buttonNumber <= 12) {
-            monto = piso1Precio; // Piso 1
-        } else {
-            monto = piso2Precio; // Piso 2
-        }
-
-        if (this.selectedButtons.includes(buttonNumber)) {
-            // Deseleccionar asiento
-            this.selectedButtons = this.selectedButtons.filter(
-                num => num !== buttonNumber,
-            );
-            this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(
-                p => p.pasajero !== buttonNumber,
-            );
-            this.totalAmount -= monto;
-        } else if (this.selectedButtons.length < 4) {
-            // Seleccionar asiento
-            this.selectedButtons.push(buttonNumber);
-            this.pasajerosSeleccionados.push({ pasajero: buttonNumber, monto });
-            this.totalAmount += monto;
-        }
-    }
-
-    isSelected(buttonNumber: number): boolean {
-        return this.selectedButtons.includes(buttonNumber);
+        this.totalAmount = this.seleccionAsientosService.getTotalAmount();
     }
 
     ngOnInit() {
+        // Obtener los pasajeros desde el servicio
         this.pasajeros = this.seleccionAsientosService.getSelectedPasajeros();
     }
 }

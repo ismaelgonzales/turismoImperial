@@ -11,6 +11,13 @@ export class SeleccionAsientosService {
         this.pasajeros = pasajeros;
         this.totalAmount = total;
     }
+    // setSelectedPasajeros(pasajeros: any[]) {
+    //     this.pasajeros = pasajeros;
+    // }
+
+    // setSelectedPasajeros1(pasajeros: any[]) {
+    //     this.pasajeros = pasajeros;
+    // }
 
     getSelectedPasajeros() {
         return this.pasajeros;
