@@ -1,18 +1,26 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IHeaderOptions } from '../../../interfaces';
 import { DropdownModule } from 'primeng/dropdown';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
     selector: 'app-header-page',
     standalone: true,
-    imports: [DropdownModule],
+    imports: [DropdownModule, CommonModule],
     templateUrl: './header-page.component.html',
     styleUrl: './header-page.component.scss',
 })
-export class HeaderPageComponent {
-    constructor(private authService: AuthService, private router: Router) {}
+export class HeaderPageComponent implements OnInit {
+    isLoggedIn: boolean = false;
+    constructor(
+        private authService: AuthService,
+        private toastr: ToastrService,
+        private toastService: ToastService,
+    ) {}
     private _route = inject(Router);
 
     public Options: IHeaderOptions[] = [
@@ -36,11 +44,6 @@ export class HeaderPageComponent {
             type: 'button',
             route: 'register',
         },
-        // {
-        //     name: 'logout',
-        //     type: 'button',
-        //     route: 'login',
-        // },
     ];
 
     public onRoute(route: string | undefined): void {
@@ -53,10 +56,23 @@ export class HeaderPageComponent {
         this._route.navigate(['principal']);
     }
 
-    onLogout() {
+    ngOnInit() {
+        this.authService.getAuthState().subscribe(user => {
+            this.isLoggedIn = !!user;
+            if (this.isLoggedIn) {
+                this.Options.push({
+                    name: 'Cerrar sesión',
+                    type: 'button',
+                    action: () => this.logout(),
+                });
+            }
+        });
+    }
+
+    logout() {
         this.authService.signOut().then(() => {
-            // Opcional: redirigir a la página de login después de cerrar sesión
-            this.router.navigate(['/login']);
+            this._route.navigate(['/login']);
+            this.toastr.success('Usted a cerrado Sesión cerrada exitosamente');
         });
     }
 }

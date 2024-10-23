@@ -14,13 +14,13 @@ export interface Rutas {
     styleUrl: './dropdown.component.scss',
 })
 export class DropdownComponent implements OnInit {
-  rutas: Rutas[] = [];
+    rutas: Rutas[] = [];
 
     rutasDestino: Rutas[] = [];
 
-  selecionaOrigen: Rutas | undefined;
-  selecionaDestino: Rutas | undefined;
-  constructor(private http: HttpClient) {}
+    selecionaOrigen: Rutas | undefined;
+    selecionaDestino: Rutas | undefined;
+    constructor(private http: HttpClient) {}
 
     ngOnInit() {
         this.rutas = [
@@ -31,21 +31,22 @@ export class DropdownComponent implements OnInit {
             { nombre: 'Palca', codigo: 'PAL' },
             { nombre: 'Huasahuasi', codigo: 'HUA' },
             { nombre: 'SanRamon', codigo: 'SRM' },
-
         ];
 
         this.rutasDestino = [...this.rutas];
     }
 
     onOrigenSelect() {
-      // Filtra las opciones para el destino, excluyendo la seleccionada en el origen
-      this.rutasDestino = this.rutas.filter(
-        (ruta) => ruta.codigo !== this.selecionaOrigen?.codigo
-      );
-      // Si el destino seleccionado es el mismo que el origen, lo resetea
-      if (this.selecionaDestino && this.selecionaDestino.codigo === this.selecionaOrigen?.codigo) {
-        this.selecionaDestino = undefined;
-      }
+        this.rutasDestino = this.rutas.filter(
+            ruta => ruta.codigo !== this.selecionaOrigen?.codigo,
+        );
+
+        if (
+            this.selecionaDestino &&
+            this.selecionaDestino.codigo === this.selecionaOrigen?.codigo
+        ) {
+            this.selecionaDestino = undefined;
+        }
     }
 
     @Input() options: any[] = [];

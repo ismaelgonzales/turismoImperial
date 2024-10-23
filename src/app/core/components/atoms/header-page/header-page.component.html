@@ -9,7 +9,12 @@
         <ul>
             @for(option of Options; track $index){ @if(option.type ===
             'button'){
-            <li (click)="onRoute(option.route)">{{ option.name }}</li>
+            <li
+                (click)="
+                    option.action ? option.action() : onRoute(option.route)
+                ">
+                {{ option.name }}
+            </li>
             }@else if (option.type === 'dropdown') {
             <p-dropdown
                 [options]="option.options"

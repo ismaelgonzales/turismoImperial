@@ -18,9 +18,7 @@ import {
 import { CommonModule, NgIf } from '@angular/common';
 import { AccesoService } from '../../../services/acceso.service';
 import { RegisterRequest } from '../../../models/register-request.model';
-import { GeneralResponse } from '../../../models/general-response.model';
-import { SessionService } from '../../../services/session.service';
-import { SessionConstants } from '../../../../shared/constants/general.constants';
+
 import * as constantsShared from '../../../../shared/constants';
 
 @Component({

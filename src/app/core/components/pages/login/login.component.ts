@@ -44,29 +44,6 @@ export class LoginComponent {
     public principalColor: string = 'bg-[#bf303c]';
 
     private readonly _router = inject(Router);
-
-    // username: string = '';
-    // password: string = '';
-
-    // constructor(
-    //     private accesoService: AccesoService,
-    //     private router: Router,
-    //     private toastr: ToastrService,
-    // ) {}
-
-    // login(): void {
-    //     this.accesoService.login(this.username, this.password).subscribe({
-    //         next: (response: LoginResponse) => {
-    //             this.toastr.success('Inicio de sesión exitoso');
-    //             this.router.navigate(['/admin']);
-    //         },
-    //         error: err => {
-    //             this.toastr.error('Error en el inicio de sesión', err);
-    //             console.error('Error en el inicio de sesión', err);
-    //         },
-    //     });
-    // }
-
     loginForm!: FormGroup;
 
     constructor(

@@ -3,6 +3,7 @@ export interface IHeaderOptions {
     route?: string;
     options?: IIdiomas[];
     type: 'button' | 'dropdown' | 'link' | 'text';
+    action?: () => void;
 }
 
 export interface IFooterOptions {
@@ -10,6 +11,7 @@ export interface IFooterOptions {
     type: 'link' | 'dropdown' | 'button' | 'text';
     route?: string;
     options?: IIdiomas[];
+    action?: () => void;
 }
 
 interface IIdiomas {

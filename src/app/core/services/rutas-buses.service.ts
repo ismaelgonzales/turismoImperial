@@ -9,20 +9,62 @@ import { RutasBuses } from '../interfaces/RutasBuses.interface';
     providedIn: 'root',
 })
 export class RutasBusesService {
-    private endpoint: string = environment.endPoint;
-    private apiUrl: string = this.endpoint + 'RutasBuses';
+    // private endpoint: string = environment.endPoint;
+    // private apiUrl: string = this.endpoint + 'RutasBuses';
+
+    // constructor(private http: HttpClient) {}
+
+    // getList(): Observable<RutasBuses[]> {
+    //     return this.http.get<RutasBuses[]>(`${this.endpoint}RutasBuses`);
+    // }
+
+    // add(request: RutasBuses): Observable<RutasBuses> {
+    //     return this.http.post<RutasBuses>(`${this.apiUrl}Agregar`, request);
+    // }
+
+    // delete(IdRutasBuses: number): Observable<void> {
+    //     return this.http.delete<void>(`${this.apiUrl}Eliminar/${IdRutasBuses}`);
+    // }
+
+    // createRuta(ruta: RutasBuses): Observable<RutasBuses> {
+    //     return this.http.post<RutasBuses>(this.apiUrl, ruta);
+    // }
+
+    // updateRuta(id: number, ruta: RutasBuses): Observable<RutasBuses> {
+    //     return this.http.put<RutasBuses>(`${this.apiUrl}/${id}`, ruta);
+    // }
+
+    // deleteRuta(id: number): Observable<void> {
+    //     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    // }
+    private apiUrl: string =
+        'https://www.turismoimperial.somee.com/api/RutasBuses'; // Usa la URL correcta para tu API
 
     constructor(private http: HttpClient) {}
 
+    // Obtener lista de rutas de buses
     getList(): Observable<RutasBuses[]> {
-        return this.http.get<RutasBuses[]>(`${this.endpoint}RutasBuses`);
+        return this.http.get<RutasBuses[]>(`${this.apiUrl}`);
     }
 
+    // Agregar una nueva ruta de bus
     add(request: RutasBuses): Observable<RutasBuses> {
-        return this.http.post<RutasBuses>(`${this.apiUrl}Agregar`, request);
+        return this.http.post<RutasBuses>(`${this.apiUrl}/Agregar`, request);
     }
 
-    delete(IdRutasBuses: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}Eliminar/${IdRutasBuses}`);
+    // Actualizar una ruta de bus existente
+    updateRuta(id: number, ruta: RutasBuses): Observable<RutasBuses> {
+        return this.http.put<RutasBuses>(
+            `${this.apiUrl}/Actualizar/${id}`,
+            ruta,
+        );
+    }
+    createRuta(ruta: RutasBuses): Observable<RutasBuses> {
+        return this.http.post<RutasBuses>(this.apiUrl, ruta);
+    }
+
+    // Eliminar una ruta de bus
+    deleteRuta(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/Eliminar/${id}`);
     }
 }

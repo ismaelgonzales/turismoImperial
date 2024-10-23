@@ -1,20 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GeneralResponse } from '../models/general-response.model';
-import { LoginRequest } from '../models/login-request.model';
-import { LoginResponse } from '../models/login-response.model';
-import { ApiUrlConstants } from '../../shared/constants/general.constants';
-// import {
-//     createUserWithEmailAndPassword,
-//     getAuth,
-//     GoogleAuthProvider,
-//     signInWithPopup,
-//     signOut,
-// } from 'firebase/auth';
-import { Router } from '@angular/router';
+
 import {
     Auth,
+    authState,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signInWithPopup,
@@ -22,7 +11,6 @@ import {
     FacebookAuthProvider,
     signOut,
 } from '@angular/fire/auth';
-import { Usuario } from '../interfaces/Usuario.interface';
 
 export interface User {
     email: string;
@@ -32,12 +20,15 @@ export interface User {
     providedIn: 'root',
 })
 export class AuthService {
+    getAuthState(): Observable<any> {
+        return authState(this.auth);
+    }
     private _auth = inject(Auth);
     constructor(private auth: Auth) {}
     signOut() {
         return signOut(this.auth)
             .then(() => {
-                console.log('Sesión cerrada exitosamente');
+                console.log('Usted Cerro Sesión cerrada exitosamente');
             })
             .catch(error => {
                 console.error('Error al cerrar sesión: ', error);
@@ -71,7 +62,7 @@ export class AuthService {
     signInWithFacebook() {
         const provider = new FacebookAuthProvider();
 
-        // provider.setCustomParameters({ prompt: 'select_account' });
+        provider.setCustomParameters({ prompt: 'select_account' });
 
         return signInWithPopup(this._auth, provider);
     }
