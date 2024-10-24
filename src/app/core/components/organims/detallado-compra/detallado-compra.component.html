@@ -72,6 +72,14 @@
         </div>
     </div>
 </div>
+<div class="mt-5 bg-white border border-gray-200 p-3">
+    <h3 class="text-gray-600 font-semibold">Asientos Seleccionados</h3>
+    <div *ngFor="let seat of selectedSeats">
+        <span class="block text-lg font-bold text-gray-800"
+            >Asiento {{ seat }} seleccionado</span
+        >
+    </div>
+</div>
 <div>
     <button
         routerLink="/datos-pasajero"

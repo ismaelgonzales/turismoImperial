@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
     styleUrl: './detallado-compra.component.scss',
 })
 export class DetalladoCompraComponent {
+    selectedSeats: number[] = [];
     @Input() pasajerosSeleccionados: { pasajero: number; monto: number }[] = [];
     @Input() totalAmount: number = 0;
 }

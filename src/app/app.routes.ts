@@ -106,6 +106,16 @@ export const routes: Routes = [
         },
     },
     {
+        path: 'seat-selection',
+
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/seat-selection/seat-selection.component'
+            );
+            return m.SeatSelectionComponent;
+        },
+    },
+    {
         canActivate: [privateGuard()],
         path: 'datos-pasajero',
         loadComponent: async () => {
