@@ -55,25 +55,25 @@ export const routes: Routes = [
             return m.SeatsComponent;
         },
     },
-    {
-        path: 'passengers',
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/passengers/passengers.component'
-            );
-            return m.PassengersComponent;
-        },
-    },
+    // {
+    //     path: 'passengers',
+    //     loadComponent: async () => {
+    //         const m = await import(
+    //             './core/components/pages/passengers/passengers.component'
+    //         );
+    //         return m.PassengersComponent;
+    //     },
+    // },
 
-    {
-        path: 'payment',
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/payment/payment.component'
-            );
-            return m.PaymentComponent;
-        },
-    },
+    // {
+    //     path: 'payment',
+    //     loadComponent: async () => {
+    //         const m = await import(
+    //             './core/components/pages/payment/payment.component'
+    //         );
+    //         return m.PaymentComponent;
+    //     },
+    // },
     {
         canActivate: [privateGuard()],
         path: 'contact',
