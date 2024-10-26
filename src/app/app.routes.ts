@@ -126,6 +126,16 @@ export const routes: Routes = [
         },
     },
     {
+        canActivate: [privateGuard()],
+        path: 'pago',
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/pago/pago.component'
+            );
+            return m.PagoComponent;
+        },
+    },
+    {
         path: 'dashlogin',
 
         loadComponent: async () => {
