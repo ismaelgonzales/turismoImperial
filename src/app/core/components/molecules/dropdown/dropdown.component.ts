@@ -26,11 +26,11 @@ export class DropdownComponent implements OnInit {
         this.rutas = [
             { nombre: 'Lima', codigo: 'LIM' },
             { nombre: 'Tarma', codigo: 'TAR' },
-            { nombre: 'Merced', codigo: 'MER' },
-            { nombre: 'Acobamba', codigo: 'ACO' },
-            { nombre: 'Palca', codigo: 'PAL' },
-            { nombre: 'Huasahuasi', codigo: 'HUA' },
-            { nombre: 'SanRamon', codigo: 'SRM' },
+            // { nombre: 'Merced', codigo: 'MER' },
+            // { nombre: 'Acobamba', codigo: 'ACO' },
+            // { nombre: 'Palca', codigo: 'PAL' },
+            // { nombre: 'Huasahuasi', codigo: 'HUA' },
+            // { nombre: 'SanRamon', codigo: 'SRM' },
         ];
 
         this.rutasDestino = [...this.rutas];
