@@ -1,15 +1,17 @@
 import { NgFor } from '@angular/common';
-import { Component, Input, input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IRutas } from '../../../models/rutas-model';
 import { ApiService } from '../../../services/api.service';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 @Component({
     selector: 'app-detalle-ruta',
     standalone: true,
-    imports: [NgFor, RouterModule, RouterLink],
+    imports: [NgFor, RouterModule, RouterLink, FormsModule],
     templateUrl: './detalle-ruta.component.html',
-    styleUrl: './detalle-ruta.component.scss',
+    styleUrls: ['./detalle-ruta.component.scss'],
 })
 export class DetalleRutaComponent implements OnInit {
     @Input() provinciaSalida: string = '';
@@ -18,46 +20,56 @@ export class DetalleRutaComponent implements OnInit {
     @Input() precio: number = 0;
 
     rutasListas: IRutas[] = [];
+    rutasFiltradas: IRutas[] = []; // Lista filtrada para mostrar en la vista
+    filterPost: string = ''; // Almacena el texto del filtro
+    fechaSeleccionada: string = ''; // Almacena la fecha seleccionada
+    ciudadOrigen: string = ''; // Para almacenar la ciudad seleccionada
+    destino: string = ''; // Para almacenar la ciudad de destino
+
     constructor(private _apiService: ApiService) {}
+
     ngOnInit(): void {
+        // Obtiene las rutas desde la API
         this._apiService.getAllRutas().subscribe((data: IRutas[]) => {
             this.rutasListas = data;
+            this.rutasFiltradas = data; // Inicializamos con todas las rutas
         });
     }
 
-    // rutasListas: IRutas[] = [];
-    // rutasFiltradas: IRutas[] = [];
-    // filterPost: string = ''; // Asegúrate de que está definido
-    // fechaSeleccionada: string = ''; // Asegúrate de que está definido
+    // Método para filtrar las rutas por texto y fecha
+    filtrarRutas(): void {
+        this.rutasFiltradas = this.rutasListas.filter(ruta => {
+            const matchesText = this.filterPost
+                ? ruta.ciudadOrigen.toLowerCase().includes(this.filterPost.toLowerCase())
+                : true;
 
-    // ngOnInit(): void {
-    //     this.obtenerRutas().subscribe((data: IRutas[]) => {
-    //         this.rutasListas = data;
-    //         this.rutasFiltradas = data; // Inicialmente mostramos todas las rutas
-    //     });
-    // }
+            const fechaRuta = ruta.fechaSalida?.split('T')[0]; // Extrae solo la fecha sin la hora
+            const matchesDate = this.fechaSeleccionada
+                ? fechaRuta === this.fechaSeleccionada
+                : true;
 
-    // obtenerRutas(): Observable<IRutas[]> {
-    //     return of(RUTAS_MOCK); // Simula la obtención de rutas desde un mock
-    // }
+            const matchesOrigin = this.ciudadOrigen
+                ? ruta.ciudadOrigen.toLowerCase() === this.ciudadOrigen.toLowerCase()
+                : true;
 
-    // onFechaSeleccionada(event: any): void {
-    //     this.fechaSeleccionada = event.target.value; // Captura la fecha seleccionada en formato 'YYYY-MM-DD'
-    //     this.filtrarRutas(); // Filtra las rutas cada vez que se selecciona una fecha
-    // }
+            return matchesText && matchesDate && matchesOrigin;
+        });
+    }
 
-    // filtrarRutas(): void {
-    //     this.rutasFiltradas = this.rutasListas.filter(ruta => {
-    //         const matchesText = this.filterPost
-    //             ? ruta.ciudadOrigen
-    //                   .toLowerCase()
-    //                   .includes(this.filterPost.toLowerCase())
-    //             : true;
-    //         const fechaRuta = ruta.fechaSalida?.split('T')[0]; // Obtén solo la fecha sin la hora
-    //         const matchesDate = this.fechaSeleccionada
-    //             ? fechaRuta === this.fechaSeleccionada
-    //             : true;
-    //         return matchesText && matchesDate;
-    //     });
-    // }
+    // Actualiza el destino según la ciudad seleccionada
+    actualizarDestino(): void {
+        this.destino = this.ciudadOrigen === 'Lima' ? 'Tarma' : this.ciudadOrigen === 'Tarma' ? 'Lima' : '';
+        this.filtrarRutas(); // Aplica el filtro cada vez que se actualiza el destino
+    }
+
+    // Actualiza la fecha seleccionada y aplica el filtro
+    onFechaSeleccionada(event: any): void {
+        this.fechaSeleccionada = event.target.value; // Captura la fecha en formato 'YYYY-MM-DD'
+        this.filtrarRutas(); // Aplica el filtro
+    }
+
+    // Actualiza el filtro de texto y aplica el filtro
+    onTextoFiltrado(): void {
+        this.filtrarRutas(); // Aplica el filtro cada vez que cambia el texto
+    }
 }

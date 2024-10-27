@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 export interface Rutas {
     nombre: string;
     codigo: string;
