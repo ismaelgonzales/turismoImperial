@@ -1,0 +1,140 @@
+<h5
+    class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
+    Detalles de Reservas
+</h5>
+<form
+    [formGroup]="reservasForm"
+    class="w-full"
+    (ngSubmit)="onSubmit()"
+    novalidate>
+    <div class="mb-5">
+        <label
+            for="idUsuario"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >IdUsuario</label
+        >
+        <input
+            type="text"
+            id="idUsuario"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idUsuario"
+            formControlName="idUsuario" />
+        @if (reservasForm.get('idUsuario')?.hasError('required') &&
+        reservasForm.get('idUsuario')?.touched) {
+        <div class="form-error text-red-950">IdUsuario es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="idRutas"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >IdRutas</label
+        >
+        <input
+            type="text"
+            id="idRutas"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idRutas"
+            formControlName="idRutas" />
+        @if (reservasForm.get('idRutas')?.hasError('required') &&
+        reservasForm.get('idRutas')?.touched) {
+        <div class="form-error text-red-950">IdRutas es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="fechaReserva"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >FechaReserva</label
+        >
+        <input
+            type="date"
+            id="fechaReserva"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fechaReserva" />
+        @if (reservasForm.get('fechaReserva')?.hasError('required') &&
+        reservasForm.get('fechaReserva')?.touched) {
+        <div class="form-error text-red-950">FechaReserva es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="estadoReservaId"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >EstadoReservaId</label
+        >
+        <input
+            type="text"
+            id="estadoReservaId"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="estadoReservaId"
+            formControlName="estadoReservaId" />
+        @if (reservasForm.get('estadoReservaId')?.hasError('required') &&
+        reservasForm.get('estadoReservaId')?.touched) {
+        <div class="form-error text-red-950">EstadoReservaId es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="numeroAsientos"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >NumeroAsientos</label
+        >
+        <input
+            type="text"
+            id="numeroAsientos"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="numeroAsientos"
+            formControlName="numeroAsientos" />
+        @if (reservasForm.get('numeroAsientos')?.hasError('required') &&
+        reservasForm.get('numeroAsientos')?.touched) {
+        <div class="form-error text-red-950">NumeroAsientos es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="precioTotal"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >PrecioTotal</label
+        >
+        <input
+            type="text"
+            id="precioTotal"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="precioTotal"
+            formControlName="precioTotal" />
+        @if (reservasForm.get('precioTotal')?.hasError('required') &&
+        reservasForm.get('precioTotal')?.touched) {
+        <div class="form-error text-red-950">PrecioTotal es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="codigoBoleto"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >CodigoBoleto</label
+        >
+        <input
+            type="text"
+            id="codigoBoleto"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="codigoBoleto"
+            formControlName="codigoBoleto" />
+        @if (reservasForm.get('codigoBoleto')?.hasError('required') &&
+        reservasForm.get('codigoBoleto')?.touched) {
+        <div class="form-error text-red-950">CodigoBoleto es requerido</div>
+        }
+    </div>
+    <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Ejecutar
+    </button>
+    <button
+        type="button"
+        (click)="onClose()"
+        class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Cancelar
+    </button>
+</form>

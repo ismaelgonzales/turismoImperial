@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, Input, input, OnInit } from '@angular/core';
-import { IRutas } from '../../../models/rutas-model';
+import { IRutass } from '../../../models/rutas-model';
 import { ApiService } from '../../../services/api.service';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -17,10 +17,10 @@ export class DetalleRutaComponent implements OnInit {
     @Input() horaSalida: string = '';
     @Input() precio: number = 0;
 
-    rutasListas: IRutas[] = [];
+    rutasListas: IRutass[] = [];
     constructor(private _apiService: ApiService) {}
     ngOnInit(): void {
-        this._apiService.getAllRutas().subscribe((data: IRutas[]) => {
+        this._apiService.getAllRutas().subscribe((data: IRutass[]) => {
             this.rutasListas = data;
         });
     }

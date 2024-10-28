@@ -1,0 +1,107 @@
+<h5
+    class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
+    Detalles de Incidencias
+</h5>
+<form
+    [formGroup]="incidenciasForm"
+    class="w-full"
+    (ngSubmit)="onSubmit()"
+    novalidate>
+    <div class="mb-5">
+        <label
+            for="idBus"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >IdBus</label
+        >
+        <input
+            type="text"
+            id="idBus"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idBus"
+            formControlName="idBus" />
+        @if (incidenciasForm.get('idBus')?.hasError('required') &&
+        incidenciasForm.get('idBus')?.touched) {
+        <div class="form-error text-red-950">IdBus es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="idViaje"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >IViaje</label
+        >
+        <input
+            type="text"
+            id="idViaje"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idViaje"
+            formControlName="idViaje" />
+        @if (incidenciasForm.get('idViaje')?.hasError('required') &&
+        incidenciasForm.get('idViaje')?.touched) {
+        <div class="form-error text-red-950">IdViaje es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="descripcion"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Descripcion</label
+        >
+        <input
+            type="text"
+            id="descripcion"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="descripcion"
+            formControlName="descripcion" />
+        @if (incidenciasForm.get('descripcion')?.hasError('required') &&
+        incidenciasForm.get('descripcion')?.touched) {
+        <div class="form-error text-red-950">Descripcion es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="fecha"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Fecha</label
+        >
+        <input
+            type="date"
+            id="fecha"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fecha" />
+        @if (incidenciasForm.get('fecha')?.hasError('required') &&
+        incidenciasForm.get('fecha')?.touched) {
+        <div class="form-error text-red-950">Fecha es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="fechaRegistro"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >FechaRegistro</label
+        >
+        <input
+            type="date"
+            id="fechaRegistro"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fechaRegistro" />
+        @if (incidenciasForm.get('fechaRegistro')?.hasError('required') &&
+        incidenciasForm.get('fechaRegistro')?.touched) {
+        <div class="form-error text-red-950">FechaRegistro es requerido</div>
+        }
+    </div>
+
+    <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Ejecutar
+    </button>
+    <button
+        type="button"
+        (click)="onClose()"
+        class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Cancelar
+    </button>
+</form>

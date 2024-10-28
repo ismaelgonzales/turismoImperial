@@ -1,0 +1,108 @@
+<h5
+    class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
+    Detalles de Reportes
+</h5>
+<form
+    [formGroup]="reportesForm"
+    class="w-full"
+    (ngSubmit)="onSubmit()"
+    novalidate>
+    <div class="mb-5">
+        <label
+            for="idUsuario"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >IdUsuario</label
+        >
+        <input
+            type="text"
+            id="idUsuario"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idUsuario"
+            formControlName="idUsuario" />
+        @if (reportesForm.get('idUsuario')?.hasError('required') &&
+        reportesForm.get('idUsuario')?.touched) {
+        <div class="form-error text-red-950">IdUsuario es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="idRutas"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >IdRutas</label
+        >
+        <input
+            type="text"
+            id="idRutas"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idRutas"
+            formControlName="idRutas" />
+        @if (reportesForm.get('idRutas')?.hasError('required') &&
+        reportesForm.get('idRutas')?.touched) {
+        <div class="form-error text-red-950">IdRutas es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="comentarios"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Comentarios</label
+        >
+        <input
+            type="text"
+            id="comentarios"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="comentarios"
+            formControlName="comentarios" />
+        @if (reportesForm.get('comentarios')?.hasError('required') &&
+        reportesForm.get('comentarios')?.touched) {
+        <div class="form-error text-red-950">Comentarios es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="calificacion"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Calificacion</label
+        >
+        <input
+            type="text"
+            id="calificacion"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="calificacion"
+            formControlName="calificacion" />
+        @if (reportesForm.get('calificacion')?.hasError('required') &&
+        reportesForm.get('calificacion')?.touched) {
+        <div class="form-error text-red-950">Calificacion es requerido</div>
+        }
+    </div>
+
+    <div class="mb-5">
+        <label
+            for="fechaOpinion"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >FechaOpinion</label
+        >
+        <input
+            type="date"
+            id="fechaOpinion"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fechaOpinion" />
+        @if (reportesForm.get('fechaOpinion')?.hasError('required') &&
+        reportesForm.get('fechaOpinion')?.touched) {
+        <div class="form-error text-red-950">FechaOpinion es requerido</div>
+        }
+    </div>
+
+    <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Ejecutar
+    </button>
+    <button
+        type="button"
+        (click)="onClose()"
+        class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Cancelar
+    </button>
+</form>

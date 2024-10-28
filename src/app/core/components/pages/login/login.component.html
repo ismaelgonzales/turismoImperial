@@ -29,14 +29,14 @@
                     <h3 class="font-semibold text-2xl text-center text-white">
                         Iniciar Sessión
                     </h3>
-                    <p class="text-white">
+                    <!-- <p class="text-white">
                         Don'thave an account?
                         <a
                             routerLink="/dashregister"
                             class="text-sm text-red-950 hover:text-red-950"
                             >Registrese</a
                         >
-                    </p>
+                    </p> -->
                 </div>
                 <div class="space-y-6">
                     <div class="">
@@ -76,6 +76,7 @@
 
                     <div class="mt-4">
                         <button
+                            (click)="showspinner()"
                             [disabled]="loginForm.invalid"
                             type="submit"
                             class="w-full bg-red-950 hover:bg-red-800 text-gray-100 p-3 rounded-lg">
@@ -93,3 +94,11 @@
         </div>
     </div>
 </form>
+<ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-atom"
+    [fullScreen]="true"
+    ><p style="color: white">Cargando...</p></ngx-spinner
+>

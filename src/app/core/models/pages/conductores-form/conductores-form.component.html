@@ -1,0 +1,177 @@
+<h5
+    class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
+    Detalles de Conductores
+</h5>
+<form
+    [formGroup]="conductoresForm"
+    class="w-full"
+    (ngSubmit)="onSubmit()"
+    novalidate>
+    <div class="mb-5">
+        <label
+            for="nombre"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >nombre</label
+        >
+        <input
+            type="text"
+            id="nombre"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="nombre"
+            formControlName="nombre" />
+        @if (conductoresForm.get('nombre')?.hasError('required') &&
+        conductoresForm.get('nombre')?.touched) {
+        <div class="form-error text-red-950">Nombre es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="apellidos"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Apellidos</label
+        >
+        <input
+            type="text"
+            id="apellidos"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="apellidos"
+            formControlName="apellidos" />
+        @if (conductoresForm.get('apellidos')?.hasError('required') &&
+        conductoresForm.get('apellidos')?.touched) {
+        <div class="form-error text-red-950">Apellidos es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="numeroLicencia"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >NumeroLicencia</label
+        >
+        <input
+            type="text"
+            id="numeroLicencia"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="numeroLicencia"
+            formControlName="numeroLicencia" />
+        @if (conductoresForm.get('numeroLicencia')?.hasError('required') &&
+        conductoresForm.get('numeroLicencia')?.touched) {
+        <div class="form-error text-red-950">NumeroLicencia es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="fechaNacimiento"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >FechaNacimiento</label
+        >
+        <input
+            type="date"
+            id="fechaNacimiento"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fechaNacimiento" />
+        @if (conductoresForm.get('fechaNacimiento')?.hasError('required') &&
+        conductoresForm.get('fechaNacimiento')?.touched) {
+        <div class="form-error text-red-950">FechaNacimiento es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="telefono"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Telefono</label
+        >
+        <input
+            type="text"
+            id="telefono"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="telefono"
+            formControlName="telefono" />
+        @if (conductoresForm.get('telefono')?.hasError('required') &&
+        conductoresForm.get('telefono')?.touched) {
+        <div class="form-error text-red-950">Telefono es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="fechaContratacion"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >fechaContratacion</label
+        >
+        <input
+            type="date"
+            id="fechaContratacion"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fechaContratacion" />
+        @if (conductoresForm.get('fechaContratacion')?.hasError('required') &&
+        conductoresForm.get('fechaContratacion')?.touched) {
+        <div class="form-error text-red-950">
+            FechaContratacion es requerido
+        </div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="estadoConductor"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >estadoConductor</label
+        >
+        <input
+            type="text"
+            id="estadoConductor"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="estadoConductor"
+            formControlName="estadoConductor" />
+        @if (conductoresForm.get('estadoConductor')?.hasError('required') &&
+        conductoresForm.get('estadoConductor')?.touched) {
+        <div class="form-error text-red-950">EstadoConductor es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="idVehiculo"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >IdVehiculo</label
+        >
+        <input
+            type="text"
+            id="idVehiculo"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idVehiculo"
+            formControlName="idVehiculo" />
+        @if (conductoresForm.get('idVehiculo')?.hasError('required') &&
+        conductoresForm.get('idVehiculo')?.touched) {
+        <div class="form-error text-red-950">IdVehiculo es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="fechaRegistro"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >FechaRegistro</label
+        >
+        <input
+            type="date"
+            id="fechaRegistro"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fechaRegistro" />
+        @if (conductoresForm.get('fechaRegistro')?.hasError('required') &&
+        conductoresForm.get('fechaRegistro')?.touched) {
+        <div class="form-error text-red-950">FechaRegistro es requerido</div>
+        }
+    </div>
+
+    <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Ejecutar
+    </button>
+    <button
+        type="button"
+        (click)="onClose()"
+        class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Cancelar
+    </button>
+</form>

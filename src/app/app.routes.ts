@@ -1,9 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { MantUsuarioListComponent } from './core/components/admin/Mantenimiento/mant-usuario-list/mant-usuario-list.component';
-import { MantPersonaListComponent } from './core/components/admin/Mantenimiento/mant-persona-list/mant-persona-list.component';
-import { MantColaboradorListComponent } from './core/components/admin/Mantenimiento/mant-colaborador-list/mant-colaborador-list.component';
-
 import { privateGuard, publicGuard } from './core/guards/auth.guard';
 import { AccesoGuard } from './core/guards/acceso.guard';
 import { AuthenticatedGuard } from './core/guards/authenticated.guard';
@@ -36,16 +32,6 @@ export const routes: Routes = [
                 c => c.RegisterComponent,
             ),
     },
-    // {
-    //     path: 'schedules',
-    //     canActivateChild: [publicGuard()],
-    //     loadComponent: async () => {
-    //         const m = await import(
-    //             './core/components/pages/schedules/schedules.component'
-    //         );
-    //         return m.SchedulesComponent;
-    //     },
-    // },
     {
         path: 'seats',
         loadComponent: async () => {
@@ -53,25 +39,6 @@ export const routes: Routes = [
                 './core/components/pages/seats/seats.component'
             );
             return m.SeatsComponent;
-        },
-    },
-    {
-        path: 'passengers',
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/passengers/passengers.component'
-            );
-            return m.PassengersComponent;
-        },
-    },
-
-    {
-        path: 'payment',
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/payment/payment.component'
-            );
-            return m.PaymentComponent;
         },
     },
     {
@@ -167,45 +134,103 @@ export const routes: Routes = [
                 canActivate: [AccesoGuard],
             },
             {
-                path: 'opcion-2',
+                path: 'buses',
                 loadComponent: async () => {
                     const m = await import(
-                        './core/components/admin/op-2-dash/op-2-dash.component'
+                        './core/components/admin/buses/buses.component'
                     );
-                    return m.Op2DashComponent;
+                    return m.BusesComponent;
                 },
                 canActivate: [AccesoGuard],
             },
             {
-                path: 'opcion-3',
+                path: 'clientes',
                 loadComponent: async () => {
                     const m = await import(
-                        './core/components/admin/op-3-dash/op-3-dash.component'
+                        './core/components/admin/clientes/clientes.component'
                     );
-                    return m.Op3DashComponent;
+                    return m.ClientesComponent;
                 },
                 canActivate: [AccesoGuard],
             },
             {
-                path: 'opcion-4',
+                path: 'conductores',
                 loadComponent: async () => {
                     const m = await import(
-                        './core/components/admin/op-4-dash/op-4-dash.component'
+                        './core/components/admin/conductores/conductores.component'
                     );
-                    return m.Op4DashComponent;
+                    return m.ConductoresComponent;
                 },
                 canActivate: [AccesoGuard],
             },
             {
-                path: 'mantenimiento',
-                children: [
-                    { path: 'usuario', component: MantUsuarioListComponent },
-                    { path: 'persona', component: MantPersonaListComponent },
-                    {
-                        path: 'colaborador',
-                        component: MantColaboradorListComponent,
-                    },
-                ],
+                path: 'facturacion',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/facturacion/facturacion.component'
+                    );
+                    return m.FacturacionComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+            {
+                path: 'incidencias',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/incidencias/incidencias.component'
+                    );
+                    return m.IncidenciasComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+            {
+                path: 'reportes',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/reportes/reportes.component'
+                    );
+                    return m.ReportesComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+            {
+                path: 'reservas',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/reservas/reservas.component'
+                    );
+                    return m.ReservasComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+            {
+                path: 'rutas',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/rutas/rutas.component'
+                    );
+                    return m.RutasComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+            {
+                path: 'vehiculos',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/vehiculos/vehiculos.component'
+                    );
+                    return m.VehiculosComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+            {
+                path: 'viajes',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/viajes/viajes.component'
+                    );
+                    return m.ViajesComponent;
+                },
                 canActivate: [AccesoGuard],
             },
         ],

@@ -1,0 +1,154 @@
+<h5
+    class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
+    Detalles de Buses
+</h5>
+<form [formGroup]="busesForm" class="w-full" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-5">
+        <label
+            for="servicio"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Servicio</label
+        >
+        <input
+            type="text"
+            id="servicio"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="servicio"
+            formControlName="servicio" />
+        @if (busesForm.get('servicio')?.hasError('required') &&
+        busesForm.get('servicio')?.touched) {
+        <div class="form-error text-red-950">Servicio es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="precioMinimo"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >precioMinimo</label
+        >
+        <input
+            type="text"
+            id="precioMinimo"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="precioMinimo"
+            formControlName="precioMinimo" />
+        @if (busesForm.get('precioMinimo')?.hasError('required') &&
+        busesForm.get('precioMinimo')?.touched) {
+        <div class="form-error text-red-950">Precio Minimo es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="precioPromedio"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >PrecioPromedio</label
+        >
+        <input
+            type="text"
+            id="precioPromedio"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="precioPromedio"
+            formControlName="precioPromedio" />
+        @if (busesForm.get('precioPromedio')?.hasError('required') &&
+        busesForm.get('precioPromedio')?.touched) {
+        <div class="form-error text-red-950">PrecioPromedio es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="numeroAsientos"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >numeroAsientos</label
+        >
+        <input
+            type="text"
+            id="numeroAsientos"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="numeroAsientos"
+            formControlName="numeroAsientos" />
+        @if (busesForm.get('numeroAsientos')?.hasError('required') &&
+        busesForm.get('numeroAsientos')?.touched) {
+        <div class="form-error text-red-950">Numero asiento es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="idConductor"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >idConductor</label
+        >
+        <input
+            type="text"
+            id="idConductor"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idConductor"
+            formControlName="idConductor" />
+        @if (busesForm.get('idConductor')?.hasError('required') &&
+        busesForm.get('idConductor')?.touched) {
+        <div class="form-error text-red-950">Conductor es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="idRutas"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >idRutas</label
+        >
+        <input
+            type="text"
+            id="idRutas"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idRutas"
+            formControlName="idRutas" />
+        @if (busesForm.get('idRutas')?.hasError('required') &&
+        busesForm.get('idRutas')?.touched) {
+        <div class="form-error text-red-950">Ruta es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="fechaSalida"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >fechaSalida</label
+        >
+        <input
+            type="date"
+            id="fechaSalida"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fechaSalida" />
+        @if (busesForm.get('fechaSalida')?.hasError('required') &&
+        busesForm.get('fechaSalida')?.touched) {
+        <div class="form-error text-red-950">Fecha Salida es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="fechaLlegada"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >fechaLlegada</label
+        >
+        <input
+            type="date"
+            id="fechaLlegada"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fechaLlegada" />
+        @if (busesForm.get('fechaLlegada')?.hasError('required') &&
+        busesForm.get('fechaLlegada')?.touched) {
+        <div class="form-error text-red-950">Fecha Llegada es requerido</div>
+        }
+    </div>
+
+    <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Ejecutar
+    </button>
+    <button
+        type="button"
+        (click)="onClose()"
+        class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Cancelar
+    </button>
+</form>

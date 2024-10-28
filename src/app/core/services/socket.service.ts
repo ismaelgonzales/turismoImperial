@@ -9,16 +9,12 @@ export class SocketService {
     private socket: Socket;
 
     constructor() {
-        // Conectar con el servidor de sockets
-        this.socket = io('http://localhost:3000'); // Cambiar por la URL de tu servidor
+        this.socket = io('http://localhost:3000');
     }
-
-    // Emitir eventos
     emitEvent(eventName: string, data: any) {
         this.socket.emit(eventName, data);
     }
 
-    // Escuchar eventos
     listenEvent(eventName: string): Observable<any> {
         return new Observable(subscriber => {
             this.socket.on(eventName, data => {

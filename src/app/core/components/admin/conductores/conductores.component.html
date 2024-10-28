@@ -1,0 +1,91 @@
+<div class="flex justify-between items-center mb-6">
+    <h4 class="font-bold text-2xl"></h4>
+    <button
+        type="button"
+        (click)="openModel()"
+        class="text-white bg-blue-700 hover:bg-blue-900 focus:outline-none font-medium rounded-full px-6 py-3 text-center mb-2">
+        Agregar Conductores
+    </button>
+</div>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table
+        class="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-700">
+        <caption
+            class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-gray-900 dark:bg-white">
+            Detalles de Conductores
+        </caption>
+        <thead
+            class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
+            <tr>
+                <th scope="col" class="px-6 py-3">nombre</th>
+                <th scope="col" class="px-6 py-3">apellidos</th>
+                <th scope="col" class="px-6 py-3">numeroLicencia</th>
+                <th scope="col" class="px-6 py-3">fechaNacimiento</th>
+                <th scope="col" class="px-6 py-3">telefono</th>
+                <th scope="col" class="px-6 py-3">fechaContratacion</th>
+                <th scope="col" class="px-6 py-3">estadoConductor</th>
+                <th scope="col" class="px-6 py-3">idVehiculo</th>
+                <th scope="col" class="px-6 py-3">fechaRegistro</th>
+                <th scope="col" class="px-6 py-3">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of conductores; track $index) {
+            <tr class="bg-white border-b dark:bg-white dark:border-gray-700">
+                <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
+                    {{ item.nombre }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ item.apellidos }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.numeroLicencia }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.fechaNacimiento }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.telefono }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.fechaContratacion }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.estadoConductor }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.idVehiculo }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.fechaRegistro }}
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button
+                        type="button"
+                        (click)="item.idConductor && loadConductores(item)"
+                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4">
+                        Editar
+                    </button>
+                    <button
+                        type="button"
+                        (click)="
+                            item.idConductor &&
+                                deleteConductores(item.idConductor)
+                        "
+                        class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<app-model [isOpen]="isModelOpen" (closeModel)="closeModel()">
+    <app-conductores-form
+        (onCloseModel)="closeModel()"
+        [data]="conductor"></app-conductores-form>
+</app-model>

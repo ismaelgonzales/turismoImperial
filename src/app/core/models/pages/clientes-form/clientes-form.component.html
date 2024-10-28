@@ -1,0 +1,191 @@
+<h5
+    class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
+    Detalles de Clientes
+</h5>
+<form
+    [formGroup]="clientesForm"
+    class="w-full"
+    (ngSubmit)="onSubmit()"
+    novalidate>
+    <div class="mb-5">
+        <label
+            for="nombres"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Nombres</label
+        >
+        <input
+            type="text"
+            id="nombres"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="nombres"
+            formControlName="nombres" />
+        @if (clientesForm.get('nombres')?.hasError('required') &&
+        clientesForm.get('nombres')?.touched) {
+        <div class="form-error text-red-950">Nombres es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="apellidos"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Apellidos</label
+        >
+        <input
+            type="text"
+            id="apellidos"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="apellidos"
+            formControlName="apellidos" />
+        @if (clientesForm.get('apellidos')?.hasError('required') &&
+        clientesForm.get('apellidos')?.touched) {
+        <div class="form-error text-red-950">Apellidos es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="tipoDocumento"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >TipoDocumento</label
+        >
+        <input
+            type="text"
+            id="tipoDocumento"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="tipoDocumento"
+            formControlName="tipoDocumento" />
+        @if (clientesForm.get('tipoDocumento')?.hasError('required') &&
+        clientesForm.get('tipoDocumento')?.touched) {
+        <div class="form-error text-red-950">TipoDocumento es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="numeroDocumento"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >NumeroDocumento</label
+        >
+        <input
+            type="text"
+            id="numeroDocumento"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="numeroDocumento"
+            formControlName="numeroDocumento" />
+        @if (clientesForm.get('numeroDocumento')?.hasError('required') &&
+        clientesForm.get('numeroDocumento')?.touched) {
+        <div class="form-error text-red-950">NumeroDocumento es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="razonSocial"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >RazonSocial</label
+        >
+        <input
+            type="text"
+            id="razonSocial"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="razonSocial"
+            formControlName="razonSocial" />
+        @if (clientesForm.get('razonSocial')?.hasError('required') &&
+        clientesForm.get('razonSocial')?.touched) {
+        <div class="form-error text-red-950">RazonSocial es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="email"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Email</label
+        >
+        <input
+            type="text"
+            id="email"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="email"
+            formControlName="email" />
+        @if (clientesForm.get('email')?.hasError('required') &&
+        clientesForm.get('email')?.touched) {
+        <div class="form-error text-red-950">Email es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="Edad"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Edad</label
+        >
+        <input
+            type="text"
+            id="edad"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="edad"
+            formControlName="edad" />
+        @if (clientesForm.get('edad')?.hasError('required') &&
+        clientesForm.get('edad')?.touched) {
+        <div class="form-error text-red-950">Edad es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="direccion"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Direccion</label
+        >
+        <input
+            type="text"
+            id="direccion"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="direccion"
+            formControlName="direccion" />
+        @if (clientesForm.get('direccion')?.hasError('required') &&
+        clientesForm.get('direccion')?.touched) {
+        <div class="form-error text-red-950">Direccion es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="estado"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Estado</label
+        >
+        <input
+            type="text"
+            id="estado"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="estado"
+            formControlName="estado" />
+        @if (clientesForm.get('estado')?.hasError('required') &&
+        clientesForm.get('estado')?.touched) {
+        <div class="form-error text-red-950">Estado es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="fechaCreacion"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >FechaCreacion</label
+        >
+        <input
+            type="date"
+            id="fechaCreacion"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="fechaCreacion" />
+        @if (clientesForm.get('fechaCreacion')?.hasError('required') &&
+        clientesForm.get('fechaCreacion')?.touched) {
+        <div class="form-error text-red-950">FechaCreacion es requerido</div>
+        }
+    </div>
+    <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Ejecutar
+    </button>
+    <button
+        type="button"
+        (click)="onClose()"
+        class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Cancelar
+    </button>
+</form>

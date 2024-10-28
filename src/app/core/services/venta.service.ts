@@ -1,32 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Venta } from '../interfaces/Venta.interface';
+import { ApiResponse, IVentas } from '../models/Ventas';
 
 @Injectable({
     providedIn: 'root',
 })
 export class VentaService {
-    private apiUrl: string = 'https://www.turismoimperial.somee.com/api/Venta';
+    apiUrl = 'https://www.turismoimperial.somee.com/api/Venta';
 
     constructor(private http: HttpClient) {}
 
-    getList(): Observable<Venta[]> {
-        return this.http.get<Venta[]>(`${this.apiUrl}`);
+    getAllVentas(): Observable<IVentas[]> {
+        return this.http.get<IVentas[]>(`${this.apiUrl}`);
     }
 
-    add(request: Venta): Observable<Venta> {
-        return this.http.post<Venta>(`${this.apiUrl}/Agregar`, request);
+    getVentas(id: number): Observable<ApiResponse<IVentas>> {
+        return this.http.get<ApiResponse<IVentas>>(`${this.apiUrl}/${id}`);
     }
 
-    updateVenta(id: number, ruta: Venta): Observable<Venta> {
-        return this.http.put<Venta>(`${this.apiUrl}/Actualizar/${id}`, ruta);
-    }
-    createVenta(ruta: Venta): Observable<Venta> {
-        return this.http.post<Venta>(this.apiUrl, ruta);
+    createVentas(ventas: IVentas): Observable<any> {
+        return this.http.post(`${this.apiUrl}`, ventas);
     }
 
-    deleteVenta(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/Eliminar/${id}`);
+    updateVentas(id: number, ventas: IVentas): Observable<any> {
+        return this.http.put(`${this.apiUrl}/${id}`, ventas);
+    }
+
+    deleteVentas(id: number): Observable<ApiResponse<any>> {
+        return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
     }
 }

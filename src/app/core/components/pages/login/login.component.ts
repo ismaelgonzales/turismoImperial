@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
 import { ToastrService } from 'ngx-toastr';
@@ -14,9 +14,8 @@ import { CommonModule, NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccesoService } from '../../../services/acceso.service';
 
-import { LoginResponse } from '../../../models/login-response.model';
-
 import { SharedModule } from '../../../models/shared/shared.module';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-login',
@@ -33,6 +32,7 @@ import { SharedModule } from '../../../models/shared/shared.module';
         FormsModule,
         CommonModule,
         RouterLink,
+        NgxSpinnerModule,
     ],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
@@ -51,6 +51,7 @@ export class LoginComponent {
         private accesoService: AccesoService,
         private router: Router,
         private toastr: ToastrService,
+        private spinnerService: NgxSpinnerService,
     ) {}
 
     ngOnInit(): void {
@@ -87,5 +88,11 @@ export class LoginComponent {
                 this.spinner = false;
             },
         });
+    }
+    showspinner() {
+        this.spinnerService.show();
+    }
+    hideSpinner() {
+        this.spinnerService.hide();
     }
 }

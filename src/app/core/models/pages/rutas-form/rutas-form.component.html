@@ -1,0 +1,119 @@
+<h5
+    class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
+    Detalles de Rutas
+</h5>
+<form [formGroup]="rutasForm" class="w-full" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-5">
+        <label
+            for="ciudadOrigen"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >CiudadOrigen</label
+        >
+        <input
+            type="text"
+            id="ciudadOrigen"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="ciudadOrigen"
+            formControlName="ciudadOrigen" />
+        @if (rutasForm.get('ciudadOrigen')?.hasError('required') &&
+        rutasForm.get('ciudadOrigen')?.touched) {
+        <div class="form-error text-red-950">CiudadOrigen es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="ciudadId"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >CiudadId</label
+        >
+        <input
+            type="text"
+            id="ciudadId"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="ciudadId"
+            formControlName="ciudadId" />
+        @if (rutasForm.get('ciudadId')?.hasError('required') &&
+        rutasForm.get('ciudadId')?.touched) {
+        <div class="form-error text-red-950">CiudadId es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="ciudadSeoId"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >CiudadSeoId</label
+        >
+        <input
+            type="text"
+            id="ciudadSeoId"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="ciudadSeoId"
+            formControlName="ciudadSeoId" />
+        @if (rutasForm.get('ciudadSeoId')?.hasError('required') &&
+        rutasForm.get('ciudadSeoId')?.touched) {
+        <div class="form-error text-red-950">CiudadSeoId es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="ciudadDestino"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >CiudadDestino</label
+        >
+        <input
+            type="text"
+            id="ciudadDestino"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="ciudadDestino"
+            formControlName="ciudadDestino" />
+        @if (rutasForm.get('ciudadDestino')?.hasError('required') &&
+        rutasForm.get('ciudadDestino')?.touched) {
+        <div class="form-error text-red-950">CiudadDestino es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="destinoId"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >DestinoId</label
+        >
+        <input
+            type="text"
+            id="destinoId"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="destinoId"
+            formControlName="destinoId" />
+        @if (rutasForm.get('destinoId')?.hasError('required') &&
+        rutasForm.get('destinoId')?.touched) {
+        <div class="form-error text-red-950">DestinoId es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="destinoSeoId"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >DestinoSeoId</label
+        >
+        <input
+            type="text"
+            id="destinoSeoId"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="destinoSeoId"
+            formControlName="destinoSeoId" />
+        @if (rutasForm.get('destinoSeoId')?.hasError('required') &&
+        rutasForm.get('destinoSeoId')?.touched) {
+        <div class="form-error text-red-950">DestinoSeoId es requerido</div>
+        }
+    </div>
+    <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Ejecutar
+    </button>
+    <button
+        type="button"
+        (click)="onClose()"
+        class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Cancelar
+    </button>
+</form>
