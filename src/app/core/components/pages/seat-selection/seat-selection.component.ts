@@ -23,7 +23,7 @@ import { RouterLink } from '@angular/router';
     styleUrls: ['./seat-selection.component.scss'],
 })
 export class SeatSelectionComponent implements OnInit {
-    firstFloorSeats: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    firstFloorSeats: number[]  = [1, 2,0, 3, 4, 5,0, 6, 7, 8,0, 9, 10, 11, 0,12];
     secondFloorSeats: number[] = [
         13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
     ];
@@ -71,7 +71,7 @@ export class SeatSelectionComponent implements OnInit {
         if (this.isSelected(seat)) {
             this.selectedSeats = this.selectedSeats.filter(s => s !== seat);
             this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(
-                p => p !== `Pasajero ${seat}`,
+                p => p !== `Asiento ${seat}`,
             );
             this.totalAmount -= seatPrice; // Restar el precio
             this.socketService.emitEvent('seatDeselected', seat);
@@ -80,7 +80,7 @@ export class SeatSelectionComponent implements OnInit {
             if (!this.occupiedSeats.has(seat)) {
                 if (this.selectedSeats.length < 4) {
                     this.selectedSeats.push(seat);
-                    this.pasajerosSeleccionados.push(`Pasajero ${seat}`);
+                    this.pasajerosSeleccionados.push(`asiento ${seat}`);
                     this.totalAmount += seatPrice; // Sumar el precio
                     this.socketService.emitEvent('seatSelected', seat);
                     this.toastr.success(`Asiento ${seat} ha sido seleccionado`);
