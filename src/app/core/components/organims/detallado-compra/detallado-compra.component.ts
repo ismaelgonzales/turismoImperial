@@ -11,9 +11,6 @@ import { Subscription } from 'rxjs';
     styleUrl: './detallado-compra.component.scss',
 })
 export class DetalladoCompraComponent implements OnInit {
-    // selectedSeats: number[] = [];
-    // @Input() pasajerosSeleccionados: { pasajero: number; monto: number }[] = [];
-    // @Input() totalAmount: number = 0; este codigo se peude borrar una ves este conectado con el servicio de selecionasientos
     pasajerosSeleccionados: any[] = [];
     totalAmount: number = 0;
     private pasajerosSubscription: Subscription = new Subscription();
