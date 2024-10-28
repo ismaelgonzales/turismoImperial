@@ -28,7 +28,7 @@ export class DatosPasajeroComponent implements OnInit {
     pasajerosSeleccionados: string[] = [];
     private pasajerosSubscription: Subscription = new Subscription();
     dniArray: string[] = []; // Array para almacenar DNIs
-    datosPropietario: any[] = []; // Array para almacenar datos de propietarios
+    datosPropietario: any[] = Array(this.pasajerosSeleccionados.length).fill({}); // Array para almacenar datos de propietarios
     
 
     constructor(
