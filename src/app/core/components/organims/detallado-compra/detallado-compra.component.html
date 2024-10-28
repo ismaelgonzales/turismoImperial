@@ -42,7 +42,7 @@
                 *ngFor="let pasajero of pasajerosSeleccionados; let i = index"
                 class="w-full flex mb-3 items-center">
                 <div class="flex-grow">
-                    <span class="text-gray-600">pasajero {{ i + 1 }}</span>
+                    <span class="text-gray-600"> {{pasajero}}</span>
                 </div>
                 <div class="pl-3">
                     <span class="font-semibold">{{
@@ -72,14 +72,18 @@
         </div>
     </div>
 </div>
-<div class="mt-5 bg-white border border-gray-200 p-3">
-    <h3 class="text-gray-600 font-semibold">Asientos Seleccionados</h3>
-    <div *ngFor="let seat of selectedSeats">
-        <span class="block text-lg font-bold text-gray-800"
-            >Asiento {{ seat }} seleccionado</span
-        >
-    </div>
-</div>
+<!-- <div class="mt-5 bg-white border border-gray-200 p-3">
+    <ul>
+        <li
+            *ngFor="let pasajero of pasajerosSeleccionados"
+            class="text-gray-800">
+            {{ pasajero }}
+        </li>
+    </ul>
+    <h3 class="mt-4 text-xl font-bold text-gray-800">
+        Total: {{ totalAmount }} soles
+    </h3> 
+</div> -->
 <div>
     <button
         routerLink="/datos-pasajero"

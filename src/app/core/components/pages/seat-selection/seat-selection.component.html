@@ -1,17 +1,12 @@
 <app-header-page />
 <!-- <app-progress-bar /> -->
-<ol
-    class="flex p-36 items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+<ol class="flex p-36 items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
     <li
         class="flex md:w-full items-center text-red-950 dark:text-red-950 sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
         <span
             class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-            <svg
-                class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
                 <path
                     d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
             </svg>
@@ -124,8 +119,7 @@
     </div>
     <div class="flex w-full">
         <!-- Sección de selección de asientos -->
-        <div
-            class="w-full md:w-1/2 bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
+        <div class="w-full md:w-1/2 bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
             <div class="w-full">
                 <!-- Piso 1 -->
                 <div class="mx-3 rounded-lg bg-white border border-blue-200 p-3 mb-5">
@@ -136,10 +130,7 @@
                     <div class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
                         <ng-container *ngFor="let seat of firstFloorSeats; let i = index">
                             <div *ngIf="i % 4 !== 2"> <!-- Evitar la tercera columna -->
-                                <button
-                                    type="button"
-                                    (click)="toggleButton(seat)"
-                                    [ngClass]="{
+                                <button type="button" (click)="toggleButton(seat)" [ngClass]="{
                                         'bg-blue-500 text-white': isSelected(seat),
                                         'border-blue-500 text-blue-500': !isSelected(seat),
                                         'hover:bg-blue-500 hover:text-white': !isSelected(seat)
@@ -158,21 +149,14 @@
                 </div>
 
                 <!-- Piso 2 -->
-                <div
-                    class="mx-3 rounded-lg bg-white border border-blue-200 p-3">
+                <div class="mx-3 rounded-lg bg-white border border-blue-200 p-3">
                     <div class="md:w-full flex mb-3 items-center border-b-2">
-                        <span class="text-gray-600 font-semibold"
-                            >Segundo piso - 160°</span
-                        >
+                        <span class="text-gray-600 font-semibold">Segundo piso - 160°</span>
                         <i class="ml-auto fas fa-stairs"></i>
                     </div>
-                    <div
-                        class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
+                    <div class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
                         <div *ngFor="let seat of secondFloorSeats">
-                            <button
-                                type="button"
-                                (click)="toggleButton(seat)"
-                                [ngClass]="{
+                            <button type="button" (click)="toggleButton(seat)" [ngClass]="{
                                     'bg-green-500 text-white': isSelected(seat),
                                     'border-green-500 text-green-500':
                                         !isSelected(seat),
@@ -182,35 +166,17 @@
                                 class="border border-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12">
                                 <span class="text-lg font-bold">{{
                                     seat
-                                }}</span>
+                                    }}</span>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Sección adicional a la derecha -->
-         
         <div class="w-full md:w-1/2 bg-gray-100 px-5 py-10">
-            <app-detallado-compra/>
-            <div class="w-1/2 px-5"> 
-                
-                <h2 class="text-lg font-bold text-gray-600">
-                    Pasajeros Seleccionados:
-                </h2>
-                <ul>
-                    <li
-                        *ngFor="let pasajero of pasajerosSeleccionados"
-                        class="text-gray-800">
-                        {{ pasajero }}
-                    </li>
-                </ul>
-                <h3 class="mt-4 text-xl font-bold text-gray-800">
-                    Total: {{ totalAmount }} soles
-                </h3> 
-                <!-- Muestra el total -->
-            </div>
+            <app-detallado-compra />
         </div>
     </div>
 </div>
