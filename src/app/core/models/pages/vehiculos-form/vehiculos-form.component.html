@@ -1,0 +1,90 @@
+<h5
+    class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
+    Detalles de Vehiculos
+</h5>
+<form
+    [formGroup]="vehiculosForm"
+    class="w-full"
+    (ngSubmit)="onSubmit()"
+    novalidate>
+    <div class="mb-5">
+        <label
+            for="matricula"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Matricula</label
+        >
+        <input
+            type="text"
+            id="matricula"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="matricula"
+            formControlName="matricula" />
+        @if (vehiculosForm.get('matricula')?.hasError('required') &&
+        vehiculosForm.get('matricula')?.touched) {
+        <div class="form-error text-red-950">Matricula es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="marcaModelo"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >MarcaModelo</label
+        >
+        <input
+            type="text"
+            id="marcaModelo"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="marcaModelo"
+            formControlName="marcaModelo" />
+        @if (vehiculosForm.get('marcaModelo')?.hasError('required') &&
+        vehiculosForm.get('marcaModelo')?.touched) {
+        <div class="form-error text-red-950">MarcaModelo es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="numeroAsientos"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >NumeroAsientos</label
+        >
+        <input
+            type="text"
+            id="numeroAsientos"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="numeroAsientos"
+            formControlName="numeroAsientos" />
+        @if (vehiculosForm.get('numeroAsientos')?.hasError('required') &&
+        vehiculosForm.get('numeroAsientos')?.touched) {
+        <div class="form-error text-red-950">NumeroAsientos es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="estadoVehiculo"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >EstadoVehiculo</label
+        >
+        <input
+            type="text"
+            id="estadoVehiculo"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="estadoVehiculo"
+            formControlName="estadoVehiculo" />
+        @if (vehiculosForm.get('estadoVehiculo')?.hasError('required') &&
+        vehiculosForm.get('estadoVehiculo')?.touched) {
+        <div class="form-error text-red-950">EstadoVehiculo es requerido</div>
+        }
+    </div>
+
+    <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Ejecutar
+    </button>
+    <button
+        type="button"
+        (click)="onClose()"
+        class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Cancelar
+    </button>
+</form>

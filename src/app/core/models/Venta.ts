@@ -4,7 +4,7 @@ export interface ApiResponse<T> {
     data: T;
 }
 
-export interface IVentas {
+export interface IVenta {
     idVenta: number;
     codigoVenta: string;
     idUsuario: number;

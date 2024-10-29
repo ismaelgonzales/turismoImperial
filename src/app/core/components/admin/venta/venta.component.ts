@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ModelComponent } from '../../../models/pages/shared/ui/model/model.component';
 import Swal from 'sweetalert2';
-import { IVentas } from '../../../models/Ventas';
+import { IVenta } from '../../../models/Venta';
 import { VentaService } from '../../../services/venta.service';
 import { VentasFormComponent } from '../../../models/pages/ventas-form/ventas-form.component';
 
@@ -15,8 +15,8 @@ import { VentasFormComponent } from '../../../models/pages/ventas-form/ventas-fo
 })
 export class VentaComponent implements OnInit {
     isModelOpen = false;
-    ventas: IVentas[] = [];
-    venta!: IVentas;
+    ventas: IVenta[] = [];
+    venta!: IVenta;
 
     constructor(
         private ventasService: VentaService,
@@ -37,7 +37,7 @@ export class VentaComponent implements OnInit {
         });
     }
 
-    loadVentas(ventas: IVentas) {
+    loadVentas(ventas: IVenta) {
         this.venta = ventas;
         this.openModel();
     }

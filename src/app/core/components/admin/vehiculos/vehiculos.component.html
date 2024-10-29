@@ -1,1 +1,71 @@
-<p>vehiculos works!</p>
+<div class="flex justify-between items-center mb-6">
+    <h4 class="font-bold text-2xl"></h4>
+    <button
+        type="button"
+        (click)="openModel()"
+        class="text-white bg-blue-700 hover:bg-blue-900 focus:outline-none font-medium rounded-full px-6 py-3 text-center mb-2">
+        Agregar Viaje
+    </button>
+</div>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table
+        class="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-700">
+        <caption
+            class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-gray-900 dark:bg-white">
+            Detalles de Viajes
+        </caption>
+        <thead
+            class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
+            <tr>
+                <th scope="col" class="px-6 py-3">matricula</th>
+                <th scope="col" class="px-6 py-3">marcaModelo</th>
+                <th scope="col" class="px-6 py-3">numeroAsientos</th>
+                <th scope="col" class="px-6 py-3">estadoVehiculo</th>
+                <th scope="col" class="px-6 py-3">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of vehiculos; track $index) {
+            <tr class="bg-white border-b dark:bg-white dark:border-gray-700">
+                <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
+                    {{ item.matricula }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ item.marcaModelo }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.numeroAsientos }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.estadoVehiculo }}
+                </td>
+
+                <td class="px-6 py-4 text-right">
+                    <button
+                        type="button"
+                        (click)="item.idVehiculo && loadVehiculos(item)"
+                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4">
+                        Editar
+                    </button>
+                    <button
+                        type="button"
+                        (click)="
+                            item.idVehiculo && deleteVehiculos(item.idVehiculo)
+                        "
+                        class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<app-model [isOpen]="isModelOpen" (closeModel)="closeModel()">
+    <app-vehiculos-form
+        (onCloseModel)="closeModel()"
+        [data]="vehiculo"></app-vehiculos-form>
+</app-model>

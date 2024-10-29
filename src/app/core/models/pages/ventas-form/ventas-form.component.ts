@@ -17,7 +17,7 @@ import { CommonModule, formatDate } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { IVentas } from '../../Ventas';
+import { IVenta } from '../../Venta';
 import { VentaService } from '../../../services/venta.service';
 
 @Component({
@@ -28,7 +28,7 @@ import { VentaService } from '../../../services/venta.service';
     styleUrl: './ventas-form.component.scss',
 })
 export class VentasFormComponent implements OnChanges {
-    @Input() data: IVentas | null = null;
+    @Input() data: IVenta | null = null;
     @Output() onCloseModel = new EventEmitter();
 
     ventasForm!: FormGroup;

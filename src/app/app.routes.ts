@@ -233,6 +233,26 @@ export const routes: Routes = [
                 },
                 canActivate: [AccesoGuard],
             },
+            {
+                path: 'ventas',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/venta/venta.component'
+                    );
+                    return m.VentaComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+            {
+                path: 'ventas-interna',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/venta-interna/venta-interna.component'
+                    );
+                    return m.VentaInternaComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
         ],
     },
 

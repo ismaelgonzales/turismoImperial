@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse, IVentas } from '../models/Ventas';
+import { ApiResponse, IVenta } from '../models/Venta';
 
 @Injectable({
     providedIn: 'root',
@@ -11,19 +11,19 @@ export class VentaService {
 
     constructor(private http: HttpClient) {}
 
-    getAllVentas(): Observable<IVentas[]> {
-        return this.http.get<IVentas[]>(`${this.apiUrl}`);
+    getAllVentas(): Observable<IVenta[]> {
+        return this.http.get<IVenta[]>(`${this.apiUrl}`);
     }
 
-    getVentas(id: number): Observable<ApiResponse<IVentas>> {
-        return this.http.get<ApiResponse<IVentas>>(`${this.apiUrl}/${id}`);
+    getVentas(id: number): Observable<ApiResponse<IVenta>> {
+        return this.http.get<ApiResponse<IVenta>>(`${this.apiUrl}/${id}`);
     }
 
-    createVentas(ventas: IVentas): Observable<any> {
+    createVentas(ventas: IVenta): Observable<any> {
         return this.http.post(`${this.apiUrl}`, ventas);
     }
 
-    updateVentas(id: number, ventas: IVentas): Observable<any> {
+    updateVentas(id: number, ventas: IVenta): Observable<any> {
         return this.http.put(`${this.apiUrl}/${id}`, ventas);
     }
 

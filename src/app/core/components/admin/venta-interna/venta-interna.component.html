@@ -1,0 +1,105 @@
+<div class="p-6 bg-gray-100 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">Venta Interna de Pasajes</h2>
+
+    <!-- Formulario de Búsqueda de Rutas -->
+    <div class="bg-white p-4 rounded-lg shadow mb-6">
+        <h3 class="text-lg font-semibold mb-2">Buscar Ruta</h3>
+        <form (ngSubmit)="buscarViajes()">
+            <!-- Campos de búsqueda -->
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <input
+                    type="text"
+                    placeholder="Origen"
+                    class="p-2 border rounded"
+                    name="origen" />
+                <input
+                    type="text"
+                    placeholder="Destino"
+                    class="p-2 border rounded"
+                    name="destino" />
+                <input
+                    type="date"
+                    placeholder="Fecha de salida"
+                    class="p-2 border rounded"
+                    name="fechaSalida" />
+                <select name="servicio" class="p-2 border rounded">
+                    <option value="">Selecciona el servicio</option>
+                    <!-- <option *ngFor="let s of servicios" [value]="s">{{ s }}</option> -->
+                </select>
+            </div>
+            <button
+                type="submit"
+                class="bg-blue-500 text-white px-4 py-2 rounded">
+                Buscar
+            </button>
+        </form>
+    </div>
+
+    <!-- Lista de Viajes -->
+    <div *ngIf="viajes.length > 0" class="bg-white p-4 rounded-lg shadow mb-6">
+        <h3 class="text-lg font-semibold mb-2">Selecciona un Viaje</h3>
+        <ul>
+            <li
+                *ngFor="let viaje of viajes"
+                class="flex justify-between p-2 border-b">
+                <span
+                    >{{ viaje.origen }} - {{ viaje.destino }} |
+                    {{ viaje.horaSalida }} - {{ viaje.horaLlegada }}</span
+                >
+                <span>{{ viaje.precio }} USD</span>
+                <button
+                    (click)="seleccionarViaje(viaje)"
+                    class="bg-green-500 text-white px-4 py-1 rounded">
+                    Seleccionar
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Selección de Asientos -->
+    <div *ngIf="viajeSeleccionado" class="bg-white p-4 rounded-lg shadow mb-6">
+        <h3 class="text-lg font-semibold mb-2">Seleccionar Asientos</h3>
+        <app-seat-selection></app-seat-selection>
+    </div>
+
+    <!-- Formulario de Datos del Pasajero -->
+    <div
+        *ngIf="asientosSeleccionados.length > 0"
+        class="bg-white p-4 rounded-lg shadow mb-6">
+        <h3 class="text-lg font-semibold mb-2">Datos del Pasajero</h3>
+        <form (ngSubmit)="confirmarVenta()">
+            <div
+                *ngFor="let asiento of asientosSeleccionados; let i = index"
+                class="mb-4">
+                <label>Pasajero {{ i + 1 }}</label>
+                <input
+                    type="text"
+                    placeholder="Nombre"
+                    name="nombre{{ i }}"
+                    class="p-2 border rounded mb-2 block" />
+                <input
+                    type="text"
+                    placeholder="Documento"
+                    name="documento{{ i }}"
+                    class="p-2 border rounded block" />
+            </div>
+            <button
+                type="submit"
+                class="bg-green-500 text-white px-4 py-2 rounded">
+                Confirmar Venta
+            </button>
+        </form>
+    </div>
+
+    <!-- Resumen de Venta -->
+    <div *ngIf="ventaConfirmada" class="bg-white p-4 rounded-lg shadow mt-6">
+        <h3 class="text-lg font-semibold mb-2">Resumen de la Venta</h3>
+        <ul>
+            <li *ngFor="let pasajero of pasajeros">
+                Pasajero: {{ pasajero.nombre }} | Asiento:
+                {{ pasajero.asiento }}
+            </li>
+        </ul>
+        <p>Total: {{ totalVenta }} USD</p>
+    </div>
+</div>
