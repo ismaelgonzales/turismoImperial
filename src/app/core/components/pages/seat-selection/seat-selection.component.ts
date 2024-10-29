@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output ,EventEmitter} from '@angular/core';
 import { SocketService } from '../../../services/socket.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
@@ -24,6 +24,7 @@ import { RouterLink } from '@angular/router';
 })
 
 export class SeatSelectionComponent implements OnInit {
+    @Output() continue = new EventEmitter<void>();
     
     firstFloorSeats: number[]  = [1, 2,0, 3, 4, 5,0, 6, 7, 8,0, 9, 10, 11, 0,12];
     secondFloorSeats: number[] = [
@@ -141,6 +142,8 @@ export class SeatSelectionComponent implements OnInit {
         this.seleccionAsientosService.setSelectedPasajeros(pasajeros, total);
         console.log('Pasajeros y monto total enviados al servicio');
     }
-    
+    onContinue() {
+        this.continue.emit(); // Avanza al siguiente paso
+      }
 }
 

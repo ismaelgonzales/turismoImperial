@@ -1,7 +1,7 @@
 <app-header-page />
 <!-- <app-progress-bar /> -->
 
-<ol class="flex p-36 items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+<ol class="flex p-12 items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
     <li
         class="flex md:w-full items-center sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
         <span
@@ -89,7 +89,8 @@
                                 </div>
                                 <div class="md:col-span-3">
                                     <span>Solo DNI*</span>
-                                    <button class="block w-full max-w-xs mx-auto bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                                    <button
+                                        class="block w-full max-w-xs mx-auto bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
                                         (click)="buscarDni(i)">Buscar</button>
                                 </div>
                                 <div class="md:col-span-3">
@@ -112,7 +113,7 @@
                                         class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
                                         placeholder="Peruana*" />
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -120,6 +121,15 @@
                 </div>
                 <div class="px-3 md:w-5/12">
                     <app-detallado-compra />
+                    <div class="grid-cols-2">
+                        <button
+                        class=" bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                        (click)="onBack()">Regresar a Selección de Asientos</button>
+                    <button
+                        class="ml-20 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                        (click)="onContinue()">Continuar a Pago</button>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -133,6 +143,5 @@
         </div>
     </div>
 </div>
-
 
 <app-footer-page />

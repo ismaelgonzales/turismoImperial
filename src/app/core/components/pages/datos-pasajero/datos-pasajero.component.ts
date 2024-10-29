@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { HeaderPageComponent } from '../../atoms/header-page/header-page.component';
 import { ProgressBarComponent } from '../../organims/progress-bar/progress-bar.component';
 import { DetalladoCompraComponent } from '../../organims/detallado-compra/detallado-compra.component';
@@ -29,6 +29,8 @@ export class DatosPasajeroComponent implements OnInit {
     private pasajerosSubscription: Subscription = new Subscription();
     dniArray: string[] = []; // Array para almacenar DNIs
     datosPropietario: any[] = Array(this.pasajerosSeleccionados.length).fill({});
+    @Output() continue = new EventEmitter<void>();
+    @Output() back = new EventEmitter<void>();
 
     constructor(
         private seleccionAsientosService: SeleccionAsientosService,
@@ -69,4 +71,11 @@ export class DatosPasajeroComponent implements OnInit {
     ngOnDestroy() {
         this.pasajerosSubscription.unsubscribe();
     }
+    onContinue() {
+        this.continue.emit(); // Avanza al siguiente paso
+      }
+    
+      onBack() {
+        this.back.emit(); // Retrocede al paso anterior
+      }
 }

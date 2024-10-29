@@ -93,48 +93,58 @@ export const routes: Routes = [
             return m.RutasComponent;
         },
     },
-
     {
         canActivate: [privateGuard()],
-        path: 'seleccion-asientos',
-
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/seleccion-asientos/seleccion-asientos.component'
-            );
-            return m.SeleccionAsientosComponent;
-        },
-    },
-    {
-        path: 'seat-selection',
+        path: 'compra',
 
         loadComponent: async () => {
             const m = await import(
-                './core/components/pages/seat-selection/seat-selection.component'
+                './core/components/pages/proceso-compra/proceso-compra.component'
             );
-            return m.SeatSelectionComponent;
+            return m.ProcesoCompraComponent;
         },
     },
-    {
-        canActivate: [privateGuard()],
-        path: 'datos-pasajero',
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/datos-pasajero/datos-pasajero.component'
-            );
-            return m.DatosPasajeroComponent;
-        },
-    },
-    {
-        canActivate: [privateGuard()],
-        path: 'pago',
-        loadComponent: async () => {
-            const m = await import(
-                './core/components/pages/pago/pago.component'
-            );
-            return m.PagoComponent;
-        },
-    },
+    // {
+    //     canActivate: [privateGuard()],
+    //     path: 'seleccion-asientos',
+
+    //     loadComponent: async () => {
+    //         const m = await import(
+    //             './core/components/pages/seleccion-asientos/seleccion-asientos.component'
+    //         );
+    //         return m.SeleccionAsientosComponent;
+    //     },
+    // },
+    // {
+    //     path: 'seat-selection',
+
+    //     loadComponent: async () => {
+    //         const m = await import(
+    //             './core/components/pages/seat-selection/seat-selection.component'
+    //         );
+    //         return m.SeatSelectionComponent;
+    //     },
+    // },
+    // {
+    //     canActivate: [privateGuard()],
+    //     path: 'datos-pasajero',
+    //     loadComponent: async () => {
+    //         const m = await import(
+    //             './core/components/pages/datos-pasajero/datos-pasajero.component'
+    //         );
+    //         return m.DatosPasajeroComponent;
+    //     },
+    // },
+    // {
+    //     canActivate: [privateGuard()],
+    //     path: 'pago',
+    //     loadComponent: async () => {
+    //         const m = await import(
+    //             './core/components/pages/pago/pago.component'
+    //         );
+    //         return m.PagoComponent;
+    //     },
+    // },
     {
         path: 'dashlogin',
 
