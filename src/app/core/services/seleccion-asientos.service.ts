@@ -5,24 +5,30 @@ import { BehaviorSubject } from 'rxjs';
     providedIn: 'root',
 })
 export class SeleccionAsientosService {
-    private pasajeros: any[] = [];
+    private pasajeros: any[] = []; // Pasajeros con datos detallados
     private totalAmount: number = 0;
 
-    // Crea un BehaviorSubject para pasajeros y totalAmount
     private pasajerosSubject = new BehaviorSubject<any[]>(this.pasajeros);
     private totalAmountSubject = new BehaviorSubject<number>(this.totalAmount);
 
-    // Observable para que los componentes se suscriban
     pasajeros$ = this.pasajerosSubject.asObservable();
     totalAmount$ = this.totalAmountSubject.asObservable();
 
     setSelectedPasajeros(pasajeros: any[], total: number) {
-        this.pasajeros = pasajeros;
+        this.pasajeros = pasajeros.map(asiento => ({ asiento, propietario: {} })); // Inicia con asientos y propietarios vacíos
         this.totalAmount = total;
 
-        // Emitir nuevos valores
         this.pasajerosSubject.next(this.pasajeros);
         this.totalAmountSubject.next(this.totalAmount);
+    }
+
+    // Método para actualizar datos del propietario de un pasajero específico
+    updatePropietarioDatos(asientoIndex: number, propietarioData: any) {
+        if (this.pasajeros[asientoIndex]) {
+            this.pasajeros[asientoIndex].propietario = propietarioData;
+            this.pasajerosSubject.next(this.pasajeros); // Emitimos el cambio
+            // console.log(this.pasajeros$)
+        }
     }
 
     getSelectedPasajeros() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HeaderPageComponent } from '../../atoms/header-page/header-page.component';
 import { ProgressBarComponent } from '../../organims/progress-bar/progress-bar.component';
 import { DetalladoCompraComponent } from '../../organims/detallado-compra/detallado-compra.component';
@@ -25,15 +25,15 @@ import { CommonModule } from '@angular/common';
 
 })
 export class DatosPasajeroComponent implements OnInit {
-    pasajerosSeleccionados: string[] = [];
+    pasajerosSeleccionados: any[] = [];
     private pasajerosSubscription: Subscription = new Subscription();
     dniArray: string[] = []; // Array para almacenar DNIs
-    datosPropietario: any[] = Array(this.pasajerosSeleccionados.length).fill({}); // Array para almacenar datos de propietarios
-    
+    datosPropietario: any[] = Array(this.pasajerosSeleccionados.length).fill({});
 
     constructor(
         private seleccionAsientosService: SeleccionAsientosService,
-        private dniService: DniService    
+        private dniService: DniService  ,
+        private cdr :ChangeDetectorRef  
     ) { }
 
     ngOnInit() {
@@ -42,14 +42,17 @@ export class DatosPasajeroComponent implements OnInit {
             console.log('Pasajeros seleccionados:', this.pasajerosSeleccionados);
         });
     }
+
     buscarDni(index: number) {
-        const dni = this.dniArray[index]; // Obtener el DNI correspondiente al pasajero actual
+        const dni = this.dniArray[index];
         if (dni) {
             this.dniService.obtenerDatosPorDni(dni).subscribe(
                 response => {
                     if (response.success) {
-                        this.datosPropietario[index] = response.data; // Almacenar datos del propietario en el índice correspondiente
-                        console.log('Datos del propietario:', this.datosPropietario[index]);
+                        this.datosPropietario[index] = response.data;
+                        // Actualizar datos en SeleccionAsientosService
+                        this.seleccionAsientosService.updatePropietarioDatos(index, response.data);
+                        console.log('Datos del propietario actualizados en el servicio:', response.data);
                     } else {
                         console.error('Error al obtener datos:', response);
                     }

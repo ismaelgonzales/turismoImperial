@@ -5,7 +5,7 @@
     </div>
     <div class="w-full flex items-center">
         <div class="w-32">
-            <span class="text-gray-600 font-semibold">Viernes 11-Sep </span>
+            <span class="text-gray-600 font-semibold">Viernes 11-Sep</span>
         </div>
     </div>
     <div class="w-full flex items-center py-2">
@@ -29,49 +29,51 @@
         </div>
     </div>
 </div>
+
+<!-- Información de los pasajeros seleccionados y detalles del viaje -->
 <div
     class="w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6">
     <div class="w-full p-3 border-b border-gray-200">
         <div class="w-full flex mb-3 items-center py-4 border-b-2">
-            <span class="text-gray-600 font-semibold"
-                >Detalle de tarifa de viaje</span
-            >
+            <span class="text-gray-600 font-semibold">Detalle de tarifa de viaje</span>
         </div>
+        
         <div class="mb-6 pb-6 border-b border-gray-200 text-gray-800">
+            <!-- Bucle para cada pasajero seleccionado -->
             <div
                 *ngFor="let pasajero of pasajerosSeleccionados; let i = index"
                 class="w-full flex mb-3 items-center">
                 <div class="flex-grow">
-                    <span class="text-gray-600"> {{pasajero}}</span>
+                    <span class="text-gray-600">{{ pasajero.asiento }}</span>
+                    <div class="text-sm text-gray-500">
+                        <span>{{ pasajero.propietario.nombre_completo }}</span>
+                    </div>
+
+                    
                 </div>
                 <div class="pl-3">
-                    <span class="font-semibold">{{
-                        pasajero.monto | currency : 'PEN'
-                    }}</span>
+                    <span class="font-semibold">{{ pasajero.monto | currency : 'PEN' }}</span>
                 </div>
             </div>
         </div>
-        <div
-            class="mb-6 pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl">
+        
+        <!-- Total -->
+        <div class="mb-6 pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl">
             <div class="w-full flex items-center">
                 <div class="flex-grow">
                     <span class="text-gray-600">Total</span>
                 </div>
                 <div class="pl-3">
-                    <!-- <span class="font-semibold text-gray-400 text-sm">PEN</span> -->
-                    <span class="font-semibold">{{
-                        totalAmount | currency : 'PEN'
-                    }}</span>
+                    <span class="font-semibold">{{ totalAmount | currency : 'PEN' }}</span>
                 </div>
             </div>
             <div>
-                <span class="text-gray-400 text-sm"
-                    >Tasas e impuesto incluidos</span
-                >
+                <span class="text-gray-400 text-sm">Tasas e impuesto incluidos</span>
             </div>
         </div>
     </div>
 </div>
+
 <div>
     <button
         routerLink="/datos-pasajero"
