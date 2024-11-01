@@ -24,6 +24,8 @@
     "@angular/ssr": "^18.2.4",
     "@ng-icons/core": "^29.5.0",
     "@ng-icons/heroicons": "^29.5.0",
+    "@ngrx/signals": "^18.1.1",
+    "@stripe/stripe-js": "^4.9.0",
     "express": "^4.21.0",
     "firebase": "^10.14.1",
     "frontend-ng": "file:",

@@ -1,4 +1,23 @@
+import { IProductStripe } from '../core/models/productStripe.interface';
 import { IRutas } from '../core/models/rutas-model';
+
+
+// export const PRODUCT_STRIPE_MOCK: IProductStripe[] = [
+//     {
+//         id: 1,
+//         title: "bus 1",
+//         price: 50 ,
+//         category: "primer piso",
+//         description: "asiento 160",
+//         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+//         rating: {
+//             rate: 3.9,
+//             count: 120
+//             },
+//         qty: 2,
+//         subTotal: 100,
+//     }
+// ]
 
 export const RUTAS_MOCK: IRutas[] = [
     {
@@ -74,3 +93,5 @@ export const RUTAS_MOCK: IRutas[] = [
         fechaLlegada: '2024-10-2T19:00:00',
     },
 ];
+
+
