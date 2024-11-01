@@ -140,7 +140,7 @@ export class SeatSelectionComponent implements OnInit {
     
     enviarSeleccion(pasajeros: any[], total: number) {
         this.seleccionAsientosService.setSelectedPasajeros(pasajeros, total);
-        console.log('Pasajeros y monto total enviados al servicio');
+        // console.log('Pasajeros y monto total enviados al servicio');
     }
     onContinue() {
         this.continue.emit(); // Avanza al siguiente paso

@@ -5,6 +5,7 @@ import { ApiService } from '../../../services/api.service';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { SeleccionAsientosService } from '../../../services/seleccion-asientos.service';
 
 @Component({
     selector: 'app-detalle-ruta',
@@ -31,7 +32,9 @@ export class DetalleRutaComponent implements OnInit {
 
     
 
-    constructor(private _apiService: ApiService) { }
+    constructor(private _apiService: ApiService,
+        private seleccionAsientosService: SeleccionAsientosService
+    ) { }
 
     ngOnInit(): void {
         // Obtiene las rutas desde la API
@@ -48,8 +51,10 @@ export class DetalleRutaComponent implements OnInit {
     }
 
     tomaObjetoButton(rutasListas: IBusesDetalles) {
-        console.log('ruta seleccionada:', rutasListas);
-        // Aquí puedes realizar las acciones que desees con el objeto product
+        this.seleccionAsientosService.setBusSeleccionado(rutasListas)
+        // console.log('ruta seleccionada:', rutasListas , rutasListas.destino );
+        
+        
       }
     // Método de conversión
     private formatFechaSalida(ruta: IBusesDetalles): string {

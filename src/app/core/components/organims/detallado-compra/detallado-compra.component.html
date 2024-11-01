@@ -5,7 +5,7 @@
     </div>
     <div class="w-full flex items-center">
         <div class="w-32">
-            <span class="text-gray-600 font-semibold">Viernes 11-Sep</span>
+            <span class="text-gray-600 font-semibold">{{busMostrar?.fechaSalida}}</span>
         </div>
     </div>
     <div class="w-full flex items-center py-2">
@@ -14,7 +14,7 @@
                 <span class="text-gray-600 font-semibold">Salida</span>
             </div>
             <div class="flex-grow pl-3">
-                <span>22:00 Lima</span>
+                <span>{{busMostrar?.horaSalida}} {{busMostrar?.origen}}</span>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                 <span class="text-gray-600 font-semibold">Llegada</span>
             </div>
             <div class="flex-grow pl-3">
-                <span>24:00 Tarma</span>
+                <span>{{busMostrar?.horaLlegada}} {{busMostrar?.destino}}</span>
             </div>
         </div>
     </div>
