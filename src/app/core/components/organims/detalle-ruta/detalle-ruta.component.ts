@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { IRutas } from '../../../models/rutas-model';
+import { IBuses, IBusesDetalles, IRutas } from '../../../models/swagger-model';
 import { ApiService } from '../../../services/api.service';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -19,37 +19,59 @@ export class DetalleRutaComponent implements OnInit {
     @Input() horaSalida: string = '';
     @Input() precio: number = 0;
 
-    rutasListas: IRutas[] = [];
-    rutasFiltradas: IRutas[] = []; // Lista filtrada para mostrar en la vista
+    rutasListas: IBusesDetalles[] = [];
+    rutasFiltradas: IBusesDetalles[] = []; // Lista filtrada para mostrar en la vista
     filterPost: string = ''; // Almacena el texto del filtro
     fechaSeleccionada: string = ''; // Almacena la fecha seleccionada
     ciudadOrigen: string = ''; // Para almacenar la ciudad seleccionada
     destino: string = ''; // Para almacenar la ciudad de destino
 
-    constructor(private _apiService: ApiService) {}
+    // rutas: IRutas | null = null ;
+    // buses: IBuses| null = null;
+
+    
+
+    constructor(private _apiService: ApiService) { }
 
     ngOnInit(): void {
         // Obtiene las rutas desde la API
-        this._apiService.getAllRutas().subscribe((data: IRutas[]) => {
+        this._apiService.getAllBusesDetalles().subscribe((data: IBusesDetalles[]) => {
             this.rutasListas = data;
             this.rutasFiltradas = data; // Inicializamos con todas las rutas
         });
+        // this._apiService.getRutasById(id).subscribe((data) => {
+        //     this.rutas = data;
+        // });
+        // this._apiService.getBusesById().subscribe((data) => {
+        //     this.buses = data;
+        // });
     }
 
-    // Método para filtrar las rutas por texto y fecha
+    tomaObjetoButton(rutasListas: IBusesDetalles) {
+        console.log('ruta seleccionada:', rutasListas);
+        // Aquí puedes realizar las acciones que desees con el objeto product
+      }
+    // Método de conversión
+    private formatFechaSalida(ruta: IBusesDetalles): string {
+        return ruta.fechaSalida instanceof Date ? ruta.fechaSalida.toISOString().split('T')[0] : ruta.fechaSalida;
+    }
+
+    
+
+    // Método de filtrado actualizado
     filtrarRutas(): void {
         this.rutasFiltradas = this.rutasListas.filter(ruta => {
             const matchesText = this.filterPost
-                ? ruta.ciudadOrigen.toLowerCase().includes(this.filterPost.toLowerCase())
+                ? ruta.origen.toLowerCase().includes(this.filterPost.toLowerCase())
                 : true;
 
-            const fechaRuta = ruta.fechaSalida?.split('T')[0]; // Extrae solo la fecha sin la hora
+            const fechaRuta = this.formatFechaSalida(ruta); // Utiliza la fecha como string
             const matchesDate = this.fechaSeleccionada
                 ? fechaRuta === this.fechaSeleccionada
                 : true;
 
             const matchesOrigin = this.ciudadOrigen
-                ? ruta.ciudadOrigen.toLowerCase() === this.ciudadOrigen.toLowerCase()
+                ? ruta.origen.toLowerCase() === this.ciudadOrigen.toLowerCase()
                 : true;
 
             return matchesText && matchesDate && matchesOrigin;

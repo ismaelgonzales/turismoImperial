@@ -1,3 +1,16 @@
+export interface IComprobantes {
+  id: number;
+  idCliente: number ;
+  idEmpledo: number ;
+  numeroComprobante: string;
+  tipoComprobante : string ;
+  fechaEmision : Date ;
+  montoTotal : number ;
+  idPagos: number ;
+  estado :boolean ;
+
+} 
+
 export interface IPasajero {
   id: number;
   nombre_completo: string;
@@ -27,28 +40,53 @@ export interface IProductStripe {
   subTotal: number;
 }
 
+
+
+
+//utilizar para filtro de rutas = ruta detalles
+//utilizar para busesdetalles = 
+// Asiento 
+//{
+//     "idAsiento": 5,
+//     "numeroAsiento": 10,
+//     "idBuses": 1,
+//     "idPasajero": 1,
+//     "idUsuario": 2,
+//     "nombreUsuario": "adrian15",
+//     "numeroPiso": 2,
+//     "precioPen": 45,
+//     "tipoAsiento": "Premium",
+//     "estado": true
+//   },
+
+// buses
 // {
-//   id: 1,
-//   title: "Lima-Tarma",
-//   price: 50,
-//   category: "Regular",
-//   description: "blablabla",
-//   image: "https://res.cloudinary.com/dyelvotz0/image/upload/v1727587318/LogoImperial_nvve7x.png",
-//   qty: 2,
-//   pasajero: { id: 1;
-//   nombre_completo: "CHRISTOPHER ISMAEL , GONZALES DAVILA";
-//   numeroDni: 77338315;
-//   }
-//   asiento: {
-//   id:1;
-//   numeroPiso: 2;
-//   idPajero: 1;
-//   numeroAsiento: 23 ;
-//   idBus:23;
+//     "idBuses": 1,
+//     "matricula": "A5W-957",
+//     "marcaModelo": "Mercedes Benz - Marcopolo",
+//     "precioMinimo": 35,
+//     "precioPromedio": 45,
+//     "numeroAsientos": 50,
+//     "idConductor": 1,
+//     "idRutas": 1,
+//     "estado": true
+//   },
+//Rutas
+// {
+//     "idRutas": 1,
+//     "ciudadOrigen": "Lima",
+//     "ciudadId": "LIM",
+//     "ciudadSeoId": "lima",
+//     "ciudadDestino": "Tarma",
+//     "destinoId": "TAR",
+//     "destinoSeoId": "tarma",
+//     "estado": true
+//   },
+// rutaDetalles
+// {
+//   "idRutaDetalles": 1,
+//   "ciudadOrigen": "Lima",
+//   "ciudadDestino": "Tarma",
+//   "fechaSalida": "2024-11-08",
+//   "idRutas": 1
 // }
-
-//   subTotal: 100,
-// }
-
-
-
