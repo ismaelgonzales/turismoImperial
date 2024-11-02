@@ -62,6 +62,16 @@ export interface IRutas {
     estado:        boolean;
 }
 
+//I para la maqueta de seat selection 
+export interface Asiento {
+    numero: number;         // Número del asiento
+    estaSeleccionado: boolean; // Indica si el asiento está seleccionado
+    tieneIcono: boolean;      // Indica si el asiento tiene un icono
+    iconoUrl?: string;        // URL del icono (opcional)
+    visible: boolean;         // Indica si el asiento debe ser visible
+}
+
+
 
 //utilizar para filtro de rutas = ruta detalles
 //utilizar para busesdetalles =

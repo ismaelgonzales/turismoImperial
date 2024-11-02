@@ -1,4 +1,4 @@
-import { Component, OnInit, Output ,EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SocketService } from '../../../services/socket.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
@@ -25,11 +25,12 @@ import { RouterLink } from '@angular/router';
 
 export class SeatSelectionComponent implements OnInit {
     @Output() continue = new EventEmitter<void>();
-    
-    firstFloorSeats: number[]  = [1, 2,0, 3, 4, 5,0, 6, 7, 8,0, 9, 10, 11, 0,12];
-    secondFloorSeats: number[] = [
-        13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-    ];
+
+
+
+    firstFloorSeats: number[] = [1, 2, 0, 3, 4, 5, 0, 6, 7, 8, 0, 9, 10, 11, 0, 12];
+    secondFloorSeats: number[] = [13, 14, 15, 16, 17, 18, 19, 20, 21, 22,0,0, 23, 24, 0,0,25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,0,0]
+        ;
     selectedSeats: number[] = [];
     occupiedSeats: Set<number> = new Set(); // Para rastrear asientos ocupados
     //Seleccion de asientos
@@ -37,7 +38,7 @@ export class SeatSelectionComponent implements OnInit {
     totalAmount: number = 0;
 
     // Precios de los asientos
-    private firstFloorPrice: number = 50;
+    private firstFloorPrice: number = 45;
     private secondFloorPrice: number = 35;
 
     constructor(
@@ -46,8 +47,8 @@ export class SeatSelectionComponent implements OnInit {
         //seleccion asientos
         private seleccionAsientosService: SeleccionAsientosService,
         private router: Router,
-    ) {}
-    
+    ) { }
+
     ngOnInit() {
         this.listenToSocketEvents();
     }
@@ -57,7 +58,7 @@ export class SeatSelectionComponent implements OnInit {
         const seatPrice = isFirstFloor
             ? this.firstFloorPrice
             : this.secondFloorPrice;
-    
+
         if (this.isSelected(seat)) {
             this.selectedSeats = this.selectedSeats.filter(s => s !== seat);
             this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(
@@ -74,7 +75,7 @@ export class SeatSelectionComponent implements OnInit {
                     this.totalAmount += seatPrice; // Sumar el precio
                     this.socketService.emitEvent('seatSelected', seat);
                     this.toastr.success(`Asiento ${seat} ha sido seleccionado`);
-                    
+
                     // Llama a enviarSeleccion después de seleccionar el asiento
                     this.enviarSeleccion(this.pasajerosSeleccionados, this.totalAmount);
                 } else {
@@ -89,7 +90,7 @@ export class SeatSelectionComponent implements OnInit {
     }
     //seleccion de asientos
 
-    
+
     //sockets
     isSelected(seat: number): boolean {
         return this.selectedSeats.includes(seat);
@@ -137,13 +138,31 @@ export class SeatSelectionComponent implements OnInit {
             );
         });
     }
-    
+    isIconPositionEscalera(index: number): boolean {
+        // Define las posiciones en las que quieres mostrar el ícono
+        const iconPositions = [10, 11, 15];
+        return iconPositions.includes(index);
+    }
+
+
+    isIconPositionBathroom(index: number): boolean {
+        // Define las posiciones en las que quieres mostrar el ícono
+        const iconPositions = [43];
+        return iconPositions.includes(index);
+    }
+
+    isIconPositionDisable(index: number): boolean {
+        // Define las posiciones en las que quieres mostrar el ícono
+        const iconPositions = [14,42];
+        return iconPositions.includes(index);
+    }
+
     enviarSeleccion(pasajeros: any[], total: number) {
         this.seleccionAsientosService.setSelectedPasajeros(pasajeros, total);
         // console.log('Pasajeros y monto total enviados al servicio');
     }
     onContinue() {
         this.continue.emit(); // Avanza al siguiente paso
-      }
+    }
 }
 
