@@ -44,6 +44,17 @@ export class DatosPasajeroComponent implements OnInit {
             console.log('Pasajeros seleccionados:', this.pasajerosSeleccionados);
         });
     }
+    updatePropietario(index: number, field: string, value: string) {
+        // Actualiza los datos del propietario en el arreglo local
+        if (!this.pasajerosSeleccionados[index].propietario) {
+            this.pasajerosSeleccionados[index].propietario = {};
+        }
+        this.pasajerosSeleccionados[index].propietario[field] = value;
+    
+        // Enviar la información al servicio
+        this.seleccionAsientosService.updatePropietarioDatos(index, this.pasajerosSeleccionados[index].propietario);
+    }
+    
 
     buscarDni(index: number) {
         const dni = this.dniArray[index];

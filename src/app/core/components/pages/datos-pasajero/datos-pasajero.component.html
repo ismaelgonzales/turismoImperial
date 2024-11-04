@@ -50,13 +50,13 @@
                                         <span class="block mb-1">Tipo de Documento*</span>
                                         <div
                                             class="h-10 bg-gray-50 flex border border-gray-200 rounded-xl items-center">
-                                            <select
+                                            <select [(ngModel)]="pasajero.tipoDocumento"
                                                 class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent"
                                                 id="grid-state">
-                                                <option>DNI</option>
-                                                <option>Pasaporte</option>
-                                                <option>Cédula de identidad</option>
-                                                <option>Carnet de extranjería</option>
+                                                <option value="DNI">DNI</option>
+                                                <option value="Pasaporte">Pasaporte</option>
+                                                <option value="Cédula de identidad">Cédula de identidad</option>
+                                                <option value="Carnet de extranjería">Carnet de extranjería</option>
                                             </select>
                                             <button tabindex="-1"
                                                 class="cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-blue-600">
@@ -69,79 +69,133 @@
                                             </button>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="md:col-span-3">
-                                    <span>Numero de documento*</span>
-                                    <input type="text" name="numeroDocumento" id="numeroDocumento"
-                                        class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                        placeholder="Número de documento" [(ngModel)]="dniArray[i]" />
-
                                 </div>
 
 
 
-                                <div class="md:col-span-3">
-                                    <span>Nombres*</span>
-                                    <input type="text" name="nombre" id="nombre"
-                                        class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                        placeholder="Nombres*" [value]="datosPropietario[i]?.nombres" readonly />
-                                </div>
-                                <div class="md:col-span-3">
-                                    <span>Solo DNI*</span>
-                                    <button
-                                        class="block w-full max-w-xs mx-auto bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
-                                        (click)="buscarDni(i)">Buscar</button>
-                                </div>
-                                <div class="md:col-span-3">
-                                    <span>Apellidos*</span>
-                                    <input type="text" name="apellido" id="apellido"
-                                        class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                        placeholder="Apellidos*"
-                                        [value]="(datosPropietario[i]?.apellido_paterno || '') + ' ' + (datosPropietario[i]?.apellido_materno ||'') "
-                                        readonly />
-                                </div>
-                                <div class="md:col-span-3">
-                                    <span>Fecha de nacimiento*</span>
-                                    <input type="date" name="fechaDeNacimiento" id="fechaDeNacimiento"
-                                        class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                        placeholder="Fecha de nacimiento*" />
-                                </div>
-                                <div class="md:col-span-3">
-                                    <span>Nacionalidad*</span>
-                                    <input type="text" name="nacionalidad" id="nacionalidad"
-                                        class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                        placeholder="Peruana*" />
-                                </div>
+                                <ng-container [ngSwitch]="pasajero.tipoDocumento">
+                                    <div *ngSwitchDefault="'DNI'" class="md:col-span-6">
+                                        <div class="md:col-span-3">
+                                            <span>Numero de documento*</span>
+                                            <input type="text" name="numeroDocumento" id="numeroDocumento"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Número de documento" [(ngModel)]="dniArray[i]" />
+                                            <span>Solo DNI*</span>
+                                            <button
+                                                class="block w-full max-w-xs mx-auto bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                                                (click)="buscarDni(i)">Buscar</button>
+                                        </div>
+                                        <div class="md:col-span-3">
+                                            <span>Nombres*</span>
+                                            <input type="text" name="nombre" id="nombre"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Nombres*" [value]="datosPropietario[i]?.nombres" />
 
+
+                                        </div>
+                                        <div class="md:col-span-3">
+                                            <span>Apellidos*</span>
+                                            <input type="text" name="apellido" id="apellido"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Apellidos*"
+                                                [value]="(datosPropietario[i]?.apellido_paterno || '') + ' ' + (datosPropietario[i]?.apellido_materno || '')" />
+                                        </div>
+                                    </div>
+                                    <div *ngSwitchCase="'Pasaporte'" class="md:col-span-6">
+                                        <div class="md:col-span-3">
+                                            <span>Numero de documento*</span>
+                                            <input type="text" name="numeroDocumento" id="numeroDocumento"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Número de documento" />
+                                        </div>
+                                        <div class="md:col-span-3">
+                                            <span>Nombres*</span>
+                                            <input type="text" name="nombre" id="nombre"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Nombres*" [(ngModel)]="pasajero.propietario.nombres"
+                                                (ngModelChange)="updatePropietario(i, 'nombres', $event)" />
+                                        </div>
+                                        <div class="md:col-span-3">
+                                            <span>Apellidos*</span>
+                                            <input type="text" name="apellido" id="apellido"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Apellidos*" [(ngModel)]="pasajero.propietario.apellidos"
+                                                (ngModelChange)="updatePropietario(i, 'apellidos', $event)" />
+                                        </div>
+                                    </div>
+                                    <div *ngSwitchCase="'Cédula de identidad'" class="md:col-span-6">
+                                        <div class="md:col-span-3">
+                                            <span>Numero de documento*</span>
+                                            <input type="text" name="numeroDocumento" id="numeroDocumento"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Número de documento" />
+                                        </div>
+                                        <div class="md:col-span-3">
+                                            <span>Nombres*</span>
+                                            <input type="text" name="nombre" id="nombre"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Nombres*" [(ngModel)]="pasajero.propietario.nombres"
+                                                (ngModelChange)="updatePropietario(i, 'nombres', $event)" />
+                                        </div>
+                                        <div class="md:col-span-3">
+                                            <span>Apellidos*</span>
+                                            <input type="text" name="apellido" id="apellido"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Apellidos*" [(ngModel)]="pasajero.propietario.apellidos"
+                                                (ngModelChange)="updatePropietario(i, 'apellidos', $event)" />
+                                        </div>
+                                    </div>
+                                    <div *ngSwitchCase="'Carnet de extranjería'" class="md:col-span-6">
+                                        <div class="md:col-span-3">
+                                            <span>Numero de documento*</span>
+                                            <input type="text" name="numeroDocumento" id="numeroDocumento"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Número de documento" />
+                                        </div>
+                                        <div class="md:col-span-3">
+                                            <span>Nombres*</span>
+                                            <input type="text" name="nombre" id="nombre"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Nombres*" [(ngModel)]="pasajero.propietario.nombres"
+                                                (ngModelChange)="updatePropietario(i, 'nombres', $event)" />
+                                        </div>
+                                        <div class="md:col-span-3">
+                                            <span>Apellidos*</span>
+                                            <input type="text" name="apellido" id="apellido"
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                                placeholder="Apellidos*" [(ngModel)]="pasajero.propietario.apellidos"
+                                                (ngModelChange)="updatePropietario(i, 'apellidos', $event)" />
+                                        </div>
+                                    </div>
+                                </ng-container>
                             </div>
+
                         </div>
                     </div>
-
-                </div>
-                <div class="px-3 md:w-5/12">
-                    <app-detallado-compra />
-                    <div class="grid-cols-2">
-                        <button
-                        class=" bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
-                        (click)="onBack()">Regresar a Selección de Asientos</button>
-                    <button
-                        class="ml-20 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
-                        (click)="onContinue()">Continuar a Pago</button>
-
+                </div>        
+                    <div class="px-3 md:w-5/12">
+                        <app-detallado-compra />
+                        <div class="grid-cols-2">
+                            <button
+                                class="bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                                (click)="onBack()">Regresar a Selección de Asientos</button>
+                            <button
+                                class="ml-20 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                                (click)="onContinue()">Continuar a Pago</button>
+                        </div>
                     </div>
-                </div>
+                
+            </div>
+        </div>
+
+        <div class="p-5">
+            <div class="text-center text-gray-400 text-sm">
+                <a href="https://www.facebook.com/p/Transportes-Turismo-Imperial-100057127734949/?locale=es_LA"
+                    target="_blank" class="focus:outline-none underline text-gray-400"><i
+                        class="mdi mdi-beer-outline"></i>Siempre a su servicio</a>
+                Mejorando por ustedes y apliando nuestros horarios
             </div>
         </div>
     </div>
-    <div class="p-5">
-        <div class="text-center text-gray-400 text-sm">
-            <a href="https://www.facebook.com/p/Transportes-Turismo-Imperial-100057127734949/?locale=es_LA"
-                target="_blank" class="focus:outline-none underline text-gray-400"><i
-                    class="mdi mdi-beer-outline"></i>Siempre a su servicio</a>
-            Mejorando por ustedes y apliando nuestros horarios
-        </div>
-    </div>
-</div>
 
-<app-footer-page />
+    <app-footer-page />

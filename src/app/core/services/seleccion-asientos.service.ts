@@ -31,11 +31,12 @@ export class SeleccionAsientosService {
     // Método para actualizar datos del propietario de un pasajero específico
     updatePropietarioDatos(asientoIndex: number, propietarioData: any) {
         if (this.pasajeros[asientoIndex]) {
-            this.pasajeros[asientoIndex].propietario = propietarioData;
+            // Actualiza el objeto propietario en lugar de propietarioDni
+            this.pasajeros[asientoIndex].propietario = propietarioData; 
             this.pasajerosSubject.next(this.pasajeros); // Emitimos el cambio
-            // console.log(this.pasajeros$)
         }
     }
+    
 
     getSelectedPasajeros() {
         return this.pasajeros;
