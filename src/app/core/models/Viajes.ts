@@ -8,10 +8,11 @@ export interface IViajes {
     idViajes: number;
     servicio: string;
     precioMinimo: number;
-    idBus: number;
+    idBuses: number;
     numeroAsientos: string;
     idConductor: number;
     idRutas: number;
     fechaSalida: string;
     fechaLlegada: string;
+    estado: boolean;
 }

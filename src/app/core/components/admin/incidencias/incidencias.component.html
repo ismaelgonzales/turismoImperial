@@ -17,11 +17,12 @@
         <thead
             class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
             <tr>
-                <th scope="col" class="px-6 py-3">idBus</th>
-                <th scope="col" class="px-6 py-3">idViaje</th>
+                <th scope="col" class="px-6 py-3">idBuses</th>
+                <th scope="col" class="px-6 py-3">idViajes</th>
                 <th scope="col" class="px-6 py-3">descripcion</th>
                 <th scope="col" class="px-6 py-3">fecha</th>
                 <th scope="col" class="px-6 py-3">fechaRegistro</th>
+                <th scope="col" class="px-6 py-3">Estado</th>
                 <th scope="col" class="px-6 py-3">Acciones</th>
             </tr>
         </thead>
@@ -31,10 +32,10 @@
                 <th
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
-                    {{ item.idBus }}
+                    {{ item.idBuses }}
                 </th>
                 <td class="px-6 py-4">
-                    {{ item.idViaje }}
+                    {{ item.idViajes }}
                 </td>
                 <td class="px-6 py-4">
                     {{ item.descripcion }}
@@ -45,19 +46,22 @@
                 <td class="px-6 py-4">
                     {{ item.fechaRegistro }}
                 </td>
+                <td class="px-6 py-4">
+                    {{ item.estado }}
+                </td>
 
                 <td class="px-6 py-4 text-right">
                     <button
                         type="button"
-                        (click)="item.incidenciaId && loadIncidencias(item)"
+                        (click)="item.idIncidencias && loadIncidencias(item)"
                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4">
                         Editar
                     </button>
                     <button
                         type="button"
                         (click)="
-                            item.incidenciaId &&
-                                deleteIncidencias(item.incidenciaId)
+                            item.idIncidencias &&
+                                deleteIncidencias(item.idIncidencias)
                         "
                         class="font-medium text-red-600 dark:text-red-500 hover:underline">
                         Eliminar

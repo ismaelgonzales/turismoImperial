@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ReservasFormComponent } from '../../../models/pages/reservas-form/reservas-form.component';
 import { ModelComponent } from '../../../models/pages/shared/ui/model/model.component';
+import { ReservasFormComponent } from '../../../models/pages/reservas-form/reservas-form.component';
 import { ToastrService } from 'ngx-toastr';
-import { ReservaService } from '../../../services/reserva.service';
-
+import { ReservasService } from '../../../services/reservas.service';
+import { ApiResponse, IReservas } from '../../../models/Reservas';
 import Swal from 'sweetalert2';
-import { IReservas } from '../../../models/Reservas';
 @Component({
     selector: 'app-reservas',
     standalone: true,
@@ -19,7 +18,7 @@ export class ReservasComponent implements OnInit {
     reserva!: IReservas;
 
     constructor(
-        private reservasService: ReservaService,
+        private reservasService: ReservasService,
         private toastr: ToastrService,
     ) {}
 
@@ -45,26 +44,22 @@ export class ReservasComponent implements OnInit {
     deleteReservas(id: number) {
         Swal.fire({
             title: '¿Estás seguro?',
-            text: '¡Esta acción no se puede deshacer!',
+            text: 'Esta acción no se puede deshacer',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, eliminar',
+            confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar',
         }).then(result => {
             if (result.isConfirmed) {
                 this.reservasService.deleteReservas(id).subscribe({
                     next: () => {
-                        Swal.fire({
-                            title: 'Eliminado!',
-                            text: 'La reserva se ha eliminado correctamente.',
-                            icon: 'success',
-                        });
+                        this.toastr.success('Acción realizada con éxito');
                         this.getAllReservas();
                     },
                     error: () => {
-                        this.toastr.error('Error al eliminar la reserva');
+                        this.toastr.error('Error al eliminar el viaje');
                     },
                 });
             }

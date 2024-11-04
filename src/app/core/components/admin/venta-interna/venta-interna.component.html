@@ -1,11 +1,11 @@
-<div class="p-6 bg-gray-100 rounded-lg">
+<!-- <div class="p-6 bg-gray-100 rounded-lg">
     <h2 class="text-2xl font-bold mb-4">Venta Interna de Pasajes</h2>
 
-    <!-- Formulario de Búsqueda de Rutas -->
+
     <div class="bg-white p-4 rounded-lg shadow mb-6">
         <h3 class="text-lg font-semibold mb-2">Buscar Ruta</h3>
         <form (ngSubmit)="buscarViajes()">
-            <!-- Campos de búsqueda -->
+
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <input
                     type="text"
@@ -24,7 +24,7 @@
                     name="fechaSalida" />
                 <select name="servicio" class="p-2 border rounded">
                     <option value="">Selecciona el servicio</option>
-                    <!-- <option *ngFor="let s of servicios" [value]="s">{{ s }}</option> -->
+                    <option *ngFor="let s of servicios" [value]="s">{{ s }}</option>
                 </select>
             </div>
             <button
@@ -35,7 +35,7 @@
         </form>
     </div>
 
-    <!-- Lista de Viajes -->
+
     <div *ngIf="viajes.length > 0" class="bg-white p-4 rounded-lg shadow mb-6">
         <h3 class="text-lg font-semibold mb-2">Selecciona un Viaje</h3>
         <ul>
@@ -56,13 +56,13 @@
         </ul>
     </div>
 
-    <!-- Selección de Asientos -->
+
     <div *ngIf="viajeSeleccionado" class="bg-white p-4 rounded-lg shadow mb-6">
         <h3 class="text-lg font-semibold mb-2">Seleccionar Asientos</h3>
         <app-seat-selection></app-seat-selection>
     </div>
 
-    <!-- Formulario de Datos del Pasajero -->
+
     <div
         *ngIf="asientosSeleccionados.length > 0"
         class="bg-white p-4 rounded-lg shadow mb-6">
@@ -91,7 +91,7 @@
         </form>
     </div>
 
-    <!-- Resumen de Venta -->
+
     <div *ngIf="ventaConfirmada" class="bg-white p-4 rounded-lg shadow mt-6">
         <h3 class="text-lg font-semibold mb-2">Resumen de la Venta</h3>
         <ul>
@@ -101,5 +101,143 @@
             </li>
         </ul>
         <p>Total: {{ totalVenta }} USD</p>
+    </div>
+</div> -->
+
+<div class="container mx-auto p-4 bg-red-950 rounded-lg">
+    <!-- Formulario de búsqueda -->
+    <form [formGroup]="busquedaForm" (ngSubmit)="buscarViajes()">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+                <label for="origen" class="text-white block">Origen</label>
+                <input
+                    type="text"
+                    id="origen"
+                    formControlName="origen"
+                    class="p-2 border rounded mb-2 block input" />
+            </div>
+            <div>
+                <label for="destino" class="text-white block">Destino</label>
+                <input
+                    type="text"
+                    id="destino"
+                    formControlName="destino"
+                    class="p-2 border rounded mb-2 block input" />
+            </div>
+            <div>
+                <label for="fechaSalida" class="text-white block"
+                    >Fecha de Salida</label
+                >
+                <input
+                    type="date"
+                    id="fechaSalida"
+                    formControlName="fechaSalida"
+                    class="p-2 border rounded mb-2 block input" />
+            </div>
+            <div>
+                <label for="servicio" class="text-white block">Servicio</label>
+                <select
+                    id="servicio"
+                    formControlName="servicio"
+                    class="p-2 border rounded mb-2 block input">
+                    <option value="">Seleccione...</option>
+                    <option *ngFor="let serv of servicio" [value]="serv">
+                        {{ serv }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <button
+            type="submit"
+            class="bg-yellow-950 text-white px-4 py-2 rounded">
+            Buscar Viajes
+        </button>
+    </form>
+
+    <!-- Lista de viajes disponibles -->
+    <div *ngIf="viajes.length > 0" class="mt-6">
+        <h2 class="text-lg text-white font-semibold mb-4">
+            Viajes Disponibles
+        </h2>
+        <ul>
+            <li
+                *ngFor="let viaje of viajes"
+                (click)="seleccionarViaje(viaje)"
+                class="cursor-pointer bg-gray-100 hover:bg-gray-200 p-4 mb-2 rounded-lg">
+                <div>{{ viaje.origen }} ➔ {{ viaje.destino }}</div>
+                <div>Fecha: {{ viaje.fechaSalida }}</div>
+                <div>
+                    Hora de salida: {{ viaje.horaSalida }} | Hora de llegada:
+                    {{ viaje.horaLlegada }}
+                </div>
+                <div>Precio: ${{ viaje.precio }}</div>
+                <div>Servicio: {{ viaje.servicio }}</div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Selección de asientos -->
+    <div *ngIf="viajeSeleccionado" class="mt-6">
+        <h2 class="text-white text-lg font-semibold">
+            Selecciona tus asientos
+        </h2>
+        <app-seat-selection
+            (asientoSeleccionado)="
+                seleccionarAsiento($event)
+            "></app-seat-selection>
+        <div class="flex flex-wrap mt-4">
+            <div
+                *ngFor="let asiento of asientosSeleccionados"
+                class="flex items-center bg-blue-100 rounded p-2 m-2">
+                {{ asiento }}
+                <button
+                    (click)="deseleccionarAsiento(asiento)"
+                    class="ml-2 text-red-500">
+                    X
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resumen de venta y confirmación -->
+    <div
+        *ngIf="viajeSeleccionado && asientosSeleccionados.length > 0"
+        class="mt-6 p-4 bg-gray-100 rounded-lg">
+        <h3 class="text-lg font-semibold">Resumen de Venta</h3>
+        <div class="flex justify-between my-2">
+            <div>Viaje Seleccionado:</div>
+            <div>
+                {{ viajeSeleccionado.origen }} ➔ {{ viajeSeleccionado.destino }}
+            </div>
+        </div>
+        <div class="flex justify-between my-2">
+            <div>Fecha de Salida:</div>
+            <div>{{ viajeSeleccionado.fechaSalida }}</div>
+        </div>
+        <div class="flex justify-between my-2">
+            <div>Asientos Seleccionados:</div>
+            <div>{{ asientosSeleccionados.length }}</div>
+        </div>
+        <div class="flex justify-between my-2">
+            <div>Total a Pagar:</div>
+            <div>${{ totalVenta }}</div>
+        </div>
+        <button (click)="confirmarVenta()" class="btn-confirm mt-4">
+            Confirmar Venta
+        </button>
+        <button (click)="cancelarVenta()" class="btn-cancel mt-4">
+            Cancelar
+        </button>
+    </div>
+
+    <!-- Mensaje de confirmación -->
+    <div *ngIf="ventaConfirmada" class="mt-6 p-4 bg-green-100 rounded-lg">
+        <h3 class="text-lg font-semibold text-green-700">¡Venta Confirmada!</h3>
+        <p>Detalles de los pasajeros:</p>
+        <ul>
+            <li *ngFor="let pasajero of pasajeros">
+                {{ pasajero.nombre }} - Asiento: {{ pasajero.asiento }}
+            </li>
+        </ul>
     </div>
 </div>

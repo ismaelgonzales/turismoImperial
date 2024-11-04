@@ -16,4 +16,5 @@ export interface IVenta {
     fechaVenta: string;
     fechaViaje: string;
     montoTotal: number;
+    tipoVenta: string;
 }

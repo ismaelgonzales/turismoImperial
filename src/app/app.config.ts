@@ -4,6 +4,7 @@ import {
     provideZoneChangeDetection,
 } from '@angular/core';
 
+import { environment } from '../environments/environment.prod';
 import {
     PreloadAllModules,
     provideRouter,
@@ -12,7 +13,8 @@ import {
     withPreloading,
 } from '@angular/router';
 import { initializeApp } from 'firebase/app';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { routes } from './app.routes';
 import {
@@ -40,6 +42,7 @@ export const appConfig: ApplicationConfig = {
     providers: [
         provideZoneChangeDetection({ eventCoalescing: true }),
         importProvidersFrom(BrowserModule, AngularFirestoreModule),
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         provideRouter(
             routes,
             withHashLocation(),
@@ -54,16 +57,7 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(withFetch(), withInterceptors([SpinnerInterceptor])),
         provideAnimations(),
         provideToastr(),
-        provideFirebaseApp(() =>
-            initializeApp({
-                projectId: 'authentication-imperial',
-                appId: '1:303415919216:web:271dc37a9ae941a26d2ab5',
-                storageBucket: 'authentication-imperial.appspot.com',
-                apiKey: 'AIzaSyDIOJfshlL6B_N0ZR5dCYQZ9PQkxsxf3hw',
-                authDomain: 'authentication-imperial.firebaseapp.com',
-                messagingSenderId: '303415919216',
-            }),
-        ),
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
     ],

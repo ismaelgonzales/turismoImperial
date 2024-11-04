@@ -30,4 +30,8 @@ export class ClienteService {
     deleteCliente(id: number): Observable<ApiResponse<any>> {
         return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
     }
+
+    obtenerClientes(): Observable<IClientes[]> {
+        return this.http.get<IClientes[]>(this.apiUrl);
+    }
 }

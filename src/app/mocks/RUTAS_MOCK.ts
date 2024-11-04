@@ -1,6 +1,6 @@
-import { IRutas } from '../core/models/rutas-model';
+import { IRutass } from '../core/models/rutas-model';
 
-export const RUTAS_MOCK: IRutas[] = [
+export const RUTAS_MOCK: IRutass[] = [
     {
         idRutas: 1,
         ciudadOrigen: 'Lima',

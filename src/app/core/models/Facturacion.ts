@@ -1,3 +1,5 @@
+import { BlobOptions } from 'buffer';
+
 export interface ApiResponse<T> {
     message: 'Accion realizada con exito';
 
@@ -7,9 +9,11 @@ export interface ApiResponse<T> {
 export interface IFacturacion {
     idComprobante: number;
     idCliente: number;
+    idEmpleados: number;
     numeroComprobante: string;
     tipoComprobante: string;
     fechaEmision: string;
     montoTotal: number;
-    idPago: number;
+    idPagos: number;
+    estado: boolean;
 }

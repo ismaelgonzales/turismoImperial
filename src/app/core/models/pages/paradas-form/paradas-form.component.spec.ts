@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VehiculosComponent } from './vehiculos.component';
+import { ParadasFormComponent } from './paradas-form.component';
 
-describe('VehiculosComponent', () => {
-  let component: VehiculosComponent;
-  let fixture: ComponentFixture<VehiculosComponent>;
+describe('ParadasFormComponent', () => {
+  let component: ParadasFormComponent;
+  let fixture: ComponentFixture<ParadasFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehiculosComponent]
+      imports: [ParadasFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VehiculosComponent);
+    fixture = TestBed.createComponent(ParadasFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

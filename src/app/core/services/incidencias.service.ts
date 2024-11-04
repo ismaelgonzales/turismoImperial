@@ -23,9 +23,32 @@ export class IncidenciasService {
         return this.http.post(`${this.apiUrl}`, incidencias);
     }
 
-    updateIncidencias(id: number, incidencias: IIncidencias): Observable<any> {
-        return this.http.put(`${this.apiUrl}/${id}`, incidencias);
+    // updateIncidencias(id: number, incidencias: IIncidencias): Observable<any> {
+    //     return this.http.put<any>(`${this.apiUrl}`, incidencias);
+    // }
+
+    // updateIncidencias(
+    //     id: number,
+    //     incidencias: IIncidencias,
+    // ): Observable<IIncidencias[]> {
+    //     return this.http.put<IIncidencias[]>(
+    //         `${this.apiUrl}/${id}`,
+    //         incidencias,
+    //     );
+    // }
+    updateIncidencias(id: number, incidencias: IIncidencias): Observable<void> {
+        return this.http.put<void>(
+            `${this.apiUrl}${this.apiUrl}${id}`,
+            incidencias,
+        );
     }
+
+    // updateIncidencias(body: IIncidencias): Observable<IIncidencias> {
+    //     return this.http.put<IIncidencias>(
+    //         'https://www.turismoimperial.somee.com/api/Incidencias',
+    //         body,
+    //     );
+    // }
 
     deleteIncidencias(id: number): Observable<ApiResponse<any>> {
         return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);

@@ -7,7 +7,7 @@ import { ApiResponse, IVenta } from '../models/Venta';
     providedIn: 'root',
 })
 export class VentaService {
-    apiUrl = 'https://www.turismoimperial.somee.com/api/Venta';
+    apiUrl = 'https://www.turismoimperial.somee.com/Venta';
 
     constructor(private http: HttpClient) {}
 
@@ -29,5 +29,9 @@ export class VentaService {
 
     deleteVentas(id: number): Observable<ApiResponse<any>> {
         return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
+    }
+
+    obtenerVentas(): Observable<IVenta[]> {
+        return this.http.get<IVenta[]>(this.apiUrl);
     }
 }

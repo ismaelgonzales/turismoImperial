@@ -42,12 +42,13 @@ export class ViajesFormComponent implements OnChanges {
                 Validators.required,
                 Validators.min(0),
             ]),
-            idBus: new FormControl('', [Validators.required]),
+            idBuses: new FormControl('', [Validators.required]),
             numeroAsientos: new FormControl('', [Validators.required]),
             idConductor: new FormControl('', [Validators.required]),
             idRutas: new FormControl('', [Validators.required]),
             fechaSalida: new FormControl('', [Validators.required]),
             fechaLlegada: new FormControl('', [Validators.required]),
+            estado: new FormControl('', [Validators.required]),
         });
     }
 
@@ -61,7 +62,7 @@ export class ViajesFormComponent implements OnChanges {
             this.viajesForm.patchValue({
                 servicio: this.data.servicio,
                 precioMinimo: this.data.precioMinimo,
-                idBus: this.data.idBus,
+                idBuses: this.data.idBuses,
                 numeroAsientos: this.data.numeroAsientos,
                 idConductor: this.data.idConductor,
                 idRutas: this.data.idRutas,
@@ -75,6 +76,7 @@ export class ViajesFormComponent implements OnChanges {
                     'yyyy-MM-dd',
                     'en',
                 ),
+                estado: this.data.estado,
             });
         }
     }

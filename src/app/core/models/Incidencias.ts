@@ -5,10 +5,11 @@ export interface ApiResponse<T> {
 }
 
 export interface IIncidencias {
-    incidenciaId: number;
-    idBus: number;
-    idViaje: number;
+    idIncidencias: number;
+    idBuses: number;
+    idViajes: number;
     descripcion: string;
-    fecha: Date;
+    fecha: string;
     fechaRegistro: string;
+    estado: boolean;
 }

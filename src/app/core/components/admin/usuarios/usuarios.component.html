@@ -4,7 +4,7 @@
         type="button"
         (click)="openModel()"
         class="text-white bg-blue-700 hover:bg-blue-900 focus:outline-none font-medium rounded-full px-6 py-3 text-center mb-2">
-        Agregar Buses
+        Agregar Usuarios
     </button>
 </div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -12,61 +12,48 @@
         class="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-700">
         <caption
             class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-gray-900 dark:bg-white">
-            Detalles de Buses
+            Detalles de Usuarios
         </caption>
         <thead
             class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
             <tr>
-                <th scope="col" class="px-6 py-3">matricula</th>
-                <th scope="col" class="px-6 py-3">marcaModelo</th>
-                <th scope="col" class="px-6 py-3">precioMinimo</th>
-                <th scope="col" class="px-6 py-3">precioPromedio</th>
-                <th scope="col" class="px-6 py-3">numeroAsientos</th>
-                <th scope="col" class="px-6 py-3">idConductor</th>
-                <th scope="col" class="px-6 py-3">idRutas</th>
-                <th scope="col" class="px-6 py-3">estado</th>
+                <th scope="col" class="px-6 py-3">nombre</th>
+                <th scope="col" class="px-6 py-3">apellido</th>
+                <th scope="col" class="px-6 py-3">username</th>
+                <th scope="col" class="px-6 py-3">correo</th>
+                <th scope="col" class="px-6 py-3">contraseña</th>
             </tr>
         </thead>
         <tbody>
-            @for (item of buses; track $index) {
+            @for (item of usuarios; track $index) {
             <tr class="bg-white border-b dark:bg-white dark:border-gray-700">
                 <th
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
-                    {{ item.matricula }}
+                    {{ item.nombre }}
                 </th>
                 <td class="px-6 py-4">
-                    {{ item.marcaModelo }}
+                    {{ item.apellido }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.username }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.correo }}
                 </td>
 
-                <td class="px-6 py-4">
-                    {{ item.precioMinimo }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ item.precioPromedio }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ item.numeroAsientos }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ item.idConductor }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ item.idRutas }}
-                </td>
-                <td class="px-6 py-4">
-                    {{ item.estado }}
-                </td>
                 <td class="px-6 py-4 text-right">
                     <button
                         type="button"
-                        (click)="item.idBuses && loadBuses(item)"
+                        (click)="item.idUsuario && loadUsuarios(item)"
                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4">
                         Editar
                     </button>
                     <button
                         type="button"
-                        (click)="item.idBuses && deleteBuses(item.idBuses)"
+                        (click)="
+                            item.idUsuario && deleteUsuarios(item.idUsuario)
+                        "
                         class="font-medium text-red-600 dark:text-red-500 hover:underline">
                         Eliminar
                     </button>
@@ -78,5 +65,7 @@
 </div>
 
 <app-model [isOpen]="isModelOpen" (closeModel)="closeModel()">
-    <app-buses-form (onCloseModel)="closeModel()" [data]="bus"></app-buses-form>
+    <app-usuarios-form
+        (onCloseModel)="closeModel()"
+        [data]="usuario"></app-usuarios-form>
 </app-model>

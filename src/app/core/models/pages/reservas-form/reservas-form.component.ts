@@ -16,9 +16,8 @@ import {
 import { CommonModule, formatDate } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { ReservasService } from '../../../services/reservas.service';
 import { IReservas } from '../../Reservas';
-import { ReservaService } from '../../../services/reserva.service';
 
 @Component({
     selector: 'app-reservas-form',
@@ -35,20 +34,23 @@ export class ReservasFormComponent implements OnChanges {
 
     constructor(
         private fb: FormBuilder,
-        private reservasService: ReservaService,
+        private reservasService: ReservasService,
         private toastr: ToastrService,
     ) {
         this.reservasForm = this.fb.group({
             idUsuario: new FormControl('', [Validators.required]),
-            idRutas: new FormControl('', [
+            idRutas: new FormControl('', [Validators.required]),
+            fechaReserva: new FormControl('', [Validators.required]),
+            idEstadoReserva: new FormControl('', [Validators.required]),
+            numeroAsientos: new FormControl('', [Validators.required]),
+            diaViaje: new FormControl('', [Validators.required]),
+            precioTotal: new FormControl('', [
                 Validators.required,
                 Validators.min(0),
             ]),
-            fechaReserva: new FormControl('', [Validators.required]),
-            estadoReservaId: new FormControl('', [Validators.required]),
-            numeroAsientos: new FormControl('', [Validators.required]),
-            precioTotal: new FormControl('', [Validators.required]),
             codigoBoleto: new FormControl('', [Validators.required]),
+            idCliente: new FormControl('', [Validators.required]),
+            estado: new FormControl('', [Validators.required]),
         });
     }
 
@@ -59,26 +61,17 @@ export class ReservasFormComponent implements OnChanges {
     ngOnChanges(): void {
         console.log('Datos recibidos:', this.data);
         if (this.data) {
-            // idReserva: number;
-            // idUsuario: number;
-            // idRutas: number;
-            // fechaReserva: string;
-            // estadoReservaId: string;
-            // numeroAsientos: number;
-            // precioTotal: number;
-            // codigoBoleto: string;
             this.reservasForm.patchValue({
                 idUsuario: this.data.idUsuario,
                 idRutas: this.data.idRutas,
-                fechaReserva: formatDate(
-                    this.data.fechaReserva,
-                    'yyyy-MM-dd',
-                    'en',
-                ),
-                estadoReservaId: this.data.estadoReservaId,
+                fechaReserva: this.data.fechaReserva,
+                idEstadoReserva: this.data.idEstadoReserva,
                 numeroAsientos: this.data.numeroAsientos,
+                diaViaje: formatDate(this.data.diaViaje, 'yyyy-MM-dd', 'en'),
                 precioTotal: this.data.precioTotal,
                 codigoBoleto: this.data.codigoBoleto,
+                idCliente: this.data.idCliente,
+                estado: this.data.estado,
             });
         }
     }
@@ -92,7 +85,7 @@ export class ReservasFormComponent implements OnChanges {
                     .updateReservas(this.data.idReserva as number, formValue)
                     .subscribe({
                         next: () => {
-                            this.resetViajesForm();
+                            this.resetReservasForm();
                             this.toastr.success('Accion realizada con exito');
                         },
                         error: () => {
@@ -102,7 +95,7 @@ export class ReservasFormComponent implements OnChanges {
             } else {
                 this.reservasService.createReservas(formValue).subscribe({
                     next: () => {
-                        this.resetViajesForm();
+                        this.resetReservasForm();
                         this.toastr.success('Accion realizada con exito');
                     },
                     error: () => {
@@ -115,7 +108,7 @@ export class ReservasFormComponent implements OnChanges {
         }
     }
 
-    resetViajesForm() {
+    resetReservasForm() {
         this.reservasForm.reset();
         this.onClose();
     }

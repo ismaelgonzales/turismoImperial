@@ -105,6 +105,23 @@
         <div class="form-error text-red-950">DestinoSeoId es requerido</div>
         }
     </div>
+    <div class="mb-5">
+        <label
+            for="estado"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Estado</label
+        >
+        <input
+            type="checkbox"
+            id="estado"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="Marcar el cuadro si esta incidencia esta activa"
+            formControlName="estado" />
+        @if (rutasForm.get('estado')?.hasError('required') &&
+        rutasForm.get('estado')?.touched) {
+        <div class="form-error text-red-950">Estado es requerido</div>
+        }
+    </div>
     <button
         type="submit"
         class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">

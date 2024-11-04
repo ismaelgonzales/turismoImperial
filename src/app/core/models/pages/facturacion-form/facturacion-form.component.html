@@ -26,6 +26,23 @@
     </div>
     <div class="mb-5">
         <label
+            for="idEmpleados"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >IdEmpleados</label
+        >
+        <input
+            type="text"
+            id="idEmpleados"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idEmpleados"
+            formControlName="idEmpleados" />
+        @if (comprobantesForm.get('idEmpleados')?.hasError('required') &&
+        comprobantesForm.get('idEmpleados')?.touched) {
+        <div class="form-error text-red-950">IdEmpleados es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
             for="numeroComprobante"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
             >NumeroComprobante</label
@@ -96,19 +113,36 @@
     </div>
     <div class="mb-5">
         <label
-            for="idPago"
+            for="idPagos"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >IdPago</label
+            >IdPagos</label
         >
         <input
             type="text"
-            id="idPago"
+            id="idPagos"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder="idPago"
-            formControlName="idPago" />
-        @if (comprobantesForm.get('idPago')?.hasError('required') &&
-        comprobantesForm.get('idPago')?.touched) {
-        <div class="form-error text-red-950">IdPago es requerido</div>
+            placeholder="idPagos"
+            formControlName="idPagos" />
+        @if (comprobantesForm.get('idPagos')?.hasError('required') &&
+        comprobantesForm.get('idPagos')?.touched) {
+        <div class="form-error text-red-950">IdPagos es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="estado"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Estado</label
+        >
+        <input
+            type="checkbox"
+            id="estado"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="Marcar el cuadro si esta incidencia esta activa"
+            formControlName="estado" />
+        @if (comprobantesForm.get('estado')?.hasError('required') &&
+        comprobantesForm.get('estado')?.touched) {
+        <div class="form-error text-red-950">Estado es requerido</div>
         }
     </div>
     <button

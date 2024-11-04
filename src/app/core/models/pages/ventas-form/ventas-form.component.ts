@@ -52,6 +52,7 @@ export class VentasFormComponent implements OnChanges {
             fechaVenta: new FormControl('', [Validators.required]),
             fechaViaje: new FormControl('', [Validators.required]),
             montoTotal: new FormControl('', [Validators.required]),
+            tipoVenta: new FormControl('', [Validators.required]),
         });
     }
 
@@ -81,6 +82,7 @@ export class VentasFormComponent implements OnChanges {
                     'en',
                 ),
                 montoTotal: this.data.montoTotal,
+                tipoVenta: this.data.tipoVenta,
             });
         }
     }

@@ -1,0 +1,106 @@
+<h5
+    class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
+    Detalles de Usuarios
+</h5>
+<form
+    [formGroup]="usuariosForm"
+    class="w-full"
+    (ngSubmit)="onSubmit()"
+    novalidate>
+    <div class="mb-5">
+        <label
+            for="nombre"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Nombre</label
+        >
+        <input
+            type="text"
+            id="nombre"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="nombre"
+            formControlName="nombre" />
+        @if (usuariosForm.get('nombre')?.hasError('required') &&
+        usuariosForm.get('nombre')?.touched) {
+        <div class="form-error text-red-950">Nombre es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="apellido"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Apellido</label
+        >
+        <input
+            type="text"
+            id="apellido"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="apellido"
+            formControlName="apellido" />
+        @if (usuariosForm.get('apellido')?.hasError('required') &&
+        usuariosForm.get('apellido')?.touched) {
+        <div class="form-error text-red-950">Apellido es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="username"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Username</label
+        >
+        <input
+            type="text"
+            id="username"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="username"
+            formControlName="username" />
+        @if (usuariosForm.get('username')?.hasError('required') &&
+        usuariosForm.get('username')?.touched) {
+        <div class="form-error text-red-950">Username es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="correo"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Correo</label
+        >
+        <input
+            type="text"
+            id="correo"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="correo"
+            formControlName="correo" />
+        @if (usuariosForm.get('correo')?.hasError('required') &&
+        usuariosForm.get('correo')?.touched) {
+        <div class="form-error text-red-950">Correo es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="contraseña"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Contraseña</label
+        >
+        <input
+            type="password"
+            id="contraseña"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="contraseña"
+            formControlName="contraseña" />
+        @if (usuariosForm.get('contraseña')?.hasError('required') &&
+        usuariosForm.get('contraseña')?.touched) {
+        <div class="form-error text-red-950">Contraseña es requerido</div>
+        }
+    </div>
+    <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Ejecutar
+    </button>
+    <button
+        type="button"
+        (click)="onClose()"
+        class="text-white ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">
+        Cancelar
+    </button>
+</form>

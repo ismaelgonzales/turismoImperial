@@ -3,7 +3,6 @@ export interface ApiResponse<T> {
 
     data: T;
 }
-
 export interface IRutas {
     idRutas: number;
     ciudadOrigen: string;
@@ -12,4 +11,5 @@ export interface IRutas {
     ciudadDestino: string;
     destinoId: string;
     destinoSeoId: string;
+    estado: boolean;
 }

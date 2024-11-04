@@ -1,50 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ToastrService } from 'ngx-toastr';
-import { VehiculoService } from '../../../services/vehiculo.service';
-import { ApiResponse, IVehiculo } from '../../../models/Vehiculo';
 
+import { UsuariosService } from '../../../services/usuarios.service';
+import { IUsuario } from '../../../models/Usuario';
 import { ModelComponent } from '../../../models/pages/shared/ui/model/model.component';
 import Swal from 'sweetalert2';
-import { VehiculosFormComponent } from '../../../models/pages/vehiculos-form/vehiculos-form.component';
+import { UsuariosFormComponent } from '../../../models/pages/usuarios-form/usuarios-form.component';
 
 @Component({
-    selector: 'app-vehiculos',
+    selector: 'app-usuarios',
     standalone: true,
-    imports: [ModelComponent, VehiculosFormComponent],
-    templateUrl: './vehiculos.component.html',
-    styleUrl: './vehiculos.component.scss',
+    imports: [ModelComponent, UsuariosFormComponent],
+    templateUrl: './usuarios.component.html',
+    styleUrl: './usuarios.component.scss',
 })
-export class VehiculosComponent implements OnInit {
+export class UsuariosComponent implements OnInit {
     isModelOpen = false;
-    vehiculos: IVehiculo[] = [];
-    vehiculo!: IVehiculo;
+    usuarios: IUsuario[] = [];
+    usuario!: IUsuario;
 
     constructor(
-        private vehiculosService: VehiculoService,
+        private usuariosService: UsuariosService,
         private toastr: ToastrService,
     ) {}
 
     ngOnInit(): void {
-        this.getAllVehiculos();
+        this.getAllUsuarios();
     }
 
-    getAllVehiculos() {
-        this.vehiculosService.getAllVehiculos().subscribe({
+    getAllUsuarios() {
+        this.usuariosService.getAllUsuarios().subscribe({
             next: response => {
                 if (response) {
-                    this.vehiculos = response;
+                    this.usuarios = response;
                 }
             },
         });
     }
 
-    loadVehiculos(vehiculos: IVehiculo) {
-        this.vehiculo = vehiculos;
+    loadUsuarios(usuarios: IUsuario) {
+        this.usuario = usuarios;
         this.openModel();
     }
-
-    deleteVehiculos(id: number) {
+    deleteUsuarios(id: number) {
         Swal.fire({
             title: '¿Estás seguro?',
             text: 'Esta acción no se puede deshacer',
@@ -56,13 +55,13 @@ export class VehiculosComponent implements OnInit {
             cancelButtonText: 'Cancelar',
         }).then(result => {
             if (result.isConfirmed) {
-                this.vehiculosService.deleteVehiculos(id).subscribe({
+                this.usuariosService.deleteUsuarios(id).subscribe({
                     next: () => {
                         this.toastr.success('Acción realizada con éxito');
-                        this.getAllVehiculos();
+                        this.getAllUsuarios();
                     },
                     error: () => {
-                        this.toastr.error('Error al eliminar el viaje');
+                        this.toastr.error('Error al eliminar el usuario');
                     },
                 });
             }
@@ -75,6 +74,6 @@ export class VehiculosComponent implements OnInit {
 
     closeModel() {
         this.isModelOpen = false;
-        this.getAllVehiculos();
+        this.getAllUsuarios();
     }
 }

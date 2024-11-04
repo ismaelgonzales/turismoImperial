@@ -23,11 +23,15 @@ export class RutasService {
         return this.http.post(`${this.apiUrl}`, rutas);
     }
 
-    updateRutas(id: number, rutas: IRutas): Observable<any> {
-        return this.http.put(`${this.apiUrl}/${id}`, rutas);
+    updateRutas(id: number, rutas: IRutas): Observable<IRutas[]> {
+        return this.http.put<IRutas[]>(`${this.apiUrl}/${id}`, rutas);
     }
 
     deleteRutas(id: number): Observable<ApiResponse<any>> {
         return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
+    }
+
+    obtenerRutas(): Observable<IRutas[]> {
+        return this.http.get<IRutas[]>(this.apiUrl);
     }
 }

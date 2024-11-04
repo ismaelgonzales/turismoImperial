@@ -43,19 +43,19 @@
     </div>
     <div class="mb-5">
         <label
-            for="idBus"
+            for="idBuses"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >idBus</label
+            >idBuses</label
         >
         <input
             type="text"
-            id="idBus"
+            id="idBuses"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder="idBus"
-            formControlName="idBus" />
-        @if (viajesForm.get('idBus')?.hasError('required') &&
-        viajesForm.get('idBus')?.touched) {
-        <div class="form-error text-red-950">Bus es requerido</div>
+            placeholder="idBuses"
+            formControlName="idBuses" />
+        @if (viajesForm.get('idBuses')?.hasError('required') &&
+        viajesForm.get('idBuses')?.touched) {
+        <div class="form-error text-red-950">IdBuses es requerido</div>
         }
     </div>
     <div class="mb-5">
@@ -141,6 +141,23 @@
         @if (viajesForm.get('fechaLlegada')?.hasError('required') &&
         viajesForm.get('fechaLlegada')?.touched) {
         <div class="form-error text-red-950">Fecha Llegada es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="estado"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Estado</label
+        >
+        <input
+            type="checkbox"
+            id="estado"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="Marcar el cuadro si esta incidencia esta activa"
+            formControlName="estado" />
+        @if (viajesForm.get('estado')?.hasError('required') &&
+        viajesForm.get('estado')?.touched) {
+        <div class="form-error text-red-950">Estado es requerido</div>
         }
     </div>
 

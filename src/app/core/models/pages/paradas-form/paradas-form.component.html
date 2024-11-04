@@ -1,63 +1,64 @@
 <h5
     class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
-    Detalles de Incidencias
+    Detalles de Paradas
 </h5>
 <form
-    [formGroup]="incidenciasForm"
+    [formGroup]="paradasForm"
     class="w-full"
     (ngSubmit)="onSubmit()"
     novalidate>
     <div class="mb-5">
         <label
-            for="idBuses"
+            for="idViaje"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >IdBuses</label
+            >IdViaje</label
         >
         <input
             type="text"
-            id="idBuses"
+            id="idViaje"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder="idBuses"
-            formControlName="idBuses" />
-        @if (incidenciasForm.get('idBuses')?.hasError('required') &&
-        incidenciasForm.get('idBuses')?.touched) {
-        <div class="form-error text-red-950">IdBuses es requerido</div>
+            placeholder="idViaje"
+            formControlName="idViaje" />
+        @if (paradasForm.get('idViaje')?.hasError('required') &&
+        paradasForm.get('idViaje')?.touched) {
+        <div class="form-error text-red-950">IdViaje es requerido</div>
         }
     </div>
     <div class="mb-5">
         <label
-            for="idViajes"
+            for="direccion"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >IdViajes</label
+            >Direccion</label
         >
         <input
             type="text"
-            id="idViajes"
+            id="direccion"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder="idViajes"
-            formControlName="idViajes" />
-        @if (incidenciasForm.get('idViajes')?.hasError('required') &&
-        incidenciasForm.get('idViajes')?.touched) {
-        <div class="form-error text-red-950">IdViajes es requerido</div>
+            placeholder="direccion"
+            formControlName="direccion" />
+        @if (paradasForm.get('direccion')?.hasError('required') &&
+        paradasForm.get('direccion')?.touched) {
+        <div class="form-error text-red-950">Direccion es requerido</div>
         }
     </div>
     <div class="mb-5">
         <label
-            for="descripcion"
+            for="nombreCiudad"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >Descripcion</label
+            >NombreCiudad</label
         >
         <input
             type="text"
-            id="descripcion"
+            id="nombreCiudad"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder="descripcion"
-            formControlName="descripcion" />
-        @if (incidenciasForm.get('descripcion')?.hasError('required') &&
-        incidenciasForm.get('descripcion')?.touched) {
-        <div class="form-error text-red-950">Descripcion es requerido</div>
+            placeholder="nombreCiudad"
+            formControlName="nombreCiudad" />
+        @if (paradasForm.get('nombreCiudad')?.hasError('required') &&
+        paradasForm.get('nombreCiudad')?.touched) {
+        <div class="form-error text-red-950">NombreCiudad es requerido</div>
         }
     </div>
+
     <div class="mb-5">
         <label
             for="fecha"
@@ -70,26 +71,9 @@
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
             placeholder=""
             formControlName="fecha" />
-        @if (incidenciasForm.get('fecha')?.hasError('required') &&
-        incidenciasForm.get('fecha')?.touched) {
+        @if (paradasForm.get('fecha')?.hasError('required') &&
+        paradasForm.get('fecha')?.touched) {
         <div class="form-error text-red-950">Fecha es requerido</div>
-        }
-    </div>
-    <div class="mb-5">
-        <label
-            for="fechaRegistro"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >FechaRegistro</label
-        >
-        <input
-            type="date"
-            id="fechaRegistro"
-            class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder=""
-            formControlName="fechaRegistro" />
-        @if (incidenciasForm.get('fechaRegistro')?.hasError('required') &&
-        incidenciasForm.get('fechaRegistro')?.touched) {
-        <div class="form-error text-red-950">FechaRegistro es requerido</div>
         }
     </div>
     <div class="mb-5">
@@ -104,8 +88,8 @@
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
             placeholder="Marcar el cuadro si esta incidencia esta activa"
             formControlName="estado" />
-        @if (incidenciasForm.get('estado')?.hasError('required') &&
-        incidenciasForm.get('estado')?.touched) {
+        @if (paradasForm.get('estado')?.hasError('required') &&
+        paradasForm.get('estado')?.touched) {
         <div class="form-error text-red-950">Estado es requerido</div>
         }
     </div>

@@ -19,12 +19,13 @@
             <tr>
                 <th scope="col" class="px-6 py-3">servicio</th>
                 <th scope="col" class="px-6 py-3">precioMinimo</th>
-                <th scope="col" class="px-6 py-3">idBus</th>
+                <th scope="col" class="px-6 py-3">idBuses</th>
                 <th scope="col" class="px-6 py-3">numeroAsientos</th>
                 <th scope="col" class="px-6 py-3">idConductor</th>
                 <th scope="col" class="px-6 py-3">idRutas</th>
                 <th scope="col" class="px-6 py-3">fechaSalida</th>
                 <th scope="col" class="px-6 py-3">fechaLlegada</th>
+                <th scope="col" class="px-6 py-3">Estado</th>
                 <th scope="col" class="px-6 py-3">Acciones</th>
             </tr>
         </thead>
@@ -40,7 +41,7 @@
                     {{ item.precioMinimo }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ item.idBus }}
+                    {{ item.idBuses }}
                 </td>
                 <td class="px-6 py-4">
                     {{ item.numeroAsientos }}
@@ -56,6 +57,9 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ item.fechaLlegada }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.estado }}
                 </td>
                 <td class="px-6 py-4 text-right">
                     <button

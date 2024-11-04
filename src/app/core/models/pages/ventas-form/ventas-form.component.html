@@ -177,6 +177,23 @@
         <div class="form-error text-red-950">MontoTotal es requerido</div>
         }
     </div>
+    <div class="mb-5">
+        <label
+            for="tipoVenta"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >TipoVenta</label
+        >
+        <input
+            type="text"
+            id="tipoVenta"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="tipoVenta"
+            formControlName="tipoVenta" />
+        @if (ventasForm.get('tipoVenta')?.hasError('required') &&
+        ventasForm.get('tipoVenta')?.touched) {
+        <div class="form-error text-red-950">TipoVenta es requerido</div>
+        }
+    </div>
 
     <button
         type="submit"

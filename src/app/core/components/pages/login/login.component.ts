@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { InputComponent } from '../../molecules/input/input.component';
 import * as constantsShared from '../../../../shared/constants';
 import { ButtonComponent } from '../../molecules/button/button.component';
@@ -33,6 +33,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
         CommonModule,
         RouterLink,
         NgxSpinnerModule,
+        ToastrModule,
     ],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
@@ -64,7 +65,6 @@ export class LoginComponent {
             contraseña: ['', [Validators.required, Validators.minLength(3)]],
         });
     }
-
     login(): void {
         if (this.loginForm.invalid) {
             this.toastr.error(
@@ -74,17 +74,17 @@ export class LoginComponent {
         }
 
         const { username, contraseña } = this.loginForm.value;
-
         this.spinner = true;
+
         this.accesoService.login(username, contraseña).subscribe({
             next: response => {
                 this.toastr.success('Inicio de sesión exitoso');
-                this.router.navigate(['/admin']);
+                this.router.navigate(['/admin/dashboard']);
                 this.spinner = false;
             },
-            error: err => {
-                this.toastr.error('Error en el inicio de sesión', err);
-                console.error('Error en el inicio de sesión', err);
+            error: () => {
+                this.toastr.error('Error en el inicio de sesión');
+                console.error('Error en el inicio de sesión');
                 this.spinner = false;
             },
         });

@@ -5,26 +5,43 @@
 <form [formGroup]="busesForm" class="w-full" (ngSubmit)="onSubmit()" novalidate>
     <div class="mb-5">
         <label
-            for="servicio"
+            for="matricula"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >Servicio</label
+            >Matricula</label
         >
         <input
             type="text"
-            id="servicio"
+            id="matricula"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder="servicio"
-            formControlName="servicio" />
-        @if (busesForm.get('servicio')?.hasError('required') &&
-        busesForm.get('servicio')?.touched) {
-        <div class="form-error text-red-950">Servicio es requerido</div>
+            placeholder="matricula"
+            formControlName="matricula" />
+        @if (busesForm.get('matricula')?.hasError('required') &&
+        busesForm.get('matricula')?.touched) {
+        <div class="form-error text-red-950">Matricula es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="marcaModelo"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >MarcaModelo</label
+        >
+        <input
+            type="text"
+            id="marcaModelo"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="marcaModelo"
+            formControlName="marcaModelo" />
+        @if (busesForm.get('marcaModelo')?.hasError('required') &&
+        busesForm.get('marcaModelo')?.touched) {
+        <div class="form-error text-red-950">MarcaModelo es requerido</div>
         }
     </div>
     <div class="mb-5">
         <label
             for="precioMinimo"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >precioMinimo</label
+            >PrecioMinimo</label
         >
         <input
             type="text"
@@ -34,7 +51,7 @@
             formControlName="precioMinimo" />
         @if (busesForm.get('precioMinimo')?.hasError('required') &&
         busesForm.get('precioMinimo')?.touched) {
-        <div class="form-error text-red-950">Precio Minimo es requerido</div>
+        <div class="form-error text-red-950">PrecioMinimo es requerido</div>
         }
     </div>
     <div class="mb-5">
@@ -105,38 +122,22 @@
         <div class="form-error text-red-950">Ruta es requerido</div>
         }
     </div>
+
     <div class="mb-5">
         <label
-            for="fechaSalida"
+            for="estado"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >fechaSalida</label
+            >Estado</label
         >
         <input
-            type="date"
-            id="fechaSalida"
+            type="checkbox"
+            id="estado"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder=""
-            formControlName="fechaSalida" />
-        @if (busesForm.get('fechaSalida')?.hasError('required') &&
-        busesForm.get('fechaSalida')?.touched) {
-        <div class="form-error text-red-950">Fecha Salida es requerido</div>
-        }
-    </div>
-    <div class="mb-5">
-        <label
-            for="fechaLlegada"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >fechaLlegada</label
-        >
-        <input
-            type="date"
-            id="fechaLlegada"
-            class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder=""
-            formControlName="fechaLlegada" />
-        @if (busesForm.get('fechaLlegada')?.hasError('required') &&
-        busesForm.get('fechaLlegada')?.touched) {
-        <div class="form-error text-red-950">Fecha Llegada es requerido</div>
+            placeholder="Marcar el cuadro si esta incidencia esta activa"
+            formControlName="estado" />
+        @if (busesForm.get('estado')?.hasError('required') &&
+        busesForm.get('estado')?.touched) {
+        <div class="form-error text-red-950">Estado es requerido</div>
         }
     </div>
 

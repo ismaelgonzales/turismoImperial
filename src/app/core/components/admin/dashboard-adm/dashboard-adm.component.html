@@ -24,11 +24,12 @@
             </p>
             <h4
                 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                10
+                {{ totalClientes }}
             </h4>
         </div>
     </div>
     <div
+        routerLink="/admin/buses"
         class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
         <div
             class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -53,11 +54,12 @@
             </p>
             <h4
                 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                15
+                {{ totalBuses }}
             </h4>
         </div>
     </div>
     <div
+        routerLink="/admin/ventas"
         class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
         <div
             class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -86,11 +88,12 @@
             </p>
             <h4
                 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                4
+                {{ totalVentas }}
             </h4>
         </div>
     </div>
     <div
+        routerLink="/admin/rutas"
         class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
         <div
             class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -117,7 +120,7 @@
             </p>
             <h4
                 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                12
+                {{ totalRutas }}
             </h4>
         </div>
     </div>

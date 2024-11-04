@@ -40,14 +40,13 @@ export class FacturacionFormComponent implements OnChanges {
     ) {
         this.comprobantesForm = this.fb.group({
             idCliente: new FormControl('', [Validators.required]),
-            numeroComprobante: new FormControl('', [
-                Validators.required,
-                Validators.min(0),
-            ]),
+            idEmpleados: new FormControl('', [Validators.required]),
+            numeroComprobante: new FormControl('', [Validators.required]),
             tipoComprobante: new FormControl('', [Validators.required]),
             fechaEmision: new FormControl('', [Validators.required]),
             montoTotal: new FormControl('', [Validators.required]),
-            idPago: new FormControl('', [Validators.required]),
+            idPagos: new FormControl('', [Validators.required]),
+            estado: new FormControl('', [Validators.required]),
         });
     }
 
@@ -60,6 +59,7 @@ export class FacturacionFormComponent implements OnChanges {
         if (this.data) {
             this.comprobantesForm.patchValue({
                 idCliente: this.data.idCliente,
+                idEmpleados: this.data.idEmpleados,
                 numeroComprobante: this.data.numeroComprobante,
                 tipoComprobante: this.data.tipoComprobante,
 
@@ -69,7 +69,8 @@ export class FacturacionFormComponent implements OnChanges {
                     'en',
                 ),
                 montoTotal: this.data.montoTotal,
-                idPago: this.data.idPago,
+                idPagos: this.data.idPagos,
+                estado: this.data.estado,
             });
         }
     }

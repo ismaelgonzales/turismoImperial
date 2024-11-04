@@ -48,8 +48,7 @@ export class ConductoresFormComponent implements OnChanges {
             fechaNacimiento: new FormControl('', [Validators.required]),
             telefono: new FormControl('', [Validators.required]),
             fechaContratacion: new FormControl('', [Validators.required]),
-            estadoConductor: new FormControl('', [Validators.required]),
-            idVehiculo: new FormControl('', [Validators.required]),
+            estado: new FormControl('', [Validators.required]),
             fechaRegistro: new FormControl('', [Validators.required]),
         });
     }
@@ -76,8 +75,8 @@ export class ConductoresFormComponent implements OnChanges {
                     'yyyy-MM-dd',
                     'en',
                 ),
-                estadoConductor: this.data.estadoConductor,
-                idVehiculo: this.data.idVehiculo,
+                estado: this.data.estado,
+
                 fechaRegistro: formatDate(
                     this.data.fechaRegistro,
                     'yyyy-MM-dd',

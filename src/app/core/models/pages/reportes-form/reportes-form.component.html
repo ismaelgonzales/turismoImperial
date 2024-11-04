@@ -1,6 +1,6 @@
 <h5
     class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-gray-900">
-    Detalles de Reportes
+    Detalles de Opiniones
 </h5>
 <form
     [formGroup]="reportesForm"
@@ -73,6 +73,23 @@
         @if (reportesForm.get('calificacion')?.hasError('required') &&
         reportesForm.get('calificacion')?.touched) {
         <div class="form-error text-red-950">Calificacion es requerido</div>
+        }
+    </div>
+    <div class="mb-5">
+        <label
+            for="estado"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Estado</label
+        >
+        <input
+            type="checkbox"
+            id="estado"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="Marcar el cuadro si esta incidencia esta activa"
+            formControlName="estado" />
+        @if (reportesForm.get('estado')?.hasError('required') &&
+        reportesForm.get('estado')?.touched) {
+        <div class="form-error text-red-950">Estado es requerido</div>
         }
     </div>
 

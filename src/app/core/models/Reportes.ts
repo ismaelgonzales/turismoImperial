@@ -10,5 +10,6 @@ export interface IReportes {
     idRutas: number;
     comentarios: string;
     calificacion: number;
+    estado: boolean;
     fechaOpinion: string;
 }

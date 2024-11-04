@@ -44,24 +44,27 @@ export class AccesoService {
         localStorage.setItem(this.tokenKey, token);
     }
 
-    private getToken(): string | null {
+    public getToken(): string | null {
         if (typeof window !== 'undefined') {
             return localStorage.getItem(this.tokenKey);
         } else {
             return null;
         }
     }
-
     isAuthenticate(): boolean {
         const token = this.getToken();
-        if (!token) {
+        if (!token || !token.includes('.')) {
             return false;
         }
 
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        const exp = payload.exp * 1000;
-
-        return Date.now() < exp;
+        try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const exp = payload.exp * 1000;
+            return Date.now() < exp;
+        } catch (error) {
+            console.error('Error al decodificar el token:', error);
+            return false;
+        }
     }
 
     logout(): void {

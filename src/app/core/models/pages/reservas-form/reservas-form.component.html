@@ -26,7 +26,7 @@
     </div>
     <div class="mb-5">
         <label
-            for="idRutas"
+            for="idUsuario"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
             >IdRutas</label
         >
@@ -60,26 +60,26 @@
     </div>
     <div class="mb-5">
         <label
-            for="estadoReservaId"
+            for="idEstadoReserva"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >EstadoReservaId</label
+            >IdEstadoReserva</label
         >
         <input
             type="text"
-            id="estadoReservaId"
+            id="idEstadoReserva"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder="estadoReservaId"
-            formControlName="estadoReservaId" />
-        @if (reservasForm.get('estadoReservaId')?.hasError('required') &&
-        reservasForm.get('estadoReservaId')?.touched) {
-        <div class="form-error text-red-950">EstadoReservaId es requerido</div>
+            placeholder="idEstadoReserva"
+            formControlName="idEstadoReserva" />
+        @if (reservasForm.get('idEstadoReserva')?.hasError('required') &&
+        reservasForm.get('idEstadoReserva')?.touched) {
+        <div class="form-error text-red-950">IdEstadoReserva es requerido</div>
         }
     </div>
     <div class="mb-5">
         <label
             for="numeroAsientos"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >NumeroAsientos</label
+            >numeroAsientos</label
         >
         <input
             type="text"
@@ -89,7 +89,25 @@
             formControlName="numeroAsientos" />
         @if (reservasForm.get('numeroAsientos')?.hasError('required') &&
         reservasForm.get('numeroAsientos')?.touched) {
-        <div class="form-error text-red-950">NumeroAsientos es requerido</div>
+        <div class="form-error text-red-950">Numero asiento es requerido</div>
+        }
+    </div>
+
+    <div class="mb-5">
+        <label
+            for="diaViaje"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >DiaViaje</label
+        >
+        <input
+            type="date"
+            id="diaViaje"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder=""
+            formControlName="diaViaje" />
+        @if (reservasForm.get('diaViaje')?.hasError('required') &&
+        reservasForm.get('diaViaje')?.touched) {
+        <div class="form-error text-red-950">DiaViaje es requerido</div>
         }
     </div>
     <div class="mb-5">
@@ -126,6 +144,42 @@
         <div class="form-error text-red-950">CodigoBoleto es requerido</div>
         }
     </div>
+    <div class="mb-5">
+        <label
+            for="idCliente"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >IdCliente</label
+        >
+        <input
+            type="text"
+            id="idCliente"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="idCliente"
+            formControlName="idCliente" />
+        @if (reservasForm.get('idCliente')?.hasError('required') &&
+        reservasForm.get('idCliente')?.touched) {
+        <div class="form-error text-red-950">IdCliente es requerido</div>
+        }
+    </div>
+
+    <div class="mb-5">
+        <label
+            for="estado"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+            >Estado</label
+        >
+        <input
+            type="checkbox"
+            id="estado"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="Marcar el cuadro si esta incidencia esta activa"
+            formControlName="estado" />
+        @if (reservasForm.get('estado')?.hasError('required') &&
+        reservasForm.get('estado')?.touched) {
+        <div class="form-error text-red-950">Estado es requerido</div>
+        }
+    </div>
+
     <button
         type="submit"
         class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">

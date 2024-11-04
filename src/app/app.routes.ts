@@ -193,16 +193,7 @@ export const routes: Routes = [
                 },
                 canActivate: [AccesoGuard],
             },
-            {
-                path: 'reservas',
-                loadComponent: async () => {
-                    const m = await import(
-                        './core/components/admin/reservas/reservas.component'
-                    );
-                    return m.ReservasComponent;
-                },
-                canActivate: [AccesoGuard],
-            },
+
             {
                 path: 'rutas',
                 loadComponent: async () => {
@@ -214,15 +205,36 @@ export const routes: Routes = [
                 canActivate: [AccesoGuard],
             },
             {
-                path: 'vehiculos',
+                path: 'reservas',
                 loadComponent: async () => {
                     const m = await import(
-                        './core/components/admin/vehiculos/vehiculos.component'
+                        './core/components/admin/reservas/reservas.component'
                     );
-                    return m.VehiculosComponent;
+                    return m.ReservasComponent;
                 },
                 canActivate: [AccesoGuard],
             },
+            {
+                path: 'paradas',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/paradas/paradas.component'
+                    );
+                    return m.ParadasComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+            {
+                path: 'usuarios',
+                loadComponent: async () => {
+                    const m = await import(
+                        './core/components/admin/usuarios/usuarios.component'
+                    );
+                    return m.UsuariosComponent;
+                },
+                canActivate: [AccesoGuard],
+            },
+
             {
                 path: 'viajes',
                 loadComponent: async () => {

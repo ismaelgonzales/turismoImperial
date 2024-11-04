@@ -6,7 +6,7 @@ import { ApiResponse, IReservas } from '../models/Reservas';
 @Injectable({
     providedIn: 'root',
 })
-export class ReservaService {
+export class ReservasService {
     apiUrl = 'https://www.turismoimperial.somee.com/api/Reserva';
 
     constructor(private http: HttpClient) {}

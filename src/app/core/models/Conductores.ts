@@ -12,7 +12,6 @@ export interface IConductores {
     fechaNacimiento: string;
     telefono: string;
     fechaContratacion: string;
-    estadoConductor: string;
-    idVehiculo: number;
+    estado: string;
     fechaRegistro: string;
 }

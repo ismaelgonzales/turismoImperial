@@ -4,7 +4,7 @@
         type="button"
         (click)="openModel()"
         class="text-white bg-blue-700 hover:bg-blue-900 focus:outline-none font-medium rounded-full px-6 py-3 text-center mb-2">
-        Agregar Facturacion
+        Agregar Facturación
     </button>
 </div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -18,11 +18,13 @@
             class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
             <tr>
                 <th scope="col" class="px-6 py-3">idCliente</th>
+                <th scope="col" class="px-6 py-3">idEmpleados</th>
                 <th scope="col" class="px-6 py-3">numeroComprobante</th>
                 <th scope="col" class="px-6 py-3">tipoComprobante</th>
                 <th scope="col" class="px-6 py-3">fechaEmision</th>
                 <th scope="col" class="px-6 py-3">montoTotal</th>
-                <th scope="col" class="px-6 py-3">idPago</th>
+                <th scope="col" class="px-6 py-3">idPagos</th>
+                <th scope="col" class="px-6 py-3">estado</th>
                 <th scope="col" class="px-6 py-3">Acciones</th>
             </tr>
         </thead>
@@ -34,6 +36,9 @@
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
                     {{ item.idCliente }}
                 </th>
+                <td class="px-6 py-4">
+                    {{ item.idEmpleados }}
+                </td>
                 <td class="px-6 py-4">
                     {{ item.numeroComprobante }}
                 </td>
@@ -47,7 +52,10 @@
                     {{ item.montoTotal }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ item.idPago }}
+                    {{ item.idPagos }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.estado }}
                 </td>
 
                 <td class="px-6 py-4 text-right">

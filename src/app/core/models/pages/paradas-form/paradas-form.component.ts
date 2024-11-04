@@ -16,35 +16,32 @@ import {
 import { CommonModule, formatDate } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
-import { IRutas } from '../../Rutas';
-import { RutasService } from '../../../services/rutas.service';
+import { ParadasService } from '../../../services/paradas.service';
+import { IParadas } from '../../Paradas';
 
 @Component({
-    selector: 'app-rutas-form',
+    selector: 'app-paradas-form',
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule, RouterModule],
-    templateUrl: './rutas-form.component.html',
-    styleUrl: './rutas-form.component.scss',
+    templateUrl: './paradas-form.component.html',
+    styleUrl: './paradas-form.component.scss',
 })
-export class RutasFormComponent implements OnChanges {
-    @Input() data: IRutas | null = null;
+export class ParadasFormComponent implements OnChanges {
+    @Input() data: IParadas | null = null;
     @Output() onCloseModel = new EventEmitter();
 
-    rutasForm!: FormGroup;
+    paradasForm!: FormGroup;
 
     constructor(
         private fb: FormBuilder,
-        private rutasService: RutasService,
+        private paradasService: ParadasService,
         private toastr: ToastrService,
     ) {
-        this.rutasForm = this.fb.group({
-            ciudadOrigen: new FormControl('', [Validators.required]),
-            ciudadId: new FormControl('', [Validators.required]),
-            ciudadSeoId: new FormControl('', [Validators.required]),
-            ciudadDestino: new FormControl('', [Validators.required]),
-            destinoId: new FormControl('', [Validators.required]),
-            destinoSeoId: new FormControl('', [Validators.required]),
+        this.paradasForm = this.fb.group({
+            idViaje: new FormControl('', [Validators.required]),
+            direccion: new FormControl('', [Validators.required]),
+            nombreCiudad: new FormControl('', [Validators.required]),
+            fecha: new FormControl('', [Validators.required]),
             estado: new FormControl('', [Validators.required]),
         });
     }
@@ -56,28 +53,26 @@ export class RutasFormComponent implements OnChanges {
     ngOnChanges(): void {
         console.log('Datos recibidos:', this.data);
         if (this.data) {
-            this.rutasForm.patchValue({
-                ciudadOrigen: this.data.ciudadOrigen,
-                ciudadId: this.data.ciudadId,
-                ciudadSeoId: this.data.ciudadSeoId,
-                ciudadDestino: this.data.ciudadDestino,
-                destinoId: this.data.destinoId,
-                destinoSeoId: this.data.destinoSeoId,
+            this.paradasForm.patchValue({
+                idViaje: this.data.idViaje,
+                direccion: this.data.direccion,
+                nombreCiudad: this.data.nombreCiudad,
+                fecha: formatDate(this.data.fecha, 'yyyy-MM-dd', 'en'),
                 estado: this.data.estado,
             });
         }
     }
 
     onSubmit() {
-        if (this.rutasForm.valid) {
-            const formValue = this.rutasForm.value;
+        if (this.paradasForm.valid) {
+            const formValue = this.paradasForm.value;
 
             if (this.data) {
-                this.rutasService
-                    .updateRutas(this.data.idRutas as number, formValue)
+                this.paradasService
+                    .updateParadas(this.data.idParadas as number, formValue)
                     .subscribe({
                         next: () => {
-                            this.resetRutasForm();
+                            this.resetParadasForm();
                             this.toastr.success('Accion realizada con exito');
                         },
                         error: () => {
@@ -85,9 +80,9 @@ export class RutasFormComponent implements OnChanges {
                         },
                     });
             } else {
-                this.rutasService.createRutas(formValue).subscribe({
+                this.paradasService.createParadas(formValue).subscribe({
                     next: () => {
-                        this.resetRutasForm();
+                        this.resetParadasForm();
                         this.toastr.success('Accion realizada con exito');
                     },
                     error: () => {
@@ -96,12 +91,12 @@ export class RutasFormComponent implements OnChanges {
                 });
             }
         } else {
-            this.rutasForm.markAllAsTouched();
+            this.paradasForm.markAllAsTouched();
         }
     }
 
-    resetRutasForm() {
-        this.rutasForm.reset();
+    resetParadasForm() {
+        this.paradasForm.reset();
         this.onClose();
     }
 }

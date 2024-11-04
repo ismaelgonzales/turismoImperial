@@ -30,4 +30,8 @@ export class BusesService {
     deleteBuses(id: number): Observable<ApiResponse<any>> {
         return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
     }
+
+    obtenerBuses(): Observable<IBuses[]> {
+        return this.http.get<IBuses[]>(this.apiUrl);
+    }
 }

@@ -9,8 +9,11 @@ export interface IReservas {
     idUsuario: number;
     idRutas: number;
     fechaReserva: string;
-    estadoReservaId: string;
+    idEstadoReserva: number;
     numeroAsientos: number;
+    diaViaje: string;
     precioTotal: number;
     codigoBoleto: string;
+    idCliente: number;
+    estado: boolean;
 }

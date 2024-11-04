@@ -150,10 +150,10 @@
             >Estado</label
         >
         <input
-            type="text"
+            type="checkbox"
             id="estado"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder="estado"
+            placeholder="Marcar el cuadro si esta incidencia esta activa"
             formControlName="estado" />
         @if (clientesForm.get('estado')?.hasError('required') &&
         clientesForm.get('estado')?.touched) {

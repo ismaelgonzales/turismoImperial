@@ -43,6 +43,7 @@ export class ReportesFormComponent implements OnChanges {
             idRutas: new FormControl('', [Validators.required]),
             comentarios: new FormControl('', [Validators.required]),
             calificacion: new FormControl('', [Validators.required]),
+            estado: new FormControl('', [Validators.required]),
             fechaOpinion: new FormControl('', [Validators.required]),
         });
     }
@@ -59,6 +60,7 @@ export class ReportesFormComponent implements OnChanges {
                 idRutas: this.data.idRutas,
                 comentarios: this.data.comentarios,
                 calificacion: this.data.calificacion,
+                estado: this.data.estado,
                 fechaOpinion: formatDate(
                     this.data.fechaOpinion,
                     'yyyy-MM-dd',

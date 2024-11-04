@@ -4,7 +4,7 @@
         type="button"
         (click)="openModel()"
         class="text-white bg-blue-700 hover:bg-blue-900 focus:outline-none font-medium rounded-full px-6 py-3 text-center mb-2">
-        Agregar Reportes
+        Agregar Opiniones
     </button>
 </div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -12,7 +12,7 @@
         class="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-700">
         <caption
             class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-gray-900 dark:bg-white">
-            Detalles de Reportes
+            Detalles de Opiniones
         </caption>
         <thead
             class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
@@ -21,6 +21,7 @@
                 <th scope="col" class="px-6 py-3">IdRutas</th>
                 <th scope="col" class="px-6 py-3">Comentarios</th>
                 <th scope="col" class="px-6 py-3">Calificacion</th>
+                <th scope="col" class="px-6 py-3">estado</th>
                 <th scope="col" class="px-6 py-3">FechaOpinion</th>
 
                 <th scope="col" class="px-6 py-3">Acciones</th>
@@ -42,6 +43,9 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ item.calificacion }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ item.estado }}
                 </td>
                 <td class="px-6 py-4">
                     {{ item.fechaOpinion }}

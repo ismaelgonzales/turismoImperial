@@ -39,17 +39,14 @@ export class BusesFormComponent implements OnChanges {
         private toastr: ToastrService,
     ) {
         this.busesForm = this.fb.group({
-            servicio: new FormControl('', [Validators.required]),
-            precioMinimo: new FormControl('', [
-                Validators.required,
-                Validators.min(0),
-            ]),
+            matricula: new FormControl('', [Validators.required]),
+            marcaModelo: new FormControl('', [Validators.required]),
+            precioMinimo: new FormControl('', [Validators.required]),
             precioPromedio: new FormControl('', [Validators.required]),
             numeroAsientos: new FormControl('', [Validators.required]),
             idConductor: new FormControl('', [Validators.required]),
             idRutas: new FormControl('', [Validators.required]),
-            fechaSalida: new FormControl('', [Validators.required]),
-            fechaLlegada: new FormControl('', [Validators.required]),
+            estado: new FormControl('', [Validators.required]),
         });
     }
 
@@ -61,22 +58,14 @@ export class BusesFormComponent implements OnChanges {
         console.log('Datos recibidos:', this.data);
         if (this.data) {
             this.busesForm.patchValue({
-                servicio: this.data.servicio,
+                matricula: this.data.matricula,
+                marcaModelo: this.data.marcaModelo,
                 precioMinimo: this.data.precioMinimo,
                 precioPromedio: this.data.precioPromedio,
                 numeroAsientos: this.data.numeroAsientos,
                 idConductor: this.data.idConductor,
                 idRutas: this.data.idRutas,
-                fechaSalida: formatDate(
-                    this.data.fechaSalida,
-                    'yyyy-MM-dd',
-                    'en',
-                ),
-                fechaLlegada: formatDate(
-                    this.data.fechaLlegada,
-                    'yyyy-MM-dd',
-                    'en',
-                ),
+                estado: this.data.estado,
             });
         }
     }
