@@ -16,26 +16,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class ContactService {
-    // constructor(private firestore: Firestore) {}
-
-    // addMessage(contact: Contact) {
-    //     const message = collection(this.firestore, 'contact');
-    //     return addDoc(message, contact);
-    // }
-
-    // getMessage(): Observable<Contact[]> {
-    //     const message = collection(this.firestore, 'contact');
-    //     return collectionData(message, { idField: 'id' }) as Observable<
-    //         Contact[]
-    //     >;
-    // }
-
-    // deleteMessage(contact: Contact) {
-    //     const docmessage = doc(this.firestore, `contact/${contact.id}`);
-    //     return deleteDoc(docmessage);
-    // }
-
-    constructor(private firestore: Firestore) {}
+    constructor(private firestore: Firestore) { }
 
     async addMessage(contact: Contact): Promise<void> {
         const messageCollection = collection(this.firestore, 'contact');
