@@ -49,21 +49,19 @@ export class SeatSelectionComponent implements OnInit {
         private router: Router,
     ) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.listenToSocketEvents();
+        
+        
     }
 
     toggleButton(seat: number) {
         const isFirstFloor = this.firstFloorSeats.includes(seat);
-        const seatPrice = isFirstFloor
-            ? this.firstFloorPrice
-            : this.secondFloorPrice;
+        const seatPrice = isFirstFloor ? this.firstFloorPrice : this.secondFloorPrice;
 
         if (this.isSelected(seat)) {
             this.selectedSeats = this.selectedSeats.filter(s => s !== seat);
-            this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(
-                p => p !== `Asiento ${seat}`,
-            );
+            this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(p => p !== `Asiento ${seat}`);
             this.totalAmount -= seatPrice;
             this.socketService.emitEvent('seatDeselected', seat);
             this.toastr.warning(`Asiento ${seat} ha sido deseleccionado`);
@@ -72,16 +70,12 @@ export class SeatSelectionComponent implements OnInit {
                 if (this.selectedSeats.length < 4) {
                     this.selectedSeats.push(seat);
                     this.pasajerosSeleccionados.push(`Asiento ${seat}`);
-                    this.totalAmount += seatPrice; // Sumar el precio
+                    this.totalAmount += seatPrice;
                     this.socketService.emitEvent('seatSelected', seat);
                     this.toastr.success(`Asiento ${seat} ha sido seleccionado`);
-
-                    // Llama a enviarSeleccion después de seleccionar el asiento
                     this.enviarSeleccion(this.pasajerosSeleccionados, this.totalAmount);
                 } else {
-                    this.toastr.error(
-                        `Solo puedes seleccionar hasta 4 asientos.`,
-                    );
+                    this.toastr.error(`Solo puedes seleccionar hasta 4 asientos.`);
                 }
             } else {
                 this.toastr.error(`Asiento ${seat} ya está ocupado`);

@@ -51,12 +51,12 @@ export class DetalleRutaComponent implements OnInit {
         // });
     }
 
-    tomaObjetoButton(rutasListas: IBusesDetalles) {
-        this.seleccionAsientosService.setBusSeleccionado(rutasListas)
-        // console.log('ruta seleccionada:', rutasListas , rutasListas.destino );
-        
-        
-      }
+    tomaObjetoButton(rutaSeleccionada: IBusesDetalles) {
+        const documentId = rutaSeleccionada.documentId;  
+        console.log('documentId se tomo del boton ',documentId)// Toma el documentId del objeto seleccionado
+        this.seleccionAsientosService.setDocumentId(documentId);
+        console.log('documentId salio del componente detalle ',documentId)  // Guarda el documentId en el servicio de selección de asientos
+    }
     // // Método de conversión
     // private formatFechaSalida(ruta: IBusesDetalles): string {
     //     return ruta.fechaSalida instanceof Date ? ruta.fechaSalida.toISOString().split('T')[0] : ruta.fechaSalida;

@@ -19,7 +19,7 @@ export interface IPasajero {
 
 }
 
-export interface IAsiento {
+export interface IAsientoStripe {
   id:number;
   numeroPiso: number;
   idPajero: number;
@@ -36,7 +36,7 @@ export interface IProductStripe {
   image: string;
   qty: number;
   pasajero: IPasajero;
-  asiento:IAsiento;
+  asiento:IAsientoStripe;
   subTotal: number;
 }
 
