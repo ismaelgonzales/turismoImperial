@@ -28,9 +28,72 @@ export class SeatSelectionComponent implements OnInit {
 
 
 
-    firstFloorSeats: number[] = [1, 2, 0, 3, 4, 5, 0, 6, 7, 8, 0, 9, 10, 11, 0, 12];
-    secondFloorSeats: number[] = [13, 14, 15, 16, 17, 18, 19, 20, 21, 22,0,0, 23, 24, 0,0,25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,0,0]
-        ;
+    firstFloorSeats: { seat: number, isSelected: boolean, isOccupied: boolean, isDisabled: boolean }[] = [
+        { seat: 1, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 2, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 70, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 3, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 4, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 5, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 80, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 6, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 7, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 8, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 90, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 9, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 10, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 11, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 100, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 12, isSelected: false, isOccupied: false, isDisabled: false }
+    ];
+    
+    secondFloorSeats: { seat: number, isSelected: boolean, isOccupied: boolean, isDisabled: boolean }[] = [
+        { seat: 13, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 14, isSelected: false, isOccupied: false, isDisabled: true }, // Ejemplo de asiento deshabilitado
+        { seat: 15, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 16, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 17, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 18, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 19, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 20, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 21, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 22, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 110, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 120, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 23, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 24, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 130, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 140, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 25, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 26, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 27, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 28, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 29, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 30, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 31, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 32, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 33, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 34, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 35, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 36, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 37, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 38, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 39, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 40, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 41, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 42, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 43, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 44, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 45, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 46, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 47, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 48, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 49, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 50, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 150, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 160, isSelected: false, isOccupied: false, isDisabled: false }
+    ];
+    
     selectedSeats: number[] = [];
     occupiedSeats: Set<number> = new Set();
 
@@ -51,37 +114,43 @@ export class SeatSelectionComponent implements OnInit {
 
     ngOnInit(): void {
         this.listenToSocketEvents();
-        
-        
+
+
     }
 
-    toggleButton(seat: number) {
-        const isFirstFloor = this.firstFloorSeats.includes(seat);
-        const seatPrice = isFirstFloor ? this.firstFloorPrice : this.secondFloorPrice;
-
-        if (this.isSelected(seat)) {
-            this.selectedSeats = this.selectedSeats.filter(s => s !== seat);
-            this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(p => p !== `Asiento ${seat}`);
-            this.totalAmount -= seatPrice;
-            this.socketService.emitEvent('seatDeselected', seat);
-            this.toastr.warning(`Asiento ${seat} ha sido deseleccionado`);
+    toggleButton(seat: { seat: number, isSelected: boolean, isOccupied: boolean, isDisabled: boolean }) {
+        // Si el asiento está deshabilitado o ocupado, muestra un mensaje de error
+        if (seat.isDisabled || seat.isOccupied) {
+            this.toastr.error(`El asiento ${seat.seat} no está disponible para selección.`);
+            return;
+        }
+    
+        // Determina el precio del asiento según el array en el que se encuentra
+        const seatPrice = this.firstFloorSeats.some(s => s.seat === seat.seat) ? this.firstFloorPrice : this.secondFloorPrice;
+    
+        // Verifica si el asiento ya está seleccionado
+        if (seat.isSelected) {
+            seat.isSelected = false; // Desmarca el asiento
+            this.selectedSeats = this.selectedSeats.filter(s => s !== seat.seat); // Remueve del listado de asientos seleccionados
+            this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(p => p !== `Asiento ${seat.seat}`); // Actualiza los pasajeros seleccionados
+            this.totalAmount -= seatPrice; // Ajusta el monto total
+            this.socketService.emitEvent('seatDeselected', seat.seat); // Notifica sobre la deselección
+            this.toastr.warning(`Asiento ${seat.seat} ha sido deseleccionado`);
         } else {
-            if (!this.occupiedSeats.has(seat)) {
-                if (this.selectedSeats.length < 4) {
-                    this.selectedSeats.push(seat);
-                    this.pasajerosSeleccionados.push(`Asiento ${seat}`);
-                    this.totalAmount += seatPrice;
-                    this.socketService.emitEvent('seatSelected', seat);
-                    this.toastr.success(`Asiento ${seat} ha sido seleccionado`);
-                    this.enviarSeleccion(this.pasajerosSeleccionados, this.totalAmount);
-                } else {
-                    this.toastr.error(`Solo puedes seleccionar hasta 4 asientos.`);
-                }
+            if (this.selectedSeats.length < 4) {
+                seat.isSelected = true; // Marca el asiento como seleccionado
+                this.selectedSeats.push(seat.seat); // Añade el asiento al listado de seleccionados
+                this.pasajerosSeleccionados.push(`Asiento ${seat.seat}`); // Añade al listado de pasajeros
+                this.totalAmount += seatPrice; // Ajusta el monto total
+                this.socketService.emitEvent('seatSelected', seat.seat); // Notifica sobre la selección
+                this.toastr.success(`Asiento ${seat.seat} ha sido seleccionado`);
+                this.enviarSeleccion(this.pasajerosSeleccionados, this.totalAmount); // Envia la información de selección
             } else {
-                this.toastr.error(`Asiento ${seat} ya está ocupado`);
+                this.toastr.error(`Solo puedes seleccionar hasta 4 asientos.`);
             }
         }
     }
+    
     //seleccion de asientos
 
 
@@ -147,7 +216,7 @@ export class SeatSelectionComponent implements OnInit {
 
     isIconPositionDisable(index: number): boolean {
         // Define las posiciones en las que quieres mostrar el ícono
-        const iconPositions = [14,42];
+        const iconPositions = [14, 42];
         return iconPositions.includes(index);
     }
 
