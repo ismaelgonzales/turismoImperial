@@ -23,10 +23,10 @@ export interface IBusesDetalles {
     terminalSaliente: string;
     terminalEntrante: string;
     precioPromedio:  number;
-    createdAt:       string;
-    updatedAt:       string;
-    publishedAt:     string;
-    locale:          string | null;
+    // createdAt:       string;
+    // updatedAt:       string;
+    // publishedAt:     string;
+    // locale:          string | null;
 }
 
 
@@ -38,10 +38,10 @@ export interface IAsiento {
     numeroPiso: number;
     estado: boolean;
     precio: number;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    locale: string | null;
+    // createdAt: string;
+    // updatedAt: string;
+    // publishedAt: string;
+    // locale: string | null;
     buses_detalle: IBusesDetalles;  // Relación con el detalle del bus
 }
 

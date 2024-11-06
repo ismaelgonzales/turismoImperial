@@ -24,8 +24,25 @@ export class SeleccionAsientosService {
 
     setDocumentId(documentId: string): void {
         this.documentId = documentId;
-        console.log('documentId llego al serv selec ',documentId)
-    }    
+        console.log('documentId llegó al servicio SeleccionAsientosService:', documentId);
+        // Llamamos a la API para obtener los asientos con el documentId
+        this.loadAsientos(); // Cargamos los asientos después de establecer el documentId
+    }
+
+    // Método para obtener los asientos de un bus con documentId
+    private loadAsientos(): void {
+        if (this.documentId) {
+            this._apiService.getAsientosByDocumentId(this.documentId).subscribe(
+                (asientos) => {
+                    console.log('Asientos obtenidos:', asientos);  // Muestra los asientos en consola
+                    this.asientosSubject.next(asientos);  // Emitimos los datos de los asientos
+                },
+                (error) => {
+                    console.error('Error al obtener los asientos:', error); // Manejo de errores
+                }
+            );
+        }
+    } 
  
     setSelectedPasajeros(pasajeros: any[], total: number) {
         this.pasajeros = pasajeros.map(asiento => ({ asiento, propietario: {} })); // Inicia con asientos y propietarios vacíos

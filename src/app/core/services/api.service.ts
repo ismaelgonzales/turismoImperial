@@ -21,10 +21,10 @@ export class ApiService {
 
     // Obtener los asientos filtrados por documentId
     public getAsientosByDocumentId(documentId: string): Observable<IAsiento[]> {
-        return this._httpCliente.get<IAsientoResponse>(`${this.baseURL}asientos?filters[buses_detalle][documentId][$eq]=${documentId}`)
+        return this._httpCliente.get<IAsientoResponse>(`${this.baseURL}asientos?filters[buses_detalle][documentId][$eq]=${documentId}&pagination[page]=1&pagination[pageSize]=50`)
             .pipe(
                 map(response => {
-                    console.log('Datos de asientos obtenidos de la API:', response.data);
+                   
                     return response.data;  // Retorna solo el array de asientos
                 })
             );
