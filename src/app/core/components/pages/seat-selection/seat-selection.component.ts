@@ -50,7 +50,7 @@ export class SeatSelectionComponent implements OnInit {
     secondFloorSeats: { seat: number, isSelected: boolean, isOccupied: boolean, isDisabled: boolean }[] = [
         { seat: 13, isSelected: false, isOccupied: false, isDisabled: false },
         { seat: 14, isSelected: false, isOccupied: false, isDisabled: true }, // Ejemplo de asiento deshabilitado
-        { seat: 15, isSelected: false, isOccupied: false, isDisabled: false },
+        { seat: 15, isSelected: false, isOccupied: false, isDisabled: true },
         { seat: 16, isSelected: false, isOccupied: false, isDisabled: false },
         { seat: 17, isSelected: false, isOccupied: false, isDisabled: false },
         { seat: 18, isSelected: false, isOccupied: false, isDisabled: false },
@@ -114,8 +114,21 @@ export class SeatSelectionComponent implements OnInit {
 
     ngOnInit(): void {
         this.listenToSocketEvents();
-
-
+    
+        // Suscripción a asientos$ para obtener los datos de los asientos desde la API
+        this.seleccionAsientosService.asientos$.subscribe((apiSeats) => {
+            this.actualizarAsientos(apiSeats, this.firstFloorSeats);
+            this.actualizarAsientos(apiSeats, this.secondFloorSeats);
+        });
+    }
+    actualizarAsientos(apiSeats: any[], conjuntoAsientos: { seat: number; isSelected: boolean; isOccupied: boolean; isDisabled: boolean }[]) {
+        apiSeats.forEach(apiSeat => {
+            const matchingSeat = conjuntoAsientos.find(seat => seat.seat === apiSeat.numeroAsiento);
+    
+            if (matchingSeat) {
+                matchingSeat.isDisabled = !apiSeat.estado;  // Si estado es true, isDisabled es false
+            }
+        });
     }
 
     toggleButton(seat: { seat: number, isSelected: boolean, isOccupied: boolean, isDisabled: boolean }) {
