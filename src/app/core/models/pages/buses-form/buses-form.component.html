@@ -37,7 +37,7 @@
         <div class="form-error text-red-950">MarcaModelo es requerido</div>
         }
     </div>
-    <div class="mb-5">
+    <!-- <div class="mb-5">
         <label
             for="precioMinimo"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
@@ -53,6 +53,24 @@
         busesForm.get('precioMinimo')?.touched) {
         <div class="form-error text-red-950">PrecioMinimo es requerido</div>
         }
+    </div> -->
+    <div class="mb-5">
+        <label
+            for="precioMinimo"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
+            Precio Minimo
+        </label>
+        <input
+            type="text"
+            id="precioMinimo"
+            class="form-control border-2 p-2 border-gray-900 rounded-lg"
+            placeholder="precioMinimo"
+            formControlName="precioMinimo" />
+        <div
+            *ngIf="busesForm.get('precioMinimo')?.errors?.['pattern'] && busesForm.get('precioMinimo')?.touched"
+            class="form-error text-red-950">
+            No se permite numeros negativos y más de 9 dígitos.
+        </div>
     </div>
     <div class="mb-5">
         <label

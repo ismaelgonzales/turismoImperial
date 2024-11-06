@@ -23,8 +23,11 @@ export class ConductorService {
         return this.http.post(`${this.apiUrl}`, conductores);
     }
 
-    updateConductores(id: number, conductores: IConductores): Observable<any> {
-        return this.http.put(`${this.apiUrl}/${id}`, conductores);
+    updateConductores(
+        id: number,
+        conductores: IConductores,
+    ): Observable<IConductores> {
+        return this.http.put<IConductores>(`${this.apiUrl}/${id}`, conductores);
     }
 
     deleteConductores(id: number): Observable<ApiResponse<any>> {

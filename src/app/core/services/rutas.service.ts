@@ -7,7 +7,8 @@ import { ApiResponse, IRutas } from '../models/Rutas';
     providedIn: 'root',
 })
 export class RutasService {
-    apiUrl = 'https://www.turismoimperial.somee.com/api/Rutas';
+    apiUrl =
+        'https://fruitful-broccoli-60c7faeb3a.strapiapp.com/api/buses-detalles';
 
     constructor(private http: HttpClient) {}
 

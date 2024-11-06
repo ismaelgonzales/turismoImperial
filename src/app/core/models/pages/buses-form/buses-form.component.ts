@@ -41,7 +41,10 @@ export class BusesFormComponent implements OnChanges {
         this.busesForm = this.fb.group({
             matricula: new FormControl('', [Validators.required]),
             marcaModelo: new FormControl('', [Validators.required]),
-            precioMinimo: new FormControl('', [Validators.required]),
+            precioMinimo: new FormControl('', [
+                Validators.required,
+                Validators.pattern(/^[0-9]{1,9}$/), // Solo números positivos y hasta 9 dígitos
+            ]),
             precioPromedio: new FormControl('', [Validators.required]),
             numeroAsientos: new FormControl('', [Validators.required]),
             idConductor: new FormControl('', [Validators.required]),

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ToastrService } from 'ngx-toastr';
-
+import { FormsModule } from '@angular/forms';
 import { ModelComponent } from '../../../models/pages/shared/ui/model/model.component';
 import Swal from 'sweetalert2';
 import { ConductoresFormComponent } from '../../../models/pages/conductores-form/conductores-form.component';
@@ -11,7 +11,7 @@ import { ConductorService } from '../../../services/conductor.service';
 @Component({
     selector: 'app-conductores',
     standalone: true,
-    imports: [ModelComponent, ConductoresFormComponent],
+    imports: [ModelComponent, ConductoresFormComponent, FormsModule],
     templateUrl: './conductores.component.html',
     styleUrl: './conductores.component.scss',
 })
@@ -19,7 +19,20 @@ export class ConductoresComponent implements OnInit {
     isModelOpen = false;
     conductores: IConductores[] = [];
     conductor!: IConductores;
+    nombreFiltro: string = '';
+    apellidoFiltro: string = '';
 
+    get conductoresFiltrados() {
+        return this.conductores.filter(
+            conductor =>
+                conductor.nombre
+                    .toLowerCase()
+                    .includes(this.nombreFiltro.toLowerCase()) &&
+                conductor.apellidos
+                    .toLowerCase()
+                    .includes(this.apellidoFiltro.toLowerCase()),
+        );
+    }
     constructor(
         private conductoresService: ConductorService,
         private toastr: ToastrService,

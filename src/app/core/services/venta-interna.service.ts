@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class VentaInternaService {
-    private apiUrl = 'https://www.turismoimperial.somee.com/api/BusesDetalles';
+    private apiUrl =
+        'https://fruitful-broccoli-60c7faeb3a.strapiapp.com/api/buses-detalles';
 
     constructor(private http: HttpClient) {}
 

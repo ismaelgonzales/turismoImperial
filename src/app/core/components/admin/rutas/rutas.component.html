@@ -17,6 +17,7 @@
         <thead
             class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
             <tr>
+                <th scope="col" class="px-6 py-3">idRutas</th>
                 <th scope="col" class="px-6 py-3">ciudadOrigen</th>
                 <th scope="col" class="px-6 py-3">ciudadId</th>
                 <th scope="col" class="px-6 py-3">ciudadSeoId</th>
@@ -30,6 +31,9 @@
         <tbody>
             @for (item of rutas; track $index) {
             <tr class="bg-white border-b dark:bg-white dark:border-gray-700">
+                <td class="px-6 py-4">
+                    {{ item.idRutas }}
+                </td>
                 <th
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">

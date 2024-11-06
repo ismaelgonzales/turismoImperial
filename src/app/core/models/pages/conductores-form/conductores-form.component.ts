@@ -44,9 +44,13 @@ export class ConductoresFormComponent implements OnChanges {
             numeroLicencia: new FormControl('', [
                 Validators.required,
                 Validators.min(0),
+                Validators.pattern(/^[A-Za-z][0-8]{1,8}$/),
             ]),
             fechaNacimiento: new FormControl('', [Validators.required]),
-            telefono: new FormControl('', [Validators.required]),
+            telefono: new FormControl('', [
+                Validators.required,
+                Validators.pattern(/^[0-9]{1,9}$/),
+            ]),
             fechaContratacion: new FormControl('', [Validators.required]),
             estado: new FormControl('', [Validators.required]),
             fechaRegistro: new FormControl('', [Validators.required]),
@@ -61,6 +65,7 @@ export class ConductoresFormComponent implements OnChanges {
         console.log('Datos recibidos:', this.data);
         if (this.data) {
             this.conductoresForm.patchValue({
+                idConductor: this.data.idConductor,
                 nombre: this.data.nombre,
                 apellidos: this.data.apellidos,
                 numeroLicencia: this.data.numeroLicencia,

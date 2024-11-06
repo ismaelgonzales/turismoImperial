@@ -7,6 +7,18 @@
         Agregar Conductores
     </button>
 </div>
+<div class="flex mb-4 gap-4">
+    <input
+        type="text"
+        [(ngModel)]="nombreFiltro"
+        placeholder="Filtrar por Nombre"
+        class="border border-gray-300 p-2 rounded-md" />
+    <input
+        type="text"
+        [(ngModel)]="apellidoFiltro"
+        placeholder="Filtrar por Apellido"
+        class="border border-gray-300 p-2 rounded-md" />
+</div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table
         class="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-700">
@@ -17,6 +29,7 @@
         <thead
             class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
             <tr>
+                <th scope="col" class="px-6 py-3">idConductor</th>
                 <th scope="col" class="px-6 py-3">nombre</th>
                 <th scope="col" class="px-6 py-3">apellidos</th>
                 <th scope="col" class="px-6 py-3">numeroLicencia</th>
@@ -31,6 +44,9 @@
         <tbody>
             @for (item of conductores; track $index) {
             <tr class="bg-white border-b dark:bg-white dark:border-gray-700">
+                <td class="px-6 py-4">
+                    {{ item.idConductor }}
+                </td>
                 <th
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
@@ -58,13 +74,14 @@
                 <td class="px-6 py-4">
                     {{ item.fechaRegistro }}
                 </td>
-                <td class="px-6 py-4 text-right">
+                <td class="px-2 py-4 text-right">
                     <button
                         type="button"
                         (click)="item.idConductor && loadConductores(item)"
                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4">
                         Editar
                     </button>
+
                     <button
                         type="button"
                         (click)="

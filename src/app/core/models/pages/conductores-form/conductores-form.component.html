@@ -20,7 +20,7 @@
             placeholder="nombre"
             formControlName="nombre" />
         @if (conductoresForm.get('nombre')?.hasError('required') &&
-        conductoresForm.get('nombre')?.touched) {
+        conductoresForm.get('nombre')?.touched ) {
         <div class="form-error text-red-950">Nombre es requerido</div>
         }
     </div>
@@ -45,19 +45,33 @@
         <label
             for="numeroLicencia"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900"
-            >NumeroLicencia</label
+            >Número de Licencia</label
         >
         <input
             type="text"
             id="numeroLicencia"
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
-            placeholder="numeroLicencia"
+            placeholder="Número de Licencia"
             formControlName="numeroLicencia" />
-        @if (conductoresForm.get('numeroLicencia')?.hasError('required') &&
-        conductoresForm.get('numeroLicencia')?.touched) {
-        <div class="form-error text-red-950">NumeroLicencia es requerido</div>
-        }
+        <div
+            *ngIf="
+                conductoresForm.get('numeroLicencia')?.hasError('required') &&
+                conductoresForm.get('numeroLicencia')?.touched
+            "
+            class="form-error text-red-950">
+            Número de Licencia es requerido
+        </div>
+
+        <div
+            *ngIf="
+                conductoresForm.get('numeroLicencia')?.hasError('pattern') &&
+                conductoresForm.get('numeroLicencia')?.touched
+            "
+            class="form-error text-red-950">
+            Número de Licencia no tiene el formato correcto
+        </div>
     </div>
+
     <div class="mb-5">
         <label
             for="fechaNacimiento"
@@ -75,6 +89,7 @@
         <div class="form-error text-red-950">FechaNacimiento es requerido</div>
         }
     </div>
+
     <div class="mb-5">
         <label
             for="telefono"
@@ -87,11 +102,24 @@
             class="form-control border-2 p-2 border-gray-900 rounded-lg"
             placeholder="telefono"
             formControlName="telefono" />
-        @if (conductoresForm.get('telefono')?.hasError('required') &&
-        conductoresForm.get('telefono')?.touched) {
-        <div class="form-error text-red-950">Telefono es requerido</div>
-        }
+        <div
+            *ngIf="
+                conductoresForm.get('telefono')?.hasError('required') &&
+                conductoresForm.get('telefono')?.touched
+            "
+            class="form-error text-red-950">
+            Número de Licencia es requerido
+        </div>
+        <div
+            *ngIf="
+                conductoresForm.get('telefono')?.hasError('pattern') &&
+                conductoresForm.get('telefono')?.touched
+            "
+            class="form-error text-red-950">
+            Número de Licencia no tiene el formato correcto
+        </div>
     </div>
+
     <div class="mb-5">
         <label
             for="fechaContratacion"
