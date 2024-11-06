@@ -5,10 +5,11 @@ import { HeaderPageComponent } from "../../atoms/header-page/header-page.compone
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import CheckoutComponent from "../checkout/checkout.component";
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-pago',
   standalone: true,
-  imports: [DetalladoCompraComponent, FooterPageComponent, HeaderPageComponent, CheckboxModule, FormsModule, CheckoutComponent],
+  imports: [DetalladoCompraComponent, FooterPageComponent, HeaderPageComponent, CheckboxModule, FormsModule, CheckoutComponent,CommonModule],
   templateUrl: './pago.component.html',
   styleUrl: './pago.component.scss'
 })
@@ -16,6 +17,7 @@ export class PagoComponent {
   checked: boolean = false;
   @Output() back = new EventEmitter<void>();
   @Output() complete = new EventEmitter<void>();
+tipoComprobante: any;
   onBack() {
     this.back.emit(); // Retrocede al paso anterior
   }
