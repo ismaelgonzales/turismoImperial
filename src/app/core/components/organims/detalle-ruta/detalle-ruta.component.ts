@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { IBuses, IBusesDetalles, IRutas } from '../../../models/swagger-model';
+import { IBuses, IBusesDetalles, IRutas } from '../../../models/strapi-model';
 import { ApiService } from '../../../services/api.service';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -41,6 +41,7 @@ export class DetalleRutaComponent implements OnInit {
         this._apiService.getAllBusesDetalles().subscribe((data: IBusesDetalles[]) => {
             this.rutasListas = data;
             this.rutasFiltradas = data; // Inicializamos con todas las rutas
+            console.log('RUTASSSS',this.rutasListas)
         });
         // this._apiService.getRutasById(id).subscribe((data) => {
         //     this.rutas = data;
@@ -56,10 +57,10 @@ export class DetalleRutaComponent implements OnInit {
         
         
       }
-    // Método de conversión
-    private formatFechaSalida(ruta: IBusesDetalles): string {
-        return ruta.fechaSalida instanceof Date ? ruta.fechaSalida.toISOString().split('T')[0] : ruta.fechaSalida;
-    }
+    // // Método de conversión
+    // private formatFechaSalida(ruta: IBusesDetalles): string {
+    //     return ruta.fechaSalida instanceof Date ? ruta.fechaSalida.toISOString().split('T')[0] : ruta.fechaSalida;
+    // }
 
     
 
@@ -70,7 +71,7 @@ export class DetalleRutaComponent implements OnInit {
                 ? ruta.origen.toLowerCase().includes(this.filterPost.toLowerCase())
                 : true;
 
-            const fechaRuta = this.formatFechaSalida(ruta); // Utiliza la fecha como string
+            const fechaRuta  = ruta.fechaSalida;  // Utiliza la fecha como string
             const matchesDate = this.fechaSeleccionada
                 ? fechaRuta === this.fechaSeleccionada
                 : true;

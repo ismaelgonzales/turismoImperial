@@ -1,3 +1,47 @@
+export interface IStrapiResponse<T> {
+    data: T[];
+    meta: {
+        pagination: {
+            page: number;
+            pageSize: number;
+            pageCount: number;
+            total: number;
+        };
+    };
+}
+// tabla busesDetalles
+// export interface IBusesDetalles {
+//     idBusesDetalles:  number;
+//     origen:           string;
+//     horaSalida:       string;
+//     destino:          string;
+//     horaLlegada:      string;
+//     fechaSalida:      Date;
+//     distanciaKm:      number;
+//     terminalSaliente: string;
+//     terminalEntrante: string;
+//     precioPromedio:   number;
+//     idRutasBuses:     number;
+//     idRutas:          number;
+// }
+
+export interface IBusesDetalles {
+    id:              number;
+    documentId:      string;
+    origen:          string;
+    horaSalida:      string;
+    destino:         string;
+    horaLlegada:     string;
+    fechaSalida:     string;  // Cambiado a string para manejar el formato de Strapi
+    distanciaKm:     number;
+    terminalSaliente: string;
+    terminalEntrante: string;
+    precioPromedio:  number;
+    createdAt:       string;
+    updatedAt:       string;
+    publishedAt:     string;
+    locale:          string | null;
+}
 //version 1
 // export interface IRutas {
 //     idRutas: number;
@@ -19,21 +63,6 @@ export interface IViajes {
     fechaSalida:    Date;
     fechaLlegada:   Date;
     estado:         boolean;
-}
-// tabla busesDetalles
-export interface IBusesDetalles {
-    idBusesDetalles:  number;
-    origen:           string;
-    horaSalida:       string;
-    destino:          string;
-    horaLlegada:      string;
-    fechaSalida:      Date;
-    distanciaKm:      number;
-    terminalSaliente: string;
-    terminalEntrante: string;
-    precioPromedio:   number;
-    idRutasBuses:     number;
-    idRutas:          number;
 }
 
 

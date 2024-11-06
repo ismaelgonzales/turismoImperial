@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { HeaderPageComponent } from '../../atoms/header-page/header-page.component';
-import { ProgressBarComponent } from '../../organims/progress-bar/progress-bar.component';
+
 import { DetalladoCompraComponent } from '../../organims/detallado-compra/detallado-compra.component';
 import { FooterPageComponent } from '../../atoms/footer-page/footer-page.component';
 import { SeleccionAsientosService } from '../../../services/seleccion-asientos.service';
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     imports: [
         HeaderPageComponent,
-        ProgressBarComponent,
+ 
         DetalladoCompraComponent,
         FooterPageComponent,
         FormsModule,

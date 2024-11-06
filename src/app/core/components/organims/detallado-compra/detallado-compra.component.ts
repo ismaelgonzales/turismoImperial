@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SeleccionAsientosService } from '../../../services/seleccion-asientos.service';
 import { Subscription } from 'rxjs';
-import { IBusesDetalles } from '../../../models/swagger-model';
+import { IBusesDetalles } from '../../../models/strapi-model';
 @Component({
     selector: 'app-detallado-compra',
     standalone: true,

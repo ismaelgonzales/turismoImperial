@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IBusesDetalles } from '../models/swagger-model';
+import { IBusesDetalles } from '../models/strapi-model';
 
 @Injectable({
     providedIn: 'root',
