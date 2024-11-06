@@ -2,6 +2,8 @@ export const environment = {
     production: false,
     endPoint: 'https://www.turismoimperial.somee.com/api/',
     anotherVariable: 'some value',
+    stripeAPIKey: '',
+    serverURL: 'http://localhost:4242',
     firebaseConfig: {
         projectId: 'authentication-imperial',
         appId: '1:303415919216:web:271dc37a9ae941a26d2ab5',

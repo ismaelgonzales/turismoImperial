@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 export interface Rutas {
     nombre: string;
     codigo: string;
@@ -26,11 +25,11 @@ export class DropdownComponent implements OnInit {
         this.rutas = [
             { nombre: 'Lima', codigo: 'LIM' },
             { nombre: 'Tarma', codigo: 'TAR' },
-            { nombre: 'Merced', codigo: 'MER' },
-            { nombre: 'Acobamba', codigo: 'ACO' },
-            { nombre: 'Palca', codigo: 'PAL' },
-            { nombre: 'Huasahuasi', codigo: 'HUA' },
-            { nombre: 'SanRamon', codigo: 'SRM' },
+            // { nombre: 'Merced', codigo: 'MER' },
+            // { nombre: 'Acobamba', codigo: 'ACO' },
+            // { nombre: 'Palca', codigo: 'PAL' },
+            // { nombre: 'Huasahuasi', codigo: 'HUA' },
+            // { nombre: 'SanRamon', codigo: 'SRM' },
         ];
 
         this.rutasDestino = [...this.rutas];

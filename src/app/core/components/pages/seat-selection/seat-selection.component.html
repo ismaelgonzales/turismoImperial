@@ -1,17 +1,12 @@
 <app-header-page />
 <!-- <app-progress-bar /> -->
-<ol
-    class="flex p-36 items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+<ol class="flex p-12 items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
     <li
         class="flex md:w-full items-center text-red-950 dark:text-red-950 sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
         <span
             class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-            <svg
-                class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 20 20">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
                 <path
                     d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
             </svg>
@@ -41,373 +36,104 @@
             </h1>
         </div>
     </div>
-    <div class="flex flex-col md:flex-row w-full">
+    <div class="flex  justify-end w-full ">
         <!-- Sección de selección de asientos -->
-        <div
-            class="w-full md:w-1/2 bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
-            <!-- Primer Piso -->
-            <div
-                class="mx-3 rounded-lg bg-white border border-blue-200 p-4 mb-5">
-                <div class="flex mb-3 items-center border-b-2 pb-2">
-                    <span class="text-gray-600 font-semibold"
-                        >Primer piso - 160°</span
-                    >
-                    <i class="ml-auto fas fa-steering-wheel text-gray-600"></i>
-                </div>
-                <div class="grid grid-cols-4 gap-3">
-                    <div *ngFor="let seat of firstFloorSeats">
-                        <button
-                            type="button"
-                            (click)="toggleButton(seat)"
-                            [ngClass]="{
-                                'bg-blue-500 text-white': isSelected(seat),
-                                'border-blue-500 text-blue-500':
-                                    !isSelected(seat),
-                                'hover:bg-blue-500 hover:text-white':
-                                    !isSelected(seat)
-                            }"
-                            class="border border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12">
-                            <span class="text-lg font-bold">{{ seat }}</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="flex justify-end mt-4">
-                    <i class="fas fa-arrow-up text-blue-500"></i>
-                    <span class="text-gray-600 ml-2">Escaleras</span>
-                </div>
-            </div>
-
-            <!-- Segundo Piso -->
-            <div class="mx-3 rounded-lg bg-white border border-green-200 p-4">
-                <div class="flex mb-3 items-center border-b-2 pb-2">
-                    <span class="text-gray-600 font-semibold"
-                        >Segundo piso - 180°</span
-                    >
-                    <i class="ml-auto fas fa-stairs text-gray-600"></i>
-                </div>
-                <div class="grid grid-cols-4 gap-3">
-                    <div *ngFor="let seat of secondFloorSeats">
-                        <button
-                            type="button"
-                            (click)="toggleButton(seat)"
-                            [ngClass]="{
-                                'bg-green-500 text-white': isSelected(seat),
-                                'border-green-500 text-green-500':
-                                    !isSelected(seat),
-                                'hover:bg-green-500 hover:text-white':
-                                    !isSelected(seat)
-                            }"
-                            class="border border-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12">
-                            <span class="text-lg font-bold">{{ seat }}</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sección adicional a la derecha -->
-        <div class="w-full md:w-1/2 bg-gray-100 px-5 py-10">
-            <div class="px-5">
-                <h2 class="text-lg font-bold text-gray-600">
-                    Pasajeros Seleccionados:
-                </h2>
-                <ul class="mt-2">
-                    <li
-                        *ngFor="let pasajero of pasajerosSeleccionados"
-                        class="text-gray-800">
-                        {{ pasajero }}
-                    </li>
-                </ul>
-                <h3 class="mt-4 text-xl font-bold text-gray-800">
-                    Total: {{ totalAmount }} soles
-                </h3>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- <div class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
-    <div *ngFor="let seat of firstFloorSeats">
-
-        <button *ngIf="seat.tipo === 'asiento'"
-            type="button"
-            (click)="toggleButton(seat.numero)"
-            [ngClass]="{
-                'bg-blue-500 text-white': isSelected(seat.numero),
-                'border-blue-500 text-blue-500': !isSelected(seat.numero),
-                'hover:bg-blue-500 hover:text-white': !isSelected(seat.numero)
-            }"
-            class="border border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12">
-            <span class="text-lg font-bold">{{ seat.numero }}</span>
-        </button>
-
-
-        <div *ngIf="seat.tipo === 'pasillo'" class="w-12 h-12 flex items-center justify-center">
-            <span class="text-gray-300">X</span>
-        </div>
-
-
-        <div *ngIf="seat.tipo === 'escalera'" class="w-12 h-12 flex items-center justify-center">
-            <i class="fas fa-stairs text-blue-500 text-xl"></i>
-        </div>
-    </div>
-</div> -->
-
-<div class="min-w-screen min-h-screen bg-gray-50 py-5">
-    <div class="px-5">
-        <div class="mb-2 text-center">
-            <h1 class="text-xl md:text-3xl font-bold text-gray-600">
-                Elige tus asientos.
-            </h1>
-        </div>
-    </div>
-    <div class="flex w-full">
-        <div
-            class="w-full md:w-1/2 bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
+        <div class="w-full md:w-1/4 bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800 rounded-lg">
             <div class="w-full">
-                <div
-                    class="mx-3 rounded-lg bg-white border border-blue-200 p-3 mb-5">
+                <!-- Piso 1 -->
+                <div class="mx-3 rounded-lg bg-white border border-red-200 p-3 mb-5">
                     <div class="md:w-full flex mb-3 items-center border-b-2">
-                        <span class="text-gray-600 font-semibold"
-                            >Primer piso - 160°</span
-                        >
-                        <i class="ml-auto fas fa-steering-wheel"></i>
+                        <span class="text-gray-600 font-semibold">Primer piso - 160°(S/45.00)</span>
+                        <i class="ml-auto "></i>
                     </div>
-                    <div
-                        class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
-                        <div *ngFor="let seat of firstFloorSeats">
-                            <button
-                                type="button"
-                                (click)="toggleButton(seat)"
-                                [ngClass]="{
-                                    'bg-blue-500 text-white': isSelected(seat),
-                                    'border-blue-500 text-blue-500':
-                                        !isSelected(seat),
-                                    'hover:bg-blue-500 hover:text-white':
-                                        !isSelected(seat)
-                                }"
-                                class="border border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12">
-                                <span class="text-lg font-bold">{{
-                                    seat
-                                }}</span>
-                            </button>
+                    <div class="grid grid-cols-4 justify-end mt-4">
+                        <div class="col-start-3 col-span-4">
+                            <span class="text-gray-600  text-lg ml-2">Pasillo</span>
                         </div>
                     </div>
-                    <div class="flex justify-end mt-4">
-                        <i class="fas fa-arrow-up text-blue-500"></i>
-                        <span class="text-gray-600 ml-2">Escaleras</span>
+                    <div class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
+                        <ng-container *ngFor="let seat of firstFloorSeats; let i = index">
+                            <div *ngIf="i % 4 !== 2"> <!-- Evitar la tercera columna -->
+                                <button type="button" (click)="toggleButton(seat)" [ngClass]="{
+                                        'bg-red-500 text-white': isSelected(seat),
+                                        'border-red-500 text-red-500': !isSelected(seat),
+                                        'hover:bg-red-500 hover:text-white': !isSelected(seat)
+                                    }"
+                                    class="border border-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-16 h-16">
+                                    <span class="text-2xl font-bold">{{ seat }}</span>
+                                </button>
+                            </div>
+                            <div *ngIf="i % 4 === 2" class="w-12 h-12"></div> <!-- Espacio vacío para el pasillo -->
+                        </ng-container>
+                    </div>
+                    <div class="grid grid-cols-4 justify-end mt-4">
+                        <div class="col-start-3 col-span-4">
+                            <span class="text-gray-600  text-lg ml-2">Pasillo</span>
+                        </div>
                     </div>
                 </div>
 
-                <div
-                    class="mx-3 rounded-lg bg-white border border-blue-200 p-3">
+                <!-- Piso 2 -->
+                <div class="mx-3 rounded-lg bg-white border border-red-200 p-3">
                     <div class="md:w-full flex mb-3 items-center border-b-2">
-                        <span class="text-gray-600 font-semibold"
-                            >Segundo piso - 160°</span
-                        >
-                        <i class="ml-auto fas fa-stairs"></i>
+                        <span class="text-gray-600 font-semibold">Segundo piso - 140°(S/35.00)</span>
+                        <i class="ml-auto "></i>
                     </div>
-                    <div
-                        class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
-                        <div *ngFor="let seat of secondFloorSeats">
-                            <button
-                                type="button"
-                                (click)="toggleButton(seat)"
+                    <div class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
+                        <div *ngFor="let seat of secondFloorSeats; let i = index">
+                            <button *ngIf="isIconPositionEscalera(i)" type="button" [disabled]="true"
+                                class="border bg-red-500 border-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-16 h-16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class=""
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M4.5 1a.5.5 0 0 1 .5.5V2h6v-.5a.5.5 0 0 1 1 0v14a.5.5 0 0 1-1 0V15H5v.5a.5.5 0 0 1-1 0v-14a.5.5 0 0 1 .5-.5M5 14h6v-2H5zm0-3h6V9H5zm0-3h6V6H5zm0-3h6V3H5z" />
+                                </svg>
+                            </button>
+                            <button *ngIf="isIconPositionBathroom(i)" type="button" [disabled]="true"
+                                class="border bg-red-500 border-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-16 h-16">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35" color="#ffffff" fill="none">
+                                    <path d="M14.4004 14C15.3717 13.0878 16 11.6356 16 10C16 7.23858 14.2091 5 12 5C9.79086 5 8 7.23858 8 10C8 11.6356 8.62827 13.0878 9.59961 14" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M8.10669 14H15.8933C16.479 14 17 14.4143 17 15C17 16.5105 16.3302 18.0905 15.2713 19.1262C14.7465 19.6395 14.2349 20.1721 14.8701 20.8686C14.9657 20.9734 15.0766 21.0645 15.1698 21.1715C15.4978 21.5478 15.1458 22 14.7227 22H9.27729C8.85422 22 8.50218 21.5478 8.83018 21.1715C8.9234 21.0645 9.0343 20.9734 9.12991 20.8686C9.76509 20.1721 9.25347 19.6395 8.72869 19.1262C7.66984 18.0905 7 16.5105 7 15C7 14.4143 7.52097 14 8.10669 14Z" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M18.2893 12C18.8844 12 19.3826 11.5702 19.4418 11.0059L19.8095 7.50176C20.0228 5.46884 20.1294 4.45238 19.7327 3.68365C18.746 1.77184 16.4338 2.00941 14.5944 2.00941H9.40559C7.56622 2.00941 5.25402 1.77184 4.26731 3.68365C3.87056 4.45238 3.9772 5.46884 4.1905 7.50176L4.55816 11.0059C4.61737 11.5702 5.11562 12 5.71068 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <button *ngIf="isIconPositionDisable(i)" type="button" [disabled]="true"
+                                class=" bg-white focus:ring-4  font-medium rounded-lg text-sm p-2.5 text-center  items-center justify-center w-16 h-16">
+                                
+                            </button>
+                            <button *ngIf="!isIconPositionEscalera(i) && !isIconPositionBathroom(i) && !isIconPositionDisable(i)" type="button" (click)="toggleButton(seat)"
                                 [ngClass]="{
-                                    'bg-green-500 text-white': isSelected(seat),
-                                    'border-green-500 text-green-500':
-                                        !isSelected(seat),
-                                    'hover:bg-green-500 hover:text-white':
-                                        !isSelected(seat)
+                                    'bg-red-500 text-white': isSelected(seat),
+                                    'border-red-500 text-red-500': !isSelected(seat),
+                                    'hover:bg-red-500 hover:text-white': !isSelected(seat)
                                 }"
-                                class="border border-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12">
-                                <span class="text-lg font-bold">{{
-                                    seat
-                                }}</span>
+                                class="border border-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-16 h-16">
+                                <span class="text-2xl font-bold">{{ seat }}</span>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
 
-        <div class="w-full md:w-1/2 bg-gray-100 px-5 py-10">
-            <div class="w-1/2 px-5">
-                <h2 class="text-lg font-bold text-gray-600">
-                    Pasajeros Seleccionados:
-                </h2>
-                <ul>
-                    <li
-                        *ngFor="let pasajero of pasajerosSeleccionados"
-                        class="text-gray-800">
-                        {{ pasajero }}
-                    </li>
-                </ul>
-                <h3 class="mt-4 text-xl font-bold text-gray-800">
-                    Total: {{ totalAmount }} soles
-                </h3>
-            </div>
+        <div class="w-full md:w-1/2 px-5 py-10">
+            <app-detallado-compra />
+            <button
+                class="block w-full max-w-xs mx-auto bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                (click)="onContinue()">Continuar a Datos del Pasajero</button>
         </div>
     </div>
 </div>
+<div class="p-5">
+    <div class="text-center text-gray-400 text-sm">
+        <a href="https://www.facebook.com/p/Transportes-Turismo-Imperial-100057127734949/?locale=es_LA" target="_blank"
+            class="focus:outline-none underline text-gray-400"><i class="mdi mdi-beer-outline"></i>Siempre a su
+            servicio</a>
+        Mejorando por ustedes y apliando nuestros horarios
+    </div>
+</div>
+
+
+
 <app-footer-page />
-
-<!-- <div class="min-w-screen min-h-screen bg-gray-50 py-5">
-    <div class="px-5">
-        <div class="mb-2 text-center">
-            <h1 class="text-xl md:text-3xl font-bold text-gray-600">
-                Elige tus asientos.
-            </h1>
-        </div>
-    </div>
-    <div
-        class="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
-        <div class="w-full">
-            <div class="mx-3 md:flex">
-                <div
-                    class="px-3 md:w-7/12 lg:pr-10 rounded-lg bg-white border border-blue-200 p-3">
-                    <div class="md:w-full flex mb-3 items-center border-b-2">
-                        <span class="text-gray-600 font-semibold"
-                            >Primer piso - 160°</span
-                        >
-                        <i class="ml-auto fas fa-steering-wheel"></i>
-                    </div>
-                    <div
-                        class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
-                        <div *ngFor="let seat of firstFloorSeats">
-                            <button
-                                type="button"
-                                (click)="toggleButton(seat)"
-                                [ngClass]="{
-                                    'bg-blue-500 text-white': isSelected(seat),
-                                    'border-blue-500 text-blue-500':
-                                        !isSelected(seat),
-                                    'hover:bg-blue-500 hover:text-white':
-                                        !isSelected(seat)
-                                }"
-                                class="border border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12">
-                                <span class="text-lg font-bold">{{
-                                    seat
-                                }}</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex justify-end mt-4">
-                        <i class="fas fa-arrow-up text-blue-500"></i>
-                        <span class="text-gray-600 ml-2">Escaleras</span>
-                    </div>
-                </div>
-
-                <div
-                    class="px-3 md:w-7/12 lg:pr-10 rounded-lg bg-white border border-blue-200 p-3 mt-5">
-                    <div class="md:w-full flex mb-3 items-center border-b-2">
-                        <span class="text-gray-600 font-semibold"
-                            >Segundo piso - 160°</span
-                        >
-                        <i class="ml-auto fas fa-stairs"></i>
-                    </div>
-                    <div
-                        class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
-                        <div *ngFor="let seat of secondFloorSeats">
-                            <button
-                                type="button"
-                                (click)="toggleButton(seat)"
-                                [ngClass]="{
-                                    'bg-green-500 text-white': isSelected(seat),
-                                    'border-green-500 text-green-500':
-                                        !isSelected(seat),
-                                    'hover:bg-green-500 hover:text-white':
-                                        !isSelected(seat)
-                                }"
-                                class="border border-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12">
-                                <span class="text-lg font-bold">{{
-                                    seat
-                                }}</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="min-w-screen min-h-screen bg-gray-50 py-5">
-    <div class="px-5">
-        <div class="mb-2 text-center">
-            <h1 class="text-xl md:text-3xl font-bold text-gray-600">
-                Elige tus asientos.
-            </h1>
-        </div>
-
-
-        <div class="mb-4">
-            <label class="block text-gray-700">Selecciona un Bus:</label>
-            <select [(ngModel)]="currentBus" class="border rounded-md p-2">
-                <option *ngFor="let bus of buses | keys" [value]="bus">{{ bus }}</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
-        <div class="w-full">
-            <div class="mx-3 md:flex">
-
-                <div class="px-3 md:w-7/12 lg:pr-10 rounded-lg bg-white border border-blue-200 p-3">
-                    <div class="md:w-full flex mb-3 items-center border-b-2">
-                        <span class="text-gray-600 font-semibold">Primer piso - 160°</span>
-                        <i class="ml-auto fas fa-steering-wheel"></i>
-                    </div>
-                    <div class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
-
-                        <div *ngFor="let seat of buses[currentBus].firstFloorSeats">
-                            <button
-                                type="button"
-                                (click)="toggleButton(seat)"
-                                [ngClass]="{
-                                    'bg-blue-500 text-white': isSelected(seat),
-                                    'border-blue-500 text-blue-500': !isSelected(seat) && !occupiedSeats.has(seat),
-                                    'hover:bg-blue-500 hover:text-white': !isSelected(seat) && !occupiedSeats.has(seat),
-                                    'bg-gray-400 cursor-not-allowed': occupiedSeats.has(seat)
-                                }"
-                                class="border border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12"
-                                [disabled]="occupiedSeats.has(seat)">
-                                <span class="text-lg font-bold">{{ seat }}</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex justify-end mt-4">
-                        <i class="fas fa-arrow-up text-blue-500"></i>
-                        <span class="text-gray-600 ml-2">Escaleras</span>
-                    </div>
-                </div>
-
-
-                <div class="px-3 md:w-7/12 lg:pr-10 rounded-lg bg-white border border-blue-200 p-3 mt-5">
-                    <div class="md:w-full flex mb-3 items-center border-b-2">
-                        <span class="text-gray-600 font-semibold">Segundo piso - 160°</span>
-                        <i class="ml-auto fas fa-stairs"></i>
-                    </div>
-                    <div class="grid grid-cols-4 gap-4 px-3 md:w-full rounded-lg bg-white border border-gray-200 p-3">
-
-                        <div *ngFor="let seat of buses[currentBus].secondFloorSeats">
-                            <button
-                                type="button"
-                                (click)="toggleButton(seat)"
-                                [ngClass]="{
-                                    'bg-green-500 text-white': isSelected(seat),
-                                    'border-green-500 text-green-500': !isSelected(seat) && !occupiedSeats.has(seat),
-                                    'hover:bg-green-500 hover:text-white': !isSelected(seat) && !occupiedSeats.has(seat),
-                                    'bg-gray-400 cursor-not-allowed': occupiedSeats.has(seat)
-                                }"
-                                class="border border-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center justify-center w-12 h-12"
-                                [disabled]="occupiedSeats.has(seat)">
-                                <span class="text-lg font-bold">{{ seat }}</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->

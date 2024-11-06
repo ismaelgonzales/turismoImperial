@@ -1,0 +1,18 @@
+<div>
+    <ng-container *ngIf="pasoActual === 0">
+      <app-seat-selection (continue)="avanzar()"></app-seat-selection>
+    </ng-container>
+  
+    <ng-container *ngIf="pasoActual === 1">
+      <app-datos-pasajero (continue)="avanzar()" (back)="retroceder()"></app-datos-pasajero>
+    </ng-container>
+  
+    <ng-container *ngIf="pasoActual === 2">
+      <app-pago (back)="retroceder()"></app-pago>
+    </ng-container>
+  
+    <div *ngIf="pasoActual > 0">
+      <button (click)="retroceder()">Volver</button>
+    </div>
+  </div>
+  
