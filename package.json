@@ -27,6 +27,7 @@
     "@ng-icons/heroicons": "^29.5.0",
     "@ngrx/signals": "^18.1.1",
     "@stripe/stripe-js": "^4.9.0",
+    "bufferutil": "^4.0.8",
     "express": "^4.21.0",
     "firebase": "^10.14.1",
     "frontend-ng": "file:",
