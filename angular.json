@@ -67,7 +67,10 @@
                             "allowedCommonJsDependencies": [
                                 "sweetalert2",
                                 "firebase",
-                                "socket.io-client"
+                                "socket.io-client",
+                                "undici",
+                                "@grpc/grpc-js",
+                                "@grpc/proto-loader"
                             ]
                         },
                         "development": {
