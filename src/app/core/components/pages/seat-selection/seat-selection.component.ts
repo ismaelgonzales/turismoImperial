@@ -49,8 +49,8 @@ export class SeatSelectionComponent implements OnInit {
     
     secondFloorSeats: { seat: number, isSelected: boolean, isOccupied: boolean, isDisabled: boolean }[] = [
         { seat: 13, isSelected: false, isOccupied: false, isDisabled: false },
-        { seat: 14, isSelected: false, isOccupied: false, isDisabled: true }, // Ejemplo de asiento deshabilitado
-        { seat: 15, isSelected: false, isOccupied: false, isDisabled: true },
+        { seat: 14, isSelected: false, isOccupied: false, isDisabled: false }, // Ejemplo de asiento deshabilitado
+        { seat: 15, isSelected: false, isOccupied: false, isDisabled: false },
         { seat: 16, isSelected: false, isOccupied: false, isDisabled: false },
         { seat: 17, isSelected: false, isOccupied: false, isDisabled: false },
         { seat: 18, isSelected: false, isOccupied: false, isDisabled: false },
