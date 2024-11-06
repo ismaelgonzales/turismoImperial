@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     imports: [
         HeaderPageComponent,
- 
+        CommonModule,
         DetalladoCompraComponent,
         FooterPageComponent,
         FormsModule,
