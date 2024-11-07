@@ -25,21 +25,22 @@ const initialState: ICartStore = {
         description: "blablabla",
         image: "https://res.cloudinary.com/dyelvotz0/image/upload/v1727587318/LogoImperial_nvve7x.png",
         qty: 1,
-        pasajero: { id: 1,
-        nombre_completo: "CHRISTOPHER ISMAEL , GONZALES DAVILA",
-        ID_TipoDocumento: "DNI",
-        Numero_Documento: 77338315,
+        pasajero: {
+            id: 1,
+            nombre_completo: "CHRISTOPHER ISMAEL , GONZALES DAVILA",
+            ID_TipoDocumento: "DNI",
+            Numero_Documento: 77338315,
         },
         asiento: {
-        id:1,
-        numeroPiso: 2,
-        idPajero: 1,
-        numeroAsiento: 23 ,
-        idBus:23,
-      },
+            id: 1,
+            numeroPiso: 2,
+            idPajero: 1,
+            numeroAsiento: 23,
+            idBus: 23,
+        },
         subTotal: 50,
-      },
-      {
+    },
+    {
         id: 2,
         title: "Lima-Tarma",
         price: 50,
@@ -47,22 +48,69 @@ const initialState: ICartStore = {
         description: "blablabla",
         image: "https://res.cloudinary.com/dyelvotz0/image/upload/v1727587318/LogoImperial_nvve7x.png",
         qty: 1,
-        pasajero:{ id: 2,
+        pasajero: {
+            id: 2,
             nombre_completo: "CHRISTOPHER ISMAEL , GONZALES DAVILA",
             ID_TipoDocumento: "DNI",
             Numero_Documento: 77338315,
-            },
+        },
         asiento: {
-        id:2,
-        numeroPiso: 2,
-        idPajero: 1,
-        numeroAsiento: 26 ,
-        idBus:23,
-      },
+            id: 2,
+            numeroPiso: 2,
+            idPajero: 1,
+            numeroAsiento: 26,
+            idBus: 23,
+        },
         subTotal: 50,
-      }
-      
-],
+    },
+    {
+        id: 3,
+        title: "Lima-Tarma",
+        price: 50,
+        category: "Regular",
+        description: "blablabla",
+        image: "https://res.cloudinary.com/dyelvotz0/image/upload/v1727587318/LogoImperial_nvve7x.png",
+        qty: 1,
+        pasajero: {
+            id: 1,
+            nombre_completo: "CHRISTOPHER ISMAEL , GONZALES DAVILA",
+            ID_TipoDocumento: "DNI",
+            Numero_Documento: 77338315,
+        },
+        asiento: {
+            id: 1,
+            numeroPiso: 2,
+            idPajero: 1,
+            numeroAsiento: 23,
+            idBus: 23,
+        },
+        subTotal: 50,
+    },
+    {
+        id: 4,
+        title: "Lima-Tarma",
+        price: 50,
+        category: "Regular",
+        description: "blablabla",
+        image: "https://res.cloudinary.com/dyelvotz0/image/upload/v1727587318/LogoImperial_nvve7x.png",
+        qty: 1,
+        pasajero: {
+            id: 1,
+            nombre_completo: "CHRISTOPHER ISMAEL , GONZALES DAVILA",
+            ID_TipoDocumento: "DNI",
+            Numero_Documento: 77338315,
+        },
+        asiento: {
+            id: 1,
+            numeroPiso: 2,
+            idPajero: 1,
+            numeroAsiento: 23,
+            idBus: 23,
+        },
+        subTotal: 50,
+    }
+
+    ],
     totalAmount: 0,
     productsCount: 0,
 };
@@ -87,16 +135,16 @@ export const ICartStore = signalStore(
             } else {
                 patchState(store, { products: [...products(), product] });
             }
-            toastSvc.success('Product added', 'DOMINI STORE');
+            toastSvc.success('Asiento seleccionado');
         },
         removeFromCart(id: number) {
             const updatedProducts = products().filter((product) => product.id !== id);
             patchState(store, { products: updatedProducts });
-            toastSvc.info('Product removed', 'DOMINI STORE');
+            toastSvc.info('Asiento removido');
         },
         clearCart() {
             patchState(store, initialState);
-            toastSvc.info('Cart cleared', 'DOMINI STORE');
+            toastSvc.info('Carrito Vacio');
         },
     }))
 );

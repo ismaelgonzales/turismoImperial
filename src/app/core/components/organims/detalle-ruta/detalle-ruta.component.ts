@@ -27,9 +27,6 @@ export class DetalleRutaComponent implements OnInit {
     ciudadOrigen: string = ''; // Para almacenar la ciudad seleccionada
     destino: string = ''; // Para almacenar la ciudad de destino
 
-    // rutas: IRutas | null = null ;
-    // buses: IBuses| null = null;
-
     
 
     constructor(private _apiService: ApiService,
@@ -57,10 +54,7 @@ export class DetalleRutaComponent implements OnInit {
         this.seleccionAsientosService.setDocumentId(documentId);
         console.log('documentId salio del componente detalle ',documentId)  // Guarda el documentId en el servicio de selección de asientos
     }
-    // // Método de conversión
-    // private formatFechaSalida(ruta: IBusesDetalles): string {
-    //     return ruta.fechaSalida instanceof Date ? ruta.fechaSalida.toISOString().split('T')[0] : ruta.fechaSalida;
-    // }
+ 
 
     
 

@@ -104,8 +104,8 @@
                                         <div class="md:col-span-3">
                                             <span>Numero de documento*</span>
                                             <input type="text" name="numeroDocumento" id="numeroDocumento"
-                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                                placeholder="Número de documento" />
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" [(ngModel)]="pasajero.propietario.numeroDocumento"
+                                                placeholder="Número de documento" (ngModelChange)="updatePropietario(i, 'numeroDocumento', $event)" />
                                         </div>
                                         <div class="md:col-span-3">
                                             <span>Nombres*</span>
@@ -126,8 +126,8 @@
                                         <div class="md:col-span-3">
                                             <span>Numero de documento*</span>
                                             <input type="text" name="numeroDocumento" id="numeroDocumento"
-                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                                placeholder="Número de documento" />
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" [(ngModel)]="pasajero.propietario.numeroDocumento"
+                                                placeholder="Número de documento" (ngModelChange)="updatePropietario(i, 'numeroDocumento', $event)" />
                                         </div>
                                         <div class="md:col-span-3">
                                             <span>Nombres*</span>
@@ -148,8 +148,8 @@
                                         <div class="md:col-span-3">
                                             <span>Numero de documento*</span>
                                             <input type="text" name="numeroDocumento" id="numeroDocumento"
-                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                                placeholder="Número de documento" />
+                                                class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" [(ngModel)]="pasajero.propietario.numeroDocumento"
+                                                placeholder="Número de documento" (ngModelChange)="updatePropietario(i, 'numeroDocumento', $event)"/>
                                         </div>
                                         <div class="md:col-span-3">
                                             <span>Nombres*</span>

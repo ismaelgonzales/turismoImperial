@@ -1,3 +1,15 @@
+export interface IProductStripe {
+  id: number;
+  title: string;
+  price: number;
+  category: string;
+  description: string;
+  image: string;
+  qty: number;
+  pasajero: IPasajero;
+  asiento:IAsientoStripe;
+  subTotal: number;
+}
 export interface IComprobantes {
   id: number;
   idCliente: number ;
@@ -25,19 +37,6 @@ export interface IAsientoStripe {
   idPajero: number;
   numeroAsiento: number ;
   idBus:number;
-}
-
-export interface IProductStripe {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  description: string;
-  image: string;
-  qty: number;
-  pasajero: IPasajero;
-  asiento:IAsientoStripe;
-  subTotal: number;
 }
 
 

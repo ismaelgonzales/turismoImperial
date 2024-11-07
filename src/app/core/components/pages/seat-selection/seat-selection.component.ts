@@ -97,7 +97,7 @@ export class SeatSelectionComponent implements OnInit {
     selectedSeats: number[] = [];
     occupiedSeats: Set<number> = new Set();
 
-    pasajerosSeleccionados: string[] = [];
+    pasajerosSeleccionados: number[] = [];
     totalAmount: number = 0;
 
     // Precios de los asientos
@@ -145,7 +145,7 @@ export class SeatSelectionComponent implements OnInit {
         if (seat.isSelected) {
             seat.isSelected = false; // Desmarca el asiento
             this.selectedSeats = this.selectedSeats.filter(s => s !== seat.seat); // Remueve del listado de asientos seleccionados
-            this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(p => p !== `Asiento ${seat.seat}`); // Actualiza los pasajeros seleccionados
+            this.pasajerosSeleccionados = this.pasajerosSeleccionados.filter(p => p !== seat.seat); // Actualiza los pasajeros seleccionados
             this.totalAmount -= seatPrice; // Ajusta el monto total
             this.socketService.emitEvent('seatDeselected', seat.seat); // Notifica sobre la deselección
             this.toastr.warning(`Asiento ${seat.seat} ha sido deseleccionado`);
@@ -153,7 +153,7 @@ export class SeatSelectionComponent implements OnInit {
             if (this.selectedSeats.length < 4) {
                 seat.isSelected = true; // Marca el asiento como seleccionado
                 this.selectedSeats.push(seat.seat); // Añade el asiento al listado de seleccionados
-                this.pasajerosSeleccionados.push(`Asiento ${seat.seat}`); // Añade al listado de pasajeros
+                this.pasajerosSeleccionados.push(seat.seat); // Añade al listado de pasajeros
                 this.totalAmount += seatPrice; // Ajusta el monto total
                 this.socketService.emitEvent('seatSelected', seat.seat); // Notifica sobre la selección
                 this.toastr.success(`Asiento ${seat.seat} ha sido seleccionado`);
@@ -214,25 +214,7 @@ export class SeatSelectionComponent implements OnInit {
             );
         });
     }
-    isIconPositionEscalera(index: number): boolean {
-        // Define las posiciones en las que quieres mostrar el ícono
-        const iconPositions = [10, 11, 15];
-        return iconPositions.includes(index);
-    }
-
-
-    isIconPositionBathroom(index: number): boolean {
-        // Define las posiciones en las que quieres mostrar el ícono
-        const iconPositions = [43];
-        return iconPositions.includes(index);
-    }
-
-    isIconPositionDisable(index: number): boolean {
-        // Define las posiciones en las que quieres mostrar el ícono
-        const iconPositions = [14, 42];
-        return iconPositions.includes(index);
-    }
-
+   
     enviarSeleccion(pasajeros: any[], total: number) {
         this.seleccionAsientosService.setSelectedPasajeros(pasajeros, total);
         // console.log('Pasajeros y monto total enviados al servicio');

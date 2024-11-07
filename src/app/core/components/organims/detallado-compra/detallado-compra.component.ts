@@ -33,7 +33,7 @@ export class DetalladoCompraComponent implements OnInit {
             this.totalAmount = total;
             // console.log('Total amount:', this.totalAmount);
         });
-        this.totalAmountSubscription = this.seleccionAsientosService.busSeleccionado$.subscribe(bus => {
+        this.busSeleccionadoSubscription = this.seleccionAsientosService.busSeleccionado$.subscribe(bus => {
             this.busMostrar = bus;
             // console.log('MOSTRAR:', this.busMostrar);
         });
@@ -43,5 +43,6 @@ export class DetalladoCompraComponent implements OnInit {
         // Desuscribirse para evitar fugas de memoria
         this.pasajerosSubscription.unsubscribe();
         this.totalAmountSubscription.unsubscribe();
+        this.busSeleccionadoSubscription.unsubscribe();
     }
 }

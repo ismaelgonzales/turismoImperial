@@ -4,11 +4,12 @@ import { SeatSelectionComponent } from "../seat-selection/seat-selection.compone
 import { DatosPasajeroComponent } from "../datos-pasajero/datos-pasajero.component";
 import { PagoComponent } from "../pago/pago.component";
 import { CommonModule } from '@angular/common';
+import CheckoutComponent from "../checkout/checkout.component";
 
 @Component({
   selector: 'app-proceso-compra',
   standalone: true,
-  imports: [SeatSelectionComponent, DatosPasajeroComponent, PagoComponent,CommonModule],
+  imports: [SeatSelectionComponent, DatosPasajeroComponent, PagoComponent, CommonModule, CheckoutComponent],
   templateUrl: './proceso-compra.component.html',
   styleUrl: './proceso-compra.component.scss'
 })

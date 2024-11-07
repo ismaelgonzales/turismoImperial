@@ -1,9 +1,10 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, Output } from '@angular/core';
 
 
 import { CheckoutService } from '../../../services/checkout.service';
-import {  ICartStore } from '../../../models/carrito.compras';
+import { ICartStore } from '../../../models/carrito.compras';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-checkout',
@@ -13,6 +14,7 @@ import {  ICartStore } from '../../../models/carrito.compras';
 })
 export default class CheckoutComponent {
   cartStore = inject(ICartStore);
+
 
   private readonly _checkoutSvc = inject(CheckoutService);
 
@@ -28,3 +30,6 @@ export default class CheckoutComponent {
     this.cartStore.clearCart();
   }
 }
+
+
+
