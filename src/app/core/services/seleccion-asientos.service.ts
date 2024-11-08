@@ -28,7 +28,7 @@ export class SeleccionAsientosService {
     constructor(private _apiService: ApiService) {}
     setCompraFinal(compra : IComprador[]) {
         this.compraFinalSubject.next(compra); 
-        console.log('DATOSCOMPRA',this.busSeleccionado$)
+        // console.log('DATOSCOMPRA',this.busSeleccionado$)
     }
 
     setDocumentId(documentId: string): void {
