@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 import { IBusesDetalles } from '../models/strapi-model';
 import { ApiService } from './api.service';
 import { IComprador } from '../models/compraFinal';
+import { IProductStripe } from '../models/productStripe.interface';
+
 
 @Injectable({
     providedIn: 'root',
@@ -11,30 +13,30 @@ export class SeleccionAsientosService {
     private pasajeros: any[] = []; // Pasajeros con datos detallados
     private totalAmount: number = 0;
     private documentId: string = '';  // Aquí guardamos el documentId seleccionado del boton de bus-detalle
-    private compraFinal : IComprador[] =[] ;
+    private compraFinal: IComprador[] = [];
     
-    private busSeleccionadoSubject = new BehaviorSubject<any>(null);
+    private busSeleccionadoSubject = new BehaviorSubject<any>(null); // documentId de bus
     private pasajerosSubject = new BehaviorSubject<any[]>(this.pasajeros);
     private totalAmountSubject = new BehaviorSubject<number>(this.totalAmount);
     private asientosSubject = new BehaviorSubject<any[]>([]);
-    private compraFinalSubject =new BehaviorSubject<any[]>([]);
+    private compraFinalSubject = new BehaviorSubject<any[]>([]); // datos para recibo o fac
 
+    busSeleccionado$ = this.busSeleccionadoSubject.asObservable(); // documentId de bus 
     pasajeros$ = this.pasajerosSubject.asObservable();
     asientos$ = this.asientosSubject.asObservable();
     totalAmount$ = this.totalAmountSubject.asObservable();
-    busSeleccionado$ = this.busSeleccionadoSubject.asObservable();
-    compraFinal$ = this.compraFinalSubject.asObservable();
+    compraFinal$ = this.compraFinalSubject.asObservable(); // datos para recibo o fac
 
     constructor(private _apiService: ApiService) {}
-    setCompraFinal(compra : IComprador[]) {
-        this.compraFinalSubject.next(compra); 
-        // console.log('DATOSCOMPRA',this.busSeleccionado$)
+
+    // Método para configurar la compra final
+    setCompraFinal(compra: IComprador[]) {
+        this.compraFinalSubject.next(compra);
     }
 
     setDocumentId(documentId: string): void {
         this.documentId = documentId;
         console.log('documentId llegó al servicio SeleccionAsientosService:', documentId);
-        // Llamamos a la API para obtener los asientos con el documentId
         this.loadAsientos(); // Cargamos los asientos después de establecer el documentId
     }
 
@@ -43,37 +45,62 @@ export class SeleccionAsientosService {
         if (this.documentId) {
             this._apiService.getAsientosByDocumentId(this.documentId).subscribe(
                 (asientos) => {
-                    console.log('Asientos obtenidos:', asientos);  // Muestra los asientos en consola
-                    this.asientosSubject.next(asientos);  // Emitimos los datos de los asientos
+                    console.log('Asientos obtenidos:', asientos);
+                    this.asientosSubject.next(asientos);
                 },
                 (error) => {
-                    console.error('Error al obtener los asientos:', error); // Manejo de errores
+                    console.error('Error al obtener los asientos:', error);
                 }
             );
         }
-    } 
- 
+    }
+
     setSelectedPasajeros(pasajeros: any[], total: number) {
-        this.pasajeros = pasajeros.map(asiento => ({ asiento, propietario: {} })); // Inicia con asientos y propietarios vacíos
+        this.pasajeros = pasajeros.map(asiento => ({ asiento, propietario: {} }));
         this.totalAmount = total;
-        
+
         this.pasajerosSubject.next(this.pasajeros);
         this.totalAmountSubject.next(this.totalAmount);
     }
-    setBusSeleccionado(bus:  IBusesDetalles) {
-        this.busSeleccionadoSubject.next(bus); // Emitimos el nuevo valor de busSeleccionado
-        console.log('BUS',this.busSeleccionado$)
+
+    setBusSeleccionado(bus: IBusesDetalles) {
+        this.busSeleccionadoSubject.next(bus);
     }
 
     // Método para actualizar datos del propietario de un pasajero específico
     updatePropietarioDatos(asientoIndex: number, propietarioData: any) {
         if (this.pasajeros[asientoIndex]) {
-            // Actualiza el objeto propietario en lugar de propietarioDni
-            this.pasajeros[asientoIndex].propietario = propietarioData; 
-            this.pasajerosSubject.next(this.pasajeros); // Emitimos el cambio
+            this.pasajeros[asientoIndex].propietario = propietarioData;
+            this.pasajerosSubject.next(this.pasajeros);
         }
     }
-    
+
+    // Método para transformar pasajeros a productos del carrito
+    transformPasajerosToProductStripe(): IProductStripe[] {
+        return this.pasajeros.map((pasajero, index) => ({
+            id: index + 1,
+            title: "Lima-Tarma", 
+            price: 50, // Precio por pasajero
+            category: "Regular",
+            description: "Viaje en bus",
+            image: "https://res.cloudinary.com/dyelvotz0/image/upload/v1727587318/LogoImperial_nvve7x.png",
+            qty: 1,
+            pasajero: {
+                id: index + 1,
+                nombre_completo: `${pasajero.propietario.apellido_paterno} ${pasajero.propietario.apellido_materno}, ${pasajero.propietario.nombres}`,
+                ID_TipoDocumento: pasajero.tipoDocumento,
+                Numero_Documento: pasajero.propietario.numeroDocumento || pasajero.propietario.numero,
+            },
+            asiento: {
+                id: index + 1,
+                numeroPiso: 2,
+                idPajero: index + 1,
+                numeroAsiento: pasajero.asiento,
+                idBus: 23,
+            },
+            subTotal: 50, // Precio subtotal
+        }));
+    }
 
     getSelectedPasajeros() {
         return this.pasajeros;

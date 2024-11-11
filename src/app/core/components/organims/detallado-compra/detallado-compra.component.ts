@@ -7,7 +7,7 @@ import { IBusesDetalles } from '../../../models/strapi-model';
 @Component({
     selector: 'app-detallado-compra',
     standalone: true,
-    imports: [RouterLink, CommonModule,],
+    imports: [ CommonModule,],
     templateUrl: './detallado-compra.component.html',
     styleUrl: './detallado-compra.component.scss',
 })

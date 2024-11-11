@@ -11,10 +11,10 @@
       <app-pago (continue)="avanzar()" (back)="retroceder()"></app-pago>
     </ng-container>
    
-    <ng-container *ngIf="pasoActual === 3">
+    <!-- <ng-container *ngIf="pasoActual === 3">
       <app-checkout ></app-checkout>
       
-    </ng-container>
+    </ng-container> -->
   
     <div *ngIf="pasoActual > 0">
       <button (click)="retroceder()">Volver</button>

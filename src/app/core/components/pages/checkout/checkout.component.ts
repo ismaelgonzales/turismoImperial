@@ -1,15 +1,15 @@
-import { CurrencyPipe } from '@angular/common';
+
 import { Component, inject, Output } from '@angular/core';
 
 
 import { CheckoutService } from '../../../services/checkout.service';
 import { ICartStore } from '../../../models/carrito.compras';
-import { EventEmitter } from 'stream';
+
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [],
   templateUrl: './checkout.component.html',
 })
 export default class CheckoutComponent {
