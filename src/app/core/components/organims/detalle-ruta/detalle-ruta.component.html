@@ -1,6 +1,6 @@
-<div class="grid grid-cols-6 gap-2 border-solid border-2 border-red-950 rounded-2xl py-2 px-6 max-w-4xl mx-auto p-4 mt-6 space-x-4 items-center">
+<div class="grid grid-cols-6 gap-2 border-solid border-2 border-red-950 rounded-2xl py-4 px-6 max-w-4xl mx-auto p-4 mt-6 space-x-4 items-center">
     <label for="date">Selecciona un Origen:</label>
-    <select [(ngModel)]="ciudadOrigen" (change)="actualizarDestino()" class="border-solid border-2 border-red-950 rounded-2xl">
+    <select [(ngModel)]="ciudadOrigen" (change)="actualizarDestino()" class="border-solid border-2 p-2 px-3 mx border-red-950 rounded-2xl">
         <option value="">Selecciona una ciudad de origen</option>
         <option value="Tarma">Tarma</option>
         <option value="Lima">Lima</option>
@@ -11,14 +11,14 @@
         id="destino" 
         [value]="destino" 
         readonly 
-        class="border-solid border-2 border-red-950 rounded-2xl">
+        class="border-solid border-2 p-2 px-3 mx border-red-950 rounded-2xl">
     <label for="date">Selecciona una fecha:</label>
     <input 
         type="date" 
         id="date" 
         [(ngModel)]="fechaSeleccionada" 
         (change)="onFechaSeleccionada($event)"  
-        class="border-solid border-2 border-red-950 rounded-2xl">
+        class="border-solid border-2 p-2 px-3 mx border-red-950 rounded-2xl">
     
 </div>
 
@@ -31,7 +31,7 @@
                 alt="Buses" />
         </div>
         <div class="">
-            <p>De:{{ rutas.origen }} <br/>{{rutas.terminalSaliente}}</p>
+            <p>De:{{ rutas.origen }} /<br/>{{rutas.terminalSaliente}}</p>
         </div>
         <div class="">
             <svg
@@ -48,8 +48,8 @@
         </div>
         <div class="">
             <p>
-                Hacia 
-                {{ rutas.destino }} <br/> {{rutas.terminalEntrante}}
+                Hacia:
+                {{ rutas.destino }} /<br/> {{rutas.terminalEntrante}}
             </p>
         </div>
         <div class="">
