@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { HeaderPageComponent } from '../../atoms/header-page/header-page.component';
 import { DetalladoCompraComponent } from '../../organims/detallado-compra/detallado-compra.component';
 import { FooterPageComponent } from '../../atoms/footer-page/footer-page.component';
@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
     templateUrl: './datos-pasajero.component.html',
     styleUrls: ['./datos-pasajero.component.scss'],
 })
-export class DatosPasajeroComponent implements OnInit {
+export class DatosPasajeroComponent implements OnInit, OnDestroy {
     pasajerosSeleccionados: any[] = [];
     private pasajerosSubscription: Subscription = new Subscription();
     dniArray: string[] = []; // Array para almacenar DNIs
@@ -37,12 +37,13 @@ export class DatosPasajeroComponent implements OnInit {
         private dniService: DniService,
         private toastr: ToastrService,
         private cdr: ChangeDetectorRef
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.pasajerosSubscription = this.seleccionAsientosService.pasajeros$.subscribe(pasajeros => {
             this.pasajerosSeleccionados = pasajeros;
-            console.log('Pasajeros seleccionados:', this.pasajerosSeleccionados);
+            this.checkFormCompletion(); // Verificar si los datos están completos al inicio
+            this.cdr.detectChanges();
         });
     }
 
@@ -62,19 +63,16 @@ export class DatosPasajeroComponent implements OnInit {
                 response => {
                     if (response.success) {
                         this.datosPropietario[index] = response.data;
+                        this.pasajerosSeleccionados[index].propietario = response.data;
                         this.seleccionAsientosService.updatePropietarioDatos(index, response.data);
-                        console.log('Datos del propietario actualizados en el servicio:', response.data);
-                        
                         this.checkFormCompletion(); // Verificar si los datos están completos
-                        this.cdr.detectChanges(); // Forzar la detección de cambios
+                        this.cdr.detectChanges();
                     } else {
                         this.toastr.error('Error al obtener datos.');
-                        console.error('Error al obtener datos:', response);
                     }
                 },
                 error => {
                     this.toastr.error('Error de conexión.');
-                    console.error('Error de conexión:', error);
                 }
             );
         } else {
@@ -101,18 +99,8 @@ export class DatosPasajeroComponent implements OnInit {
     formIsValid(): boolean {
         return this.pasajerosSeleccionados.every(pasajero => {
             if (pasajero.tipoDocumento === 'DNI') {
-                return (
-                    pasajero.propietario?.numeroDocumento &&
-                    pasajero.propietario?.nombres &&
-                    pasajero.propietario?.apellidos
-                );
-            } else if (pasajero.tipoDocumento === 'Pasaporte' || pasajero.tipoDocumento === 'Cédula de identidad') {
-                return (
-                    pasajero.propietario?.numeroDocumento &&
-                    pasajero.propietario?.nombres &&
-                    pasajero.propietario?.apellidos
-                );
-            } else if (pasajero.tipoDocumento === 'Carnet de extranjería') {
+                return true; // Si el documento es DNI, activar botón sin más validaciones
+            } else if (pasajero.tipoDocumento === 'Pasaporte' || pasajero.tipoDocumento === 'Cédula de identidad' || pasajero.tipoDocumento === 'Carnet de extranjería') {
                 return (
                     pasajero.propietario?.numeroDocumento &&
                     pasajero.propietario?.nombres &&
@@ -126,21 +114,22 @@ export class DatosPasajeroComponent implements OnInit {
     // Verifica si los datos de todos los pasajeros están completos
     checkFormCompletion() {
         this.datosCompletos = this.formIsValid();
-        this.cdr.detectChanges(); // Forzar la detección de cambios
     }
 
     showValidationErrors() {
+        if (this.datosCompletos) return; // Evita notificaciones si los datos están completos
+
         this.pasajerosSeleccionados.forEach((pasajero, index) => {
             if (!pasajero.tipoDocumento) {
                 this.toastr.error(`Seleccione el tipo de documento para el pasajero ${index + 1}`);
             }
-            if (!pasajero.propietario?.numeroDocumento) {
+            if (!pasajero.propietario?.numeroDocumento && pasajero.tipoDocumento !== 'DNI') {
                 this.toastr.error(`Ingrese el número de documento para el pasajero ${index + 1}`);
             }
-            if (!pasajero.propietario?.nombres) {
+            if (!pasajero.propietario?.nombres && pasajero.tipoDocumento !== 'DNI') {
                 this.toastr.error(`Ingrese los nombres para el pasajero ${index + 1}`);
             }
-            if (!pasajero.propietario?.apellidos) {
+            if (!pasajero.propietario?.apellidos && pasajero.tipoDocumento !== 'DNI') {
                 this.toastr.error(`Ingrese los apellidos para el pasajero ${index + 1}`);
             }
         });
