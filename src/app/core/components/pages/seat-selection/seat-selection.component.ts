@@ -7,7 +7,7 @@ import { FooterPageComponent } from '../../atoms/footer-page/footer-page.compone
 import { DetalladoCompraComponent } from '../../organims/detallado-compra/detallado-compra.component';
 import { SeleccionAsientosService } from '../../../services/seleccion-asientos.service';
 import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
+
 
 @Component({
     selector: 'app-seat-selection',
@@ -17,7 +17,7 @@ import { RouterLink } from '@angular/router';
         HeaderPageComponent,
         FooterPageComponent,
         DetalladoCompraComponent,
-        RouterLink,
+        
     ],
     templateUrl: './seat-selection.component.html',
     styleUrls: ['./seat-selection.component.scss'],
