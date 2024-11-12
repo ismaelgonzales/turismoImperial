@@ -219,8 +219,20 @@ export class SeatSelectionComponent implements OnInit {
         this.seleccionAsientosService.setSelectedPasajeros(pasajeros, total);
         // console.log('Pasajeros y monto total enviados al servicio');
     }
-    onContinue() {
-        this.continue.emit(); // Avanza al siguiente paso
+    isContinueEnabled(): boolean {
+        return this.selectedSeats.length > 0;
     }
+    
+    onContinue() {
+        
+        if (this.selectedSeats.length === 0) {
+            this.toastr.warning('Debe seleccionar al menos un asiento antes de continuar.');
+            return;
+        }
+        this.continue.emit();
+    }
+    
+    
+    
 }
 
