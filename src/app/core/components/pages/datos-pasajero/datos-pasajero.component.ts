@@ -44,6 +44,7 @@ export class DatosPasajeroComponent implements OnInit, OnDestroy {
             this.pasajerosSeleccionados = pasajeros;
             this.checkFormCompletion(); // Verificar si los datos están completos al inicio
             this.cdr.detectChanges();
+            console.log('PASAJEROS',this.pasajerosSeleccionados)
         });
     }
 
