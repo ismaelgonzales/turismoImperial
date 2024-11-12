@@ -123,15 +123,16 @@
                 <div class="px-3 md:w-5/12">
                     <app-detallado-compra />
                     <div class="grid-cols-2">
-                        <button
-                            class="   bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
-                            (click)="onBack()">Regresar </button>
-                        <!-- <button
-                            class=" ml-20 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
-                            (click)="onContinue()">Finalizar Compra</button> -->
-
-                        <app-checkout class="ml-20"/>
+                        <button 
+                            class="col-span-1 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                            (click)="onBack()">Regresar
+                        </button>
+                    
+                        <div *ngIf="isFormValid" class="col-span-1">
+                            <app-checkout></app-checkout>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
