@@ -26,6 +26,7 @@ export class SeleccionAsientosService {
     asientos$ = this.asientosSubject.asObservable();
     totalAmount$ = this.totalAmountSubject.asObservable();
     compraFinal$ = this.compraFinalSubject.asObservable(); // datos para recibo o fac
+    static totalAmount$: any;
 
     constructor(private _apiService: ApiService) {}
 
@@ -75,32 +76,6 @@ export class SeleccionAsientosService {
         }
     }
 
-    // Método para transformar pasajeros a productos del carrito
-    transformPasajerosToProductStripe(): IProductStripe[] {
-        return this.pasajeros.map((pasajero, index) => ({
-            id: index + 1,
-            title: "Lima-Tarma", 
-            price: 50, // Precio por pasajero
-            category: "Regular",
-            description: "Viaje en bus",
-            image: "https://res.cloudinary.com/dyelvotz0/image/upload/v1727587318/LogoImperial_nvve7x.png",
-            qty: 1,
-            pasajero: {
-                id: index + 1,
-                nombre_completo: `${pasajero.propietario.apellido_paterno} ${pasajero.propietario.apellido_materno}, ${pasajero.propietario.nombres}`,
-                ID_TipoDocumento: pasajero.tipoDocumento,
-                Numero_Documento: pasajero.propietario.numeroDocumento || pasajero.propietario.numero,
-            },
-            asiento: {
-                id: index + 1,
-                numeroPiso: 2,
-                idPajero: index + 1,
-                numeroAsiento: pasajero.asiento,
-                idBus: 23,
-            },
-            subTotal: 50, // Precio subtotal
-        }));
-    }
 
     getSelectedPasajeros() {
         return this.pasajeros;

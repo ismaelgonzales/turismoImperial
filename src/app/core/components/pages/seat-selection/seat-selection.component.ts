@@ -102,7 +102,7 @@ export class SeatSelectionComponent implements OnInit {
 
     // Precios de los asientos
     private firstFloorPrice: number = 45;
-    private secondFloorPrice: number = 35;
+    private secondFloorPrice: number = 45;
 
     constructor(
         private socketService: SocketService,
