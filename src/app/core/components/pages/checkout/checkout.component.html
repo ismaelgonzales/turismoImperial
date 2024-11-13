@@ -13,11 +13,14 @@
       <table class="w-full text-left whitespace-no-wrap table-auto">
         <thead>
           <tr>
-            <th
-              class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 rounded-tl rounded-bl title-font">
-              Ruta</th>
-            <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Catidad</th>
+            <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100  title-font">Nombre</th>
+            <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Ruta</th>
+            
             <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Precio</th>
+            <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Asiento</th>
+            <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Codigo-Bus</th>
+            <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Tipo Doc</th>
+            <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Documento</th>
             <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font"></th>
           </tr>
         </thead>
@@ -25,8 +28,13 @@
           @for (item of cartStore.products(); track $index) {
           <tr>
             <td class="px-4 py-3">{{item.title}}</td>
-            <td class="px-4 py-3">{{item.qty}}</td>
+            <td class="px-4 py-3">{{item.description}}</td>
+            
             <td class="px-4 py-3 text-lg text-orange-900">S/.{{item.price}}</td>
+            <td class="px-4 py-3 text-lg text-orange-900">{{item.asiento}}</td>
+            <td class="px-4 py-3 text-lg text-orange-900">{{item.bus}}</td>
+            <td class="px-4 py-3 text-lg text-orange-900">{{item.tipo_doc}}</td>
+            <td class="px-4 py-3 text-lg text-orange-900">{{item.documento}}</td>
             <td>
               <button (click)="removeItem(item.id)"
                 class="flex px-2 text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">
@@ -53,7 +61,8 @@
     </div>
     <div class="flex w-full pl-4 mx-auto mt-4 lg:w-2/3">
       <button (click)="onProceedToPay()"
-        class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">Pagar con Stripe</button>
+        class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">Pagar
+        con Stripe</button>
     </div>
     } @else {
     <div class="flex flex-col w-full mb-20 text-center">
@@ -61,6 +70,7 @@
     </div>
     }
   </div>
+  
 </section>
 <!-- <button (click)="onProceedToPay()"
   class=" px-6 py-2 ml-auto text-white bg-orange-500 border-0  rounded-xl focus:outline-none hover:bg-red-600">Pagar con Stripe</button> -->

@@ -14,9 +14,9 @@ export class SeleccionAsientosService {
     private totalAmount: number = 0;
     private documentId: string = '';  // Aquí guardamos el documentId seleccionado del boton de bus-detalle
     private compraFinal: IComprador[] = [];
-    private  busSeleccionado : IBusesDetalles | null = null ;
+    private busSeleccionado: IBusesDetalles[] = [];
 
-    private busSeleccionadoSubject = new BehaviorSubject<IBusesDetalles | null>(this.busSeleccionado); // documentId de bus
+    private busSeleccionadoSubject = new BehaviorSubject<IBusesDetalles []>(this.busSeleccionado); // documentId de bus
     private pasajerosSubject = new BehaviorSubject<any[]>(this.pasajeros);
     private totalAmountSubject = new BehaviorSubject<number>(this.totalAmount);
     private asientosSubject = new BehaviorSubject<any[]>([]);
@@ -65,7 +65,7 @@ export class SeleccionAsientosService {
         this.totalAmountSubject.next(this.totalAmount);
     }
 
-    setBusSeleccionado(bus: IBusesDetalles): void {
+    setBusSeleccionado(bus: IBusesDetalles[]): void {
         console.log('Bus recibido en el servicio:', bus); // Muestra el objeto completo del bus
         this.busSeleccionadoSubject.next(bus);  // Actualiza el BehaviorSubject con el objeto completo del bus
     }

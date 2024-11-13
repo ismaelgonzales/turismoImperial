@@ -7,50 +7,30 @@ import {
     withState,
 } from '@ngrx/signals';
 import { ToastrService } from 'ngx-toastr';
-import { IProductStripe } from './productStripe.interface';
+import { IPasajero, IProductStripe } from './productStripe.interface';
 import { SeleccionAsientosService } from '../services/seleccion-asientos.service';
+import { IBusesDetalles } from './strapi-model';
 
 export interface ICartStore {
     products: IProductStripe[];
     totalAmount: number;
     productsCount: number;
-    busSeleccionado?: any;
-    pasajeros?: any[];
+    busSeleccionado: IBusesDetalles[];
+    pasajeros: IPasajero[];
     asientos?: any[];
     compraFinal?: any[];
 }
 
 const initialState: ICartStore = {
-    products: [{
-        id: 1,
-        title: "Lima-Tarma",
-        price: 45,
-        category: "Regular",
-        description: "blablabla",
-        image: "https://res.cloudinary.com/dyelvotz0/image/upload/v1727587318/LogoImperial_nvve7x.png",
-        qty: 1,
-        pasajero: {
-            id: 1,
-            nombre_completo: "CHRISTOPHER ISMAEL , GONZALES DAVILA",
-            ID_TipoDocumento: "DNI",
-            Numero_Documento: 77338315,
-        },
-        asiento: {
-            id: 1,
-            numeroPiso: 2,
-            idPajero: 1,
-            numeroAsiento: 23,
-            idBus: 23,
-        },
-        subTotal: 50,
-    }],
+    products: [],
     totalAmount: 0,
     productsCount: 0,
-    busSeleccionado: null,
+    busSeleccionado: [],
     pasajeros: [],
     asientos: [],
     compraFinal: []
 };
+
 export const ICartStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
@@ -58,32 +38,47 @@ export const ICartStore = signalStore(
         productsCount: computed(() => calculateProductCount(products())),
         totalAmount: computed(() => calculateTotalAmount(products())),
     })),
-    withMethods(({ products, ...store }, toastSvc = inject(ToastrService), seleccionAsientosSvc = inject(SeleccionAsientosService)) => {
-        // Suscripciones a SeleccionAsientosService para mantener el store actualizado
-        seleccionAsientosSvc.busSeleccionado$.subscribe(busSeleccionado => {
-            console.log('Nuevo bus seleccionado:', busSeleccionado);  // Se ejecuta cuando `busSeleccionado$` emite un valor
-            patchState(store, { busSeleccionado });
+    withMethods(({ products, busSeleccionado, pasajeros, ...store }, toastSvc = inject(ToastrService), seleccionAsientosSvc = inject(SeleccionAsientosService)) => {
+        // Suscripción a los observables de busSeleccionado y pasajeros
+        seleccionAsientosSvc.busSeleccionado$.subscribe(bus => {
+            console.log('Nuevo bus seleccionado:', bus);
+            patchState(store, { busSeleccionado: bus });
+            updateProducts(pasajeros(), bus);  // Llama a la función para actualizar los productos
         });
 
         seleccionAsientosSvc.pasajeros$.subscribe(pasajeros => {
-            console.log('Pasajeros actualizados:', pasajeros);  // Se ejecuta cuando `pasajeros$` emite un valor
+            console.log('Pasajeros actualizados:', pasajeros);
             patchState(store, { pasajeros });
+            updateProducts(pasajeros, busSeleccionado());  // Llama a la función para actualizar los productos
         });
 
-        // seleccionAsientosSvc.asientos$.subscribe(asientos => {
-        //     console.log('Asientos actualizados:', asientos);  // Se ejecuta cuando `asientos$` emite un valor
-        //     patchState(store, { asientos });
-        // });
+        // Función para actualizar los productos
+        function updateProducts(pasajeros: any[], busSeleccionado: any) {
+            if (!busSeleccionado || pasajeros.length === 0) return;
 
-        seleccionAsientosSvc.totalAmount$.subscribe(totalAmount => {
-            console.log('Nuevo totalAmount:', totalAmount);  // Se ejecuta cuando `totalAmount$` emite un valor
-            patchState(store, { totalAmount });
-        });
+            const productos = pasajeros.map((pasajero: any, index: number) => {
+                const { propietario, asiento, tipoDocumento, documento } = pasajero;
+                const busId = busSeleccionado.documentId;
 
-        seleccionAsientosSvc.compraFinal$.subscribe(compraFinal => {
-            console.log('Compra final actualizada:', compraFinal);  // Se ejecuta cuando `compraFinal$` emite un valor
-            patchState(store, { compraFinal });
-        });
+                const product: IProductStripe = {
+                    id: index + 1, // ID de 1 a 4 (o más según el número de pasajeros)
+                    title: propietario?.nombre_completo || `${propietario?.apellidos} ${propietario?.nombres}`, // Primera o segunda estructura
+                    price: busSeleccionado.precioPromedio,
+                    description: `${busSeleccionado.origen} - ${busSeleccionado.destino}`,
+                    qty: 1,
+                    tipo_doc: tipoDocumento, // Tipo de documento (DNI, Pasaporte, etc.)
+                    documento: documento || propietario?.numeroDocumento, // Número de documento
+                    asiento: asiento,
+                    bus: busId,
+                    category: '',
+                    subTotal: 0
+                };
+
+                return product;
+            });
+
+            patchState(store, { products: productos });  // Actualiza los productos en el estado
+        }
 
         return {
             addToCart(product: IProductStripe) {
@@ -111,7 +106,6 @@ export const ICartStore = signalStore(
         };
     })
 );
-
 
 function calculateTotalAmount(products: IProductStripe[]): number {
     return products.reduce(

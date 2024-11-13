@@ -29,6 +29,7 @@ export default class CheckoutComponent {
   clearAll(): void {
     this.cartStore.clearCart();
   }
+  
 }
 
 

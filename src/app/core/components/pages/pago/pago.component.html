@@ -45,72 +45,86 @@
                                 <!-- Campo de Correo -->
                                 <div class="md:col-span-3">
                                     <input type="email" formControlName="correo"
-                                           class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                           [ngClass]="{'border-red-500': compradorForm.get('correo')?.invalid && compradorForm.get('correo')?.touched}"
-                                           placeholder="Correo electrónico*" />
-                                    <div *ngIf="compradorForm.get('correo')?.invalid && compradorForm.get('correo')?.touched" class="text-red-500 text-xs mt-1">
-                                        <span *ngIf="compradorForm.get('correo')?.errors?.['required']">Correo es obligatorio.</span>
-                                        <span *ngIf="compradorForm.get('correo')?.errors?.['email']">Correo no es válido.</span>
+                                        class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                        [ngClass]="{'border-red-500': compradorForm.get('correo')?.invalid && compradorForm.get('correo')?.touched}"
+                                        placeholder="Correo electrónico*" />
+                                    <div *ngIf="compradorForm.get('correo')?.invalid && compradorForm.get('correo')?.touched"
+                                        class="text-red-500 text-xs mt-1">
+                                        <span *ngIf="compradorForm.get('correo')?.errors?.['required']">Correo es
+                                            obligatorio.</span>
+                                        <span *ngIf="compradorForm.get('correo')?.errors?.['email']">Correo no es
+                                            válido.</span>
                                     </div>
                                 </div>
-                
+
                                 <!-- Campo de Celular -->
                                 <div class="md:col-span-3">
                                     <input type="number" formControlName="celular"
-                                           class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                           [ngClass]="{'border-red-500': compradorForm.get('celular')?.invalid && compradorForm.get('celular')?.touched}"
-                                           placeholder="Número de Celular" />
-                                    <div *ngIf="compradorForm.get('celular')?.invalid && compradorForm.get('celular')?.touched" class="text-red-500 text-xs mt-1">
-                                        <span *ngIf="compradorForm.get('celular')?.errors?.['required']">Número de celular es obligatorio.</span>
+                                        class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                        [ngClass]="{'border-red-500': compradorForm.get('celular')?.invalid && compradorForm.get('celular')?.touched}"
+                                        placeholder="Número de Celular" />
+                                    <div *ngIf="compradorForm.get('celular')?.invalid && compradorForm.get('celular')?.touched"
+                                        class="text-red-500 text-xs mt-1">
+                                        <span *ngIf="compradorForm.get('celular')?.errors?.['required']">Número de
+                                            celular es obligatorio.</span>
                                     </div>
                                 </div>
                             </div>
-                
+
                             <!-- Selección de Tipo de Comprobante -->
                             <div class="w-full flex mb-3 mt-3 items-center border-b-2">
                                 <span class="text-gray-600 font-semibold">Selecciona Boleta/Factura</span>
                             </div>
-                            <div class="h-10 gap-4 mt-1 gap-y-2 text-sm bg-gray-50 flex border border-gray-200 rounded-xl items-center">
-                                <select formControlName="tipoDoc" class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent">
+                            <div
+                                class="h-10 gap-4 mt-1 gap-y-2 text-sm bg-gray-50 flex border border-gray-200 rounded-xl items-center">
+                                <select formControlName="tipoDoc"
+                                    class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent">
                                     <option value="">Selecciona una opción</option>
                                     <option value="Boleta">Boleta</option>
                                     <option value="Factura">Factura</option>
                                 </select>
                             </div>
-                
+
                             <!-- Mostrar campos adicionales si se selecciona "Factura" -->
                             <ng-container [ngSwitch]="compradorForm.get('tipoDoc')?.value">
-                                <div *ngSwitchCase="'Factura'" class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
+                                <div *ngSwitchCase="'Factura'"
+                                    class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
                                     <!-- Campo de RUC -->
                                     <div class="md:col-span-full">
-                                        <input type="number" formControlName="ruc" 
-                                               class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                               [ngClass]="{'border-red-500': compradorForm.get('ruc')?.invalid && compradorForm.get('ruc')?.touched}"
-                                               placeholder="RUC*" />
-                                        <div *ngIf="compradorForm.get('ruc')?.invalid && compradorForm.get('ruc')?.touched" class="text-red-500 text-xs mt-1">
-                                            <span *ngIf="compradorForm.get('ruc')?.errors?.['required']">RUC es obligatorio.</span>
+                                        <input type="number" formControlName="ruc"
+                                            class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                            [ngClass]="{'border-red-500': compradorForm.get('ruc')?.invalid && compradorForm.get('ruc')?.touched}"
+                                            placeholder="RUC*" />
+                                        <div *ngIf="compradorForm.get('ruc')?.invalid && compradorForm.get('ruc')?.touched"
+                                            class="text-red-500 text-xs mt-1">
+                                            <span *ngIf="compradorForm.get('ruc')?.errors?.['required']">RUC es
+                                                obligatorio.</span>
                                         </div>
                                     </div>
-                
+
                                     <!-- Campo de Razón Social -->
                                     <div class="md:col-span-full">
                                         <input type="text" formControlName="razonSocial"
-                                               class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                               [ngClass]="{'border-red-500': compradorForm.get('razonSocial')?.invalid && compradorForm.get('razonSocial')?.touched}"
-                                               placeholder="Razón Social" />
-                                        <div *ngIf="compradorForm.get('razonSocial')?.invalid && compradorForm.get('razonSocial')?.touched" class="text-red-500 text-xs mt-1">
-                                            <span *ngIf="compradorForm.get('razonSocial')?.errors?.['required']">Razón Social es obligatoria.</span>
+                                            class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                            [ngClass]="{'border-red-500': compradorForm.get('razonSocial')?.invalid && compradorForm.get('razonSocial')?.touched}"
+                                            placeholder="Razón Social" />
+                                        <div *ngIf="compradorForm.get('razonSocial')?.invalid && compradorForm.get('razonSocial')?.touched"
+                                            class="text-red-500 text-xs mt-1">
+                                            <span *ngIf="compradorForm.get('razonSocial')?.errors?.['required']">Razón
+                                                Social es obligatoria.</span>
                                         </div>
                                     </div>
-                
+
                                     <!-- Campo de Dirección -->
                                     <div class="md:col-span-full">
                                         <input type="text" formControlName="direccion"
-                                               class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                               [ngClass]="{'border-red-500': compradorForm.get('direccion')?.invalid && compradorForm.get('direccion')?.touched}"
-                                               placeholder="Dirección*" />
-                                        <div *ngIf="compradorForm.get('direccion')?.invalid && compradorForm.get('direccion')?.touched" class="text-red-500 text-xs mt-1">
-                                            <span *ngIf="compradorForm.get('direccion')?.errors?.['required']">Dirección es obligatoria.</span>
+                                            class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                            [ngClass]="{'border-red-500': compradorForm.get('direccion')?.invalid && compradorForm.get('direccion')?.touched}"
+                                            placeholder="Dirección*" />
+                                        <div *ngIf="compradorForm.get('direccion')?.invalid && compradorForm.get('direccion')?.touched"
+                                            class="text-red-500 text-xs mt-1">
+                                            <span *ngIf="compradorForm.get('direccion')?.errors?.['required']">Dirección
+                                                es obligatoria.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -118,24 +132,27 @@
                         </form>
                     </div>
                 </div>
-                
+
 
                 <div class="px-3 md:w-5/12">
                     <app-detallado-compra />
                     <div class="grid-cols-2">
-                        <button 
+                        <button
                             class="col-span-1 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
                             (click)="onBack()">Regresar
                         </button>
-                    
-                        <div *ngIf="isFormValid" class="col-span-1">
-                            <app-checkout></app-checkout>
-                        </div>
+                        <button (click)="onContinue()" *ngIf="isFormValid"
+                            class="col-span-1 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold">
+                            Continuar
+                        </button>
+
+
                     </div>
-                    
+
                 </div>
             </div>
         </div>
+        
     </div>
 
     <div class="p-5">

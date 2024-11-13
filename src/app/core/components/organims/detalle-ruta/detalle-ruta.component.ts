@@ -21,7 +21,7 @@ export class DetalleRutaComponent implements OnInit {
     @Input() precio: number = 0;
 
     rutasListas: IBusesDetalles[] = [];
-    rutasFiltradas: IBusesDetalles[] = []; // Lista filtrada para mostrar en la vista
+    rutasFiltradas: any[] = []; // Lista filtrada para mostrar en la vista
     filterPost: string = ''; // Almacena el texto del filtro
     fechaSeleccionada: string = ''; // Almacena la fecha seleccionada
     ciudadOrigen: string = ''; // Para almacenar la ciudad seleccionada
@@ -48,7 +48,7 @@ export class DetalleRutaComponent implements OnInit {
         // });
     }
 
-    tomaObjetoButton(rutaSeleccionada: IBusesDetalles) {
+    tomaObjetoButton(rutaSeleccionada: IBusesDetalles[]) {
         console.log('Bus seleccionado:', rutaSeleccionada);  // Muestra todo el objeto del bus
         this.seleccionAsientosService.setBusSeleccionado(rutaSeleccionada);  // Enviar todo el objeto bus
     }

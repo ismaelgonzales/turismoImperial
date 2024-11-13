@@ -14,7 +14,7 @@ import { IBusesDetalles } from '../../../models/strapi-model';
 export class DetalladoCompraComponent implements OnInit {
     pasajerosSeleccionados: any[] = [];
     totalAmount: number = 0;
-    busMostrar: IBusesDetalles | null = null;
+    busMostrar: IBusesDetalles[] = [];
     private pasajerosSubscription: Subscription = new Subscription();
     private totalAmountSubscription: Subscription = new Subscription();
     private busSeleccionadoSubscription: Subscription = new Subscription();

@@ -74,15 +74,17 @@ export class PagoComponent implements OnInit {
   }
 
   onComplete() {
-    if (this.compradorForm.valid) {
-      this.seleccionAsientosService.setCompraFinal([this.compradorForm.value]);
-      this.complete.emit(); // Emitimos el evento de finalización
-    } else {
-      console.log('Formulario inválido');
-    }
+    
   }
 
   onContinue() {
-    this.continue.emit(); // Avanza al siguiente paso
+    if (this.compradorForm.valid) {
+      this.seleccionAsientosService.setCompraFinal([this.compradorForm.value]);
+      // this.complete.emit(); // Emitimos el evento de finalización
+      this.continue.emit(); // Avanza al siguiente paso
+    } else {
+      console.log('Formulario inválido');
+    }
+
   }
 }
