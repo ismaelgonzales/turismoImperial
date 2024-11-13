@@ -14,8 +14,9 @@ export class SeleccionAsientosService {
     private totalAmount: number = 0;
     private documentId: string = '';  // Aquí guardamos el documentId seleccionado del boton de bus-detalle
     private compraFinal: IComprador[] = [];
-    
-    private busSeleccionadoSubject = new BehaviorSubject<any>(null); // documentId de bus
+    private  busSeleccionado : IBusesDetalles | null = null ;
+
+    private busSeleccionadoSubject = new BehaviorSubject<IBusesDetalles | null>(this.busSeleccionado); // documentId de bus
     private pasajerosSubject = new BehaviorSubject<any[]>(this.pasajeros);
     private totalAmountSubject = new BehaviorSubject<number>(this.totalAmount);
     private asientosSubject = new BehaviorSubject<any[]>([]);
@@ -35,11 +36,11 @@ export class SeleccionAsientosService {
         this.compraFinalSubject.next(compra);
     }
 
-    setDocumentId(documentId: string): void {
-        this.documentId = documentId;
-        console.log('documentId llegó al servicio SeleccionAsientosService:', documentId);
-        this.loadAsientos(); // Cargamos los asientos después de establecer el documentId
-    }
+    // setDocumentId(documentId: string): void {
+    //     this.documentId = documentId;
+    //     console.log('documentId llegó al servicio SeleccionAsientosService:', documentId);
+    //     this.loadAsientos(); // Cargamos los asientos después de establecer el documentId
+    // }
 
     // Método para obtener los asientos de un bus con documentId
     private loadAsientos(): void {
@@ -64,9 +65,11 @@ export class SeleccionAsientosService {
         this.totalAmountSubject.next(this.totalAmount);
     }
 
-    setBusSeleccionado(bus: IBusesDetalles) {
-        this.busSeleccionadoSubject.next(bus);
+    setBusSeleccionado(bus: IBusesDetalles): void {
+        console.log('Bus recibido en el servicio:', bus); // Muestra el objeto completo del bus
+        this.busSeleccionadoSubject.next(bus);  // Actualiza el BehaviorSubject con el objeto completo del bus
     }
+
 
     // Método para actualizar datos del propietario de un pasajero específico
     updatePropietarioDatos(asientoIndex: number, propietarioData: any) {

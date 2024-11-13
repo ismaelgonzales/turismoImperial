@@ -6,8 +6,8 @@ export interface IProductStripe {
   description: string;
   image: string;
   qty: number;
-  // pasajero: IPasajero;
-  // asiento:IAsientoStripe;
+  pasajero: IPasajero;
+  asiento:IAsientoStripe;
   subTotal: number;
 }
 export interface IComprobantes {

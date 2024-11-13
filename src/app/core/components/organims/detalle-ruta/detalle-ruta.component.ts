@@ -49,13 +49,10 @@ export class DetalleRutaComponent implements OnInit {
     }
 
     tomaObjetoButton(rutaSeleccionada: IBusesDetalles) {
-        const documentId = rutaSeleccionada.documentId;  
-        console.log('documentId se tomo del boton ',documentId)// Toma el documentId del objeto seleccionado
-        this.seleccionAsientosService.setDocumentId(documentId);
-        console.log('documentId salio del componente detalle ',documentId)  // Guarda el documentId en el servicio de selección de asientos
+        console.log('Bus seleccionado:', rutaSeleccionada);  // Muestra todo el objeto del bus
+        this.seleccionAsientosService.setBusSeleccionado(rutaSeleccionada);  // Enviar todo el objeto bus
     }
- 
-
+    
     
 
     // Método de filtrado actualizado
