@@ -51,8 +51,8 @@ import { BehaviorSubject } from 'rxjs';
 import { IBusesDetalles } from '../models/strapi-model';
 import { ApiService } from './api.service';
 import { IComprador } from '../models/compraFinal';
-
 import { IProductStripe } from '../models/productStripe.interface';
+
 
 @Injectable({
     providedIn: 'root',
@@ -60,19 +60,17 @@ import { IProductStripe } from '../models/productStripe.interface';
 export class SeleccionAsientosService {
     private pasajeros: any[] = []; // Pasajeros con datos detallados
     private totalAmount: number = 0;
-    private documentId: string = ''; // Aquí guardamos el documentId seleccionado del boton de bus-detalle
+    private documentId: string = '';  // Aquí guardamos el documentId seleccionado del boton de bus-detalle
     private compraFinal: IComprador[] = [];
     private busSeleccionado: IBusesDetalles[] = [];
 
-    private busSeleccionadoSubject = new BehaviorSubject<IBusesDetalles[]>(
-        this.busSeleccionado,
-    ); // documentId de bus
+    private busSeleccionadoSubject = new BehaviorSubject<IBusesDetalles []>(this.busSeleccionado); // documentId de bus
     private pasajerosSubject = new BehaviorSubject<any[]>(this.pasajeros);
     private totalAmountSubject = new BehaviorSubject<number>(this.totalAmount);
     private asientosSubject = new BehaviorSubject<any[]>([]);
     private compraFinalSubject = new BehaviorSubject<any[]>([]); // datos para recibo o fac
 
-    busSeleccionado$ = this.busSeleccionadoSubject.asObservable(); // documentId de bus
+    busSeleccionado$ = this.busSeleccionadoSubject.asObservable(); // documentId de bus 
     pasajeros$ = this.pasajerosSubject.asObservable();
     asientos$ = this.asientosSubject.asObservable();
     totalAmount$ = this.totalAmountSubject.asObservable();
@@ -96,22 +94,19 @@ export class SeleccionAsientosService {
     private loadAsientos(): void {
         if (this.documentId) {
             this._apiService.getAsientosByDocumentId(this.documentId).subscribe(
-                asientos => {
+                (asientos) => {
                     console.log('Asientos obtenidos:', asientos);
                     this.asientosSubject.next(asientos);
                 },
-                error => {
+                (error) => {
                     console.error('Error al obtener los asientos:', error);
-                },
+                }
             );
         }
     }
 
     setSelectedPasajeros(pasajeros: any[], total: number) {
-        this.pasajeros = pasajeros.map(asiento => ({
-            asiento,
-            propietario: {},
-        }));
+        this.pasajeros = pasajeros.map(asiento => ({ asiento, propietario: {} }));
         this.totalAmount = total;
 
         this.pasajerosSubject.next(this.pasajeros);
@@ -120,8 +115,9 @@ export class SeleccionAsientosService {
 
     setBusSeleccionado(bus: IBusesDetalles[]): void {
         console.log('Bus recibido en el servicio:', bus); // Muestra el objeto completo del bus
-        this.busSeleccionadoSubject.next(bus); // Actualiza el BehaviorSubject con el objeto completo del bus
+        this.busSeleccionadoSubject.next(bus);  // Actualiza el BehaviorSubject con el objeto completo del bus
     }
+
 
     // Método para actualizar datos del propietario de un pasajero específico
     updatePropietarioDatos(asientoIndex: number, propietarioData: any) {
@@ -130,6 +126,7 @@ export class SeleccionAsientosService {
             this.pasajerosSubject.next(this.pasajeros);
         }
     }
+
 
     getSelectedPasajeros() {
         return this.pasajeros;

@@ -40,13 +40,13 @@
                         <div class="lg:col-span-2">
                             <div class="w-full flex mb-3 mt-5 items-center border-b-2">
                                 <span class="text-gray-600 font-semibold">
-                                    Pasajero {{ i + 1 }}: {{ pasajero.asiento }}
+                                    Pasajero {{ i + 1 }}:Asiento {{ pasajero.asiento }}
                                 </span>
                             </div>
                             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
                                 <div class="md:col-span-3">
                                     <div class="mt-1">
-                                        <span class="block mb-1">Tipo de Documento*</span>
+                                        <span class="block mb-1">Selecciona el tipo de Documento*</span>
                                         <div
                                             class="h-10 bg-gray-50 flex border border-gray-200 rounded-xl items-center">
                                             <select [(ngModel)]="pasajero.tipoDocumento"
@@ -73,7 +73,7 @@
 
 
                                 <ng-container [ngSwitch]="pasajero.tipoDocumento">
-                                    <div *ngSwitchDefault="'DNI'" class="md:col-span-6">
+                                    <div *ngSwitchDefault class="md:col-span-6">
                                         <div class="md:col-span-3">
                                             <span>Numero de documento*</span>
                                             <input type="text" name="numeroDocumento" id="numeroDocumento"
@@ -105,7 +105,9 @@
                                             <span>Numero de documento*</span>
                                             <input type="text" name="numeroDocumento" id="numeroDocumento"
                                                 class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                                placeholder="Número de documento" />
+                                                [(ngModel)]="pasajero.propietario.numeroDocumento"
+                                                placeholder="Número de documento"
+                                                (ngModelChange)="updatePropietario(i, 'numeroDocumento', $event)" />
                                         </div>
                                         <div class="md:col-span-3">
                                             <span>Nombres*</span>
@@ -127,7 +129,9 @@
                                             <span>Numero de documento*</span>
                                             <input type="text" name="numeroDocumento" id="numeroDocumento"
                                                 class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                                placeholder="Número de documento" />
+                                                [(ngModel)]="pasajero.propietario.numeroDocumento"
+                                                placeholder="Número de documento"
+                                                (ngModelChange)="updatePropietario(i, 'numeroDocumento', $event)" />
                                         </div>
                                         <div class="md:col-span-3">
                                             <span>Nombres*</span>
@@ -149,7 +153,9 @@
                                             <span>Numero de documento*</span>
                                             <input type="text" name="numeroDocumento" id="numeroDocumento"
                                                 class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
-                                                placeholder="Número de documento" />
+                                                [(ngModel)]="pasajero.propietario.numeroDocumento"
+                                                placeholder="Número de documento"
+                                                (ngModelChange)="updatePropietario(i, 'numeroDocumento', $event)" />
                                         </div>
                                         <div class="md:col-span-3">
                                             <span>Nombres*</span>
@@ -171,19 +177,23 @@
 
                         </div>
                     </div>
-                </div>        
-                    <div class="px-3 md:w-5/12">
-                        <app-detallado-compra />
-                        <div class="grid-cols-2">
-                            <button
-                                class="bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
-                                (click)="onBack()">Regresar a Selección de Asientos</button>
-                            <button
-                                class="ml-20 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
-                                (click)="onContinue()">Continuar a Pago</button>
-                        </div>
+                </div>
+                <div class="px-3 md:w-5/12">
+                    <app-detallado-compra />
+                    <div class="grid-cols-2">
+                        <button
+                            class="bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                            (click)="onBack()">Regresar</button>
+                        <button
+                            class="ml-20 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                            
+                            (click)="onContinue()" >Continuar a Pago
+                        </button> 
+                        <!-- [disabled]="!datosCompletos" -->
+
                     </div>
-                
+                </div>
+
             </div>
         </div>
 

@@ -27,20 +27,19 @@ export class DetalleRutaComponent implements OnInit {
     ciudadOrigen: string = ''; // Para almacenar la ciudad seleccionada
     destino: string = ''; // Para almacenar la ciudad de destino
 
-    constructor(
-        private _apiService: ApiService,
-        private seleccionAsientosService: SeleccionAsientosService,
-    ) {}
+    
+
+    constructor(private _apiService: ApiService,
+        private seleccionAsientosService: SeleccionAsientosService
+    ) { }
 
     ngOnInit(): void {
         // Obtiene las rutas desde la API
-        this._apiService
-            .getAllBusesDetalles()
-            .subscribe((data: IBusesDetalles[]) => {
-                this.rutasListas = data;
-                this.rutasFiltradas = data; // Inicializamos con todas las rutas
-                console.log('RUTASSSS', this.rutasListas);
-            });
+        this._apiService.getAllBusesDetalles().subscribe((data: IBusesDetalles[]) => {
+            this.rutasListas = data;
+            this.rutasFiltradas = data; // Inicializamos con todas las rutas
+            console.log('RUTASSSS',this.rutasListas)
+        });
         // this._apiService.getRutasById(id).subscribe((data) => {
         //     this.rutas = data;
         // });
@@ -50,9 +49,11 @@ export class DetalleRutaComponent implements OnInit {
     }
 
     tomaObjetoButton(rutaSeleccionada: IBusesDetalles[]) {
-        console.log('Bus seleccionado:', rutaSeleccionada); // Muestra todo el objeto del bus
-        this.seleccionAsientosService.setBusSeleccionado(rutaSeleccionada); // Enviar todo el objeto bus
+        console.log('Bus seleccionado:', rutaSeleccionada);  // Muestra todo el objeto del bus
+        this.seleccionAsientosService.setBusSeleccionado(rutaSeleccionada);  // Enviar todo el objeto bus
     }
+    
+    
 
     // Método de filtrado actualizado
     filtrarRutas(): void {
@@ -63,7 +64,7 @@ export class DetalleRutaComponent implements OnInit {
                       .includes(this.filterPost.toLowerCase())
                 : true;
 
-            const fechaRuta = ruta.fechaSalida; // Utiliza la fecha como string
+            const fechaRuta  = ruta.fechaSalida;  // Utiliza la fecha como string
             const matchesDate = this.fechaSeleccionada
                 ? fechaRuta === this.fechaSeleccionada
                 : true;

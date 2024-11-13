@@ -7,7 +7,7 @@ import { IBusesDetalles } from '../../../models/strapi-model';
 @Component({
     selector: 'app-detallado-compra',
     standalone: true,
-    imports: [CommonModule],
+    imports: [ CommonModule,],
     templateUrl: './detallado-compra.component.html',
     styleUrl: './detallado-compra.component.scss',
 })
@@ -30,16 +30,14 @@ export class DetalladoCompraComponent implements OnInit {
             });
 
         // Suscribirse a los cambios del monto total
-        this.totalAmountSubscription =
-            this.seleccionAsientosService.totalAmount$.subscribe(total => {
-                this.totalAmount = total;
-                // console.log('Total amount:', this.totalAmount);
-            });
-        this.busSeleccionadoSubscription =
-            this.seleccionAsientosService.busSeleccionado$.subscribe(bus => {
-                this.busMostrar = bus;
-                // console.log('MOSTRAR:', this.busMostrar);
-            });
+        this.totalAmountSubscription = this.seleccionAsientosService.totalAmount$.subscribe(total => {
+            this.totalAmount = total;
+            // console.log('Total amount:', this.totalAmount);
+        });
+        this.busSeleccionadoSubscription = this.seleccionAsientosService.busSeleccionado$.subscribe(bus => {
+            this.busMostrar = bus;
+            // console.log('MOSTRAR:', this.busMostrar);
+        });
     }
 
     ngOnDestroy() {

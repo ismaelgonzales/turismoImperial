@@ -46,15 +46,9 @@
                 *ngFor="let pasajero of pasajerosSeleccionados; let i = index"
                 class="w-full flex mb-3 items-center">
                 <div class="flex-grow">
-                    <span class="text-gray-600"
-                        >Asiento {{ pasajero.asiento }}</span
-                    >
+                    <span class="text-gray-600">Asiento {{ pasajero.asiento }}</span>
                     <div class="text-sm text-gray-500">
-                        <span>{{
-                            pasajero.propietario.nombre_completo ||
-                                pasajero.nombre_completo ||
-                                pasajero.nombres
-                        }}</span>
+                        <span>{{ pasajero.propietario.nombre_completo || pasajero.nombre_completo || pasajero.nombres}}</span>
                     </div>
                 </div>
                 <div class="pl-3">
