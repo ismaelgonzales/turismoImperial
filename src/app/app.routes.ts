@@ -15,6 +15,15 @@ export const routes: Routes = [
         },
     },
     {
+        path: 'detallado',
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/detallado/detallado.component'
+            );
+            return m.DetalladoComponent;
+        },
+    },
+    {
         canActivate: [publicGuard],
         path: 'login',
 

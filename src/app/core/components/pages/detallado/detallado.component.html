@@ -1,0 +1,76 @@
+<section class="text-orange-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col w-full mb-20 text-center">
+        <h1 class="mb-2 text-3xl font-medium text-orange-900 sm:text-4xl title-font">Detalle de Compra </h1>
+      </div>
+      @if(cartStore.productsCount()) {
+      <div class="w-full mx-auto overflow-auto lg:w-2/3">
+        <div class="flex justify-end p-2">
+          <!-- <button (click)="clearAll()"
+            class="flex px-8 py-2 text-lg text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">Clear
+            all</button> -->
+        </div>
+        <table class="w-full text-left whitespace-no-wrap table-auto">
+          <thead>
+            <tr>
+              <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100  title-font">Nombre</th>
+              <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Ruta</th>
+              
+              <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Precio</th>
+              <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Asiento</th>
+              <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Codigo-Bus</th>
+              <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Tipo Doc</th>
+              <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font">Documento</th>
+              <th class="px-4 py-3 text-sm font-medium tracking-wider text-orange-900 bg-orange-100 title-font"></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of cartStore.products(); track $index) {
+            <tr>
+              <td class="px-4 py-3">{{item.title}}</td>
+              <td class="px-4 py-3">{{item.description}}</td>
+              
+              <td class="px-4 py-3 text-lg text-orange-900">S/.{{item.price}}</td>
+              <td class="px-4 py-3 text-lg text-orange-900">{{item.asiento}}</td>
+              <td class="px-4 py-3 text-lg text-orange-900">{{item.bus}}</td>
+              <td class="px-4 py-3 text-lg text-orange-900">{{item.tipo_doc}}</td>
+              <td class="px-4 py-3 text-lg text-orange-900">{{item.documento}}</td>
+              <td>
+                <!-- <button (click)="removeItem(item.id)"
+                  class="flex px-2 text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">
+                  X
+                </button> -->
+              </td>
+            </tr>
+            }
+  
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">
+                <hr class="border-orange-900 border-t-1" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">Total:</td>
+              <td class="px-4 py-3 text-lg not-italic font-bold text-orange-900">S/.{{cartStore.totalAmount()}}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- <div class="flex w-full pl-4 mx-auto mt-4 lg:w-2/3">
+        <button (click)="onProceedToPay()"
+          class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">Pagar
+          con Stripe</button>
+      </div> -->
+      <!-- } @else {
+      <div class="flex flex-col w-full mb-20 text-center">
+        <h3 class="my-2 text-3xl font-medium text-orange-900 sm:text-4xl title-font">No hay Asientos elegidos </h3>
+      </div>-->
+      } 
+    </div>
+    
+  </section>
+  <!-- <button (click)="onProceedToPay()"
+    class=" px-6 py-2 ml-auto text-white bg-orange-500 border-0  rounded-xl focus:outline-none hover:bg-red-600">Pagar con Stripe</button> -->
