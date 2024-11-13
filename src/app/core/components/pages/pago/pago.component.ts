@@ -8,6 +8,7 @@ import CheckoutComponent from "../checkout/checkout.component";
 import { CommonModule } from '@angular/common';
 import { SeleccionAsientosService } from '../../../services/seleccion-asientos.service';
 import { IComprador } from '../../../models/compraFinal';
+import { ComprasService } from '../../../services/compras.service'; // Asegúrate de importar el servicio correctamente
 
 @Component({
   selector: 'app-pago',
@@ -27,7 +28,8 @@ export class PagoComponent implements OnInit {
 
   constructor(
     private seleccionAsientosService: SeleccionAsientosService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private comprasService: ComprasService // Inyecta el servicio aquí
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class PagoComponent implements OnInit {
       total: [0]
     });
 
-    // Escuchar cambios específicos en tipoDoc para aplicar validaciones condicionales
+    // Validaciones condicionales
     this.compradorForm.get('tipoDoc')?.valueChanges.subscribe(value => {
       if (value === 'Factura') {
         this.compradorForm.get('ruc')?.setValidators(Validators.required);
@@ -58,7 +60,7 @@ export class PagoComponent implements OnInit {
       this.compradorForm.get('direccion')?.updateValueAndValidity();
     });
 
-    // Suscribirse a los cambios del formulario para actualizar el objeto en tiempo real
+    // Suscribirse a cambios en el formulario
     this.compradorForm.valueChanges.subscribe((datos: IComprador) => {
       this.seleccionAsientosService.setCompraFinal([datos]);
       this.isFormValid = this.compradorForm.valid;
@@ -74,17 +76,34 @@ export class PagoComponent implements OnInit {
   }
 
   onComplete() {
-    
+    // Acción de completar (si es necesario)
   }
 
   onContinue() {
     if (this.compradorForm.valid) {
-      this.seleccionAsientosService.setCompraFinal([this.compradorForm.value]);
-      // this.complete.emit(); // Emitimos el evento de finalización
-      this.continue.emit(); // Avanza al siguiente paso
+      const compraData = {
+        correoElectronico: this.compradorForm.value.correo,
+        celular: this.compradorForm.value.celular,
+        ruc: this.compradorForm.value.ruc,
+        razonSocial: this.compradorForm.value.razonSocial,
+        direccion: this.compradorForm.value.direccion,
+        total: this.compradorForm.value.total
+      };
+  
+      // Asegúrate de enviar los datos dentro de "data" como se hace en Postman
+      this.comprasService.postCompra({ data: compraData }).subscribe(
+        response => {
+          console.log('Compra registrada con éxito:', response);
+          this.continue.emit();
+        },
+        error => {
+          console.error('Error al registrar la compra:', error);
+        }
+      );
     } else {
       console.log('Formulario inválido');
     }
-
   }
+  
+  
 }
