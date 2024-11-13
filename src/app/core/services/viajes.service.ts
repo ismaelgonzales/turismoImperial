@@ -30,4 +30,8 @@ export class ViajesService {
     deleteViaje(id: number): Observable<ApiResponse<any>> {
         return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
     }
+
+    obtenerViajes(): Observable<IViajes[]> {
+        return this.http.get<IViajes[]>(this.apiUrl);
+    }
 }

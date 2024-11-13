@@ -5,11 +5,13 @@ import { ClienteService } from '../../../services/cliente.service';
 import { BusesService } from '../../../services/buses.service';
 import { RutasService } from '../../../services/rutas.service';
 import { VentaService } from '../../../services/venta.service';
+import { ViajesService } from '../../../services/viajes.service';
+import { VentasComponent } from '../../pages/ventas/ventas.component';
 import { RouterLink } from '@angular/router';
 @Component({
     selector: 'app-dashboard-adm',
     standalone: true,
-    imports: [VentaComponent, RouterLink],
+    imports: [VentaComponent, RouterLink, VentasComponent],
     templateUrl: './dashboard-adm.component.html',
     styleUrl: './dashboard-adm.component.scss',
 })
@@ -18,11 +20,13 @@ export class DashboardAdmComponent implements OnInit {
     buses: any[] = [];
     ventas: any[] = [];
     rutas: any[] = [];
+    viajes: any[] = [];
 
     totalClientes: number = 0;
     totalBuses: number = 0;
     totalVentas: number = 0;
     totalRutas: number = 0;
+    totalViajes: number = 0;
 
     constructor(
         private dashboardService: DashboardService,
@@ -30,6 +34,7 @@ export class DashboardAdmComponent implements OnInit {
         private busesService: BusesService,
         private rutasService: RutasService,
         private ventaService: VentaService,
+        private ViajesService: ViajesService,
     ) {}
 
     ngOnInit(): void {
@@ -55,6 +60,11 @@ export class DashboardAdmComponent implements OnInit {
         this.rutasService.obtenerRutas().subscribe(data => {
             this.rutas = data;
             this.totalRutas = this.rutas.length; // Actualiza totalRutas
+        });
+
+        this.ViajesService.obtenerViajes().subscribe(data => {
+            this.viajes = data;
+            this.totalViajes = this.viajes.length; // Actualiza totalRutas
         });
     }
 

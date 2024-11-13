@@ -1,0 +1,125 @@
+<div class="flex justify-between items-center mb-6">
+    <h4 class="font-bold text-2xl"></h4>
+    <button
+        type="button"
+        (click)="openModel()"
+        class="text-white bg-blue-700 hover:bg-blue-900 focus:outline-none font-medium rounded-full px-6 py-3 text-center mb-2">
+        Agregar Conductores
+    </button>
+</div>
+<!-- <form
+    (submit)="filtrarDatos(); $event.preventDefault()"
+    class="flex mb-4 gap-4">
+    <input
+        type="text"
+        [(ngModel)]="nombreFiltro"
+        name="nombreFiltro"
+        placeholder="Filtrar por Nombre"
+        class="border border-gray-300 p-2 rounded-md" />
+    <input
+        type="text"
+        [(ngModel)]="apellidoFiltro"
+        name="apellidoFiltro"
+        placeholder="Filtrar por Apellido"
+        class="border border-gray-300 p-2 rounded-md" />
+    <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">
+        Filtrar
+    </button>
+</form> -->
+
+<!-- <ul>
+    <li *ngFor="let item of datosFiltrados">
+        {{ item.nombre }} {{ item.apellido }}
+    </li>
+</ul> -->
+<div
+    class="relative overflow-x-auto shadow-md sm:rounded-lg"
+    *ngIf="conductores.length > 0; else noConductores">
+    <table
+        class="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-700">
+        <caption
+            class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-gray-900 dark:bg-white">
+            Detalles de Conductores
+        </caption>
+        <thead
+            class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
+            <tr>
+                <th scope="col" class="p-2 border px-6 py-3">Nombre</th>
+                <th scope="col" class="p-2 border px-6 py-3">Apellido</th>
+                <th scope="col" class="p-2 border px-6 py-3">
+                    Número de licencia
+                </th>
+                <th scope="col" class="p-2 border px-6 py-3">
+                    fechaNacimiento
+                </th>
+                <th scope="col" class="p-2 border px-6 py-3">telefono</th>
+                <th scope="col" class="p-2 border px-6 py-3">
+                    fechaContratacion
+                </th>
+                <th scope="col" class="p-2 border px-6 py-3">Estado</th>
+                <th scope="col" class="p-2 border px-6 py-3">fechaRegistro</th>
+                <th scope="col" class="p-2 border px-6 py-3">Acciones</th>
+                <!-- Agrega más columnas según los datos de IConductores -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                class="bg-white border-b dark:bg-white dark:border-gray-700"
+                *ngFor="let conductor of conductores">
+                <td class="px-6 py-4 p-2 border">{{ conductor.nombre }}</td>
+                <td class="px-6 py-4 p-2 border">{{ conductor.apellidos }}</td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ conductor.numeroLicencia }}
+                </td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ conductor.fechaNacimiento }}
+                </td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ conductor.telefono }}
+                </td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ conductor.fechaContratacion }}
+                </td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ conductor.estado }}
+                </td>
+
+                <td class="px-6 py-4 p-2 border">
+                    {{ conductor.fechaRegistro }}
+                </td>
+
+                <td class="px-2 py-4 text-right p-2 border">
+                    <button
+                        type="button"
+                        (click)="
+                            conductor.idConductor && loadConductores(conductor)
+                        "
+                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4">
+                        Editar
+                    </button>
+
+                    <button
+                        type="button"
+                        (click)="
+                            conductor.idConductor &&
+                                deleteConductores(conductor.idConductor)
+                        "
+                        class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                        Eliminar
+                    </button>
+                </td>
+                <!-- Agrega más campos según los datos de IConductores -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #noConductores>
+    <p>No hay conductores para mostrar.</p>
+</ng-template>
+
+<app-model [isOpen]="isModelOpen" (closeModel)="closeModel()">
+    <app-conductores-form
+        (onCloseModel)="closeModel()"
+        [data]="conductor"></app-conductores-form>
+</app-model>

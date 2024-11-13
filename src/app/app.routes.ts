@@ -15,6 +15,15 @@ export const routes: Routes = [
         },
     },
     {
+        path: 'detallado',
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/detallado/detallado.component'
+            );
+            return m.DetalladoComponent;
+        },
+    },
+    {
         canActivate: [publicGuard],
         path: 'login',
 
@@ -40,6 +49,16 @@ export const routes: Routes = [
                 './core/components/pages/contact/contact.component'
             );
             return m.ContactComponent;
+        },
+    },
+    {
+        canActivate: [privateGuard()],
+        path: 'ventas',
+        loadComponent: async () => {
+            const m = await import(
+                './core/components/pages/ventas/ventas.component'
+            );
+            return m.VentasComponent;
         },
     },
     {

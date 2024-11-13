@@ -1,0 +1,67 @@
+<form
+    [formGroup]="ventasForm"
+    (ngSubmit)="addVenta()"
+    class="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg space-y-4">
+    <h2 class="text-2xl font-bold mb-4 text-center">Agregar Venta</h2>
+
+    <div class="space-y-2">
+        <input
+            formControlName="email"
+            placeholder="Email"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <input
+            formControlName="numerotel"
+            placeholder="Número Teléfono"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <input
+            formControlName="tipodoc"
+            placeholder="Tipo de Documento"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <input
+            formControlName="ruc"
+            placeholder="RUC"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <input
+            formControlName="razonsocial"
+            placeholder="Razón Social"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <input
+            formControlName="direccion"
+            placeholder="Dirección"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <input
+            formControlName="total"
+            placeholder="Total"
+            type="number"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+    </div>
+
+    <button
+        type="submit"
+        class="w-full py-2 mt-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        Agregar Venta
+    </button>
+</form>
+
+<ul class="max-w-lg mx-auto mt-6 space-y-4">
+    <li
+        *ngFor="let venta of ventasList"
+        class="p-4 bg-gray-50 shadow-lg rounded-lg flex justify-between items-center">
+        <div>
+            <p class="text-gray-800 font-semibold">{{ venta.email }}</p>
+            <p class="text-gray-500">Total: ${{ venta.total }}</p>
+        </div>
+        <div class="space-x-2">
+            <button
+                (click)="updateVenta(venta)"
+                class="px-4 py-2 bg-yellow-950 text-white rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-600">
+                Editar
+            </button>
+            <button
+                (click)="deleteVenta(venta.ventaId)"
+                class="px-4 py-2 bg-red-950 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600">
+                Eliminar
+            </button>
+        </div>
+    </li>
+</ul>

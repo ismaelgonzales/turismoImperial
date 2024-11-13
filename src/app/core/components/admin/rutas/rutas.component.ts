@@ -5,10 +5,20 @@ import { ToastrService } from 'ngx-toastr';
 import { RutasService } from '../../../services/rutas.service';
 import { ApiResponse, IRutas } from '../../../models/Rutas';
 import Swal from 'sweetalert2';
+import { PaginadorComponent } from '../../atoms/paginador/paginador.component';
+
+import { RutasListComponent } from '../../atoms/rutas-list/rutas-list.component';
+import { CommonModule } from '@angular/common';
 @Component({
     selector: 'app-rutas',
     standalone: true,
-    imports: [ModelComponent, RutasFormComponent],
+    imports: [
+        ModelComponent,
+        RutasFormComponent,
+        RutasListComponent,
+        CommonModule,
+        PaginadorComponent,
+    ],
     templateUrl: './rutas.component.html',
     styleUrl: './rutas.component.scss',
 })
@@ -16,6 +26,11 @@ export class RutasComponent implements OnInit {
     isModelOpen = false;
     rutas: IRutas[] = [];
     ruta!: IRutas;
+
+    rutasPaginados: IRutas[] = [];
+    rutasFiltrados: IRutas[] = [];
+    currentPage: number = 1;
+    itemsPerPage: number = 8;
 
     constructor(
         private rutasService: RutasService,
@@ -34,6 +49,12 @@ export class RutasComponent implements OnInit {
                 }
             },
         });
+    }
+
+    updateRutasPaginados() {
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+        this.rutasPaginados = this.rutasFiltrados.slice(startIndex, endIndex);
     }
 
     loadRutas(rutas: IRutas) {
@@ -77,5 +98,9 @@ export class RutasComponent implements OnInit {
     closeModel() {
         this.isModelOpen = false;
         this.getAllRutas();
+    }
+
+    onPageChange(pageItems: IRutas[]) {
+        this.rutasPaginados = pageItems;
     }
 }

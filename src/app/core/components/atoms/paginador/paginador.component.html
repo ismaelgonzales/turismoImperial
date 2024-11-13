@@ -1,0 +1,25 @@
+<div class="pagination-container flex justify-center mt-4">
+    <button
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+        class="px-4 py-2 m-1 bg-gray-300 rounded hover:bg-gray-400">
+        Anterior
+    </button>
+
+    <ng-container
+        *ngFor="let page of [].constructor(totalPages); let i = index">
+        <button
+            (click)="goToPage(i + 1)"
+            [class.bg-blue-500]="currentPage === i + 1"
+            class="px-4 py-2 m-1 rounded hover:bg-red-950">
+            {{ i + 1 }}
+        </button>
+    </ng-container>
+
+    <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+        class="px-4 py-2 m-1 bg-gray-300 rounded hover:bg-gray-400">
+        Siguiente
+    </button>
+</div>

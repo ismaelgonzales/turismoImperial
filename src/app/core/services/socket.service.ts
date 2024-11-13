@@ -9,7 +9,7 @@ export class SocketService {
     private socket: Socket;
 
     constructor() {
-        this.socket = io('http://localhost:3000');
+        this.socket = io('https://backend-production-93b1.up.railway.app');
     }
     emitEvent(eventName: string, data: any) {
         this.socket.emit(eventName, data);

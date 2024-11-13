@@ -1,4 +1,6 @@
-<div class="flex justify-between items-center mb-6">
+<app-conductor-list [conductores]="conductoresPaginados"></app-conductor-list>
+
+<!-- <div class="flex justify-between items-center mb-6">
     <h4 class="font-bold text-2xl"></h4>
     <button
         type="button"
@@ -96,7 +98,17 @@
             }
         </tbody>
     </table>
-</div>
+</div> -->
+<app-paginador
+    [items]="conductores"
+    [pageSize]="8"
+    (pageChange)="onPageChange($event)"></app-paginador>
+
+<!-- <app-paginator
+    [totalItems]="conductores.length"
+    [itemsPerPage]="itemsPerPage"
+    (pageChange)="onPageChange($event)">
+</app-paginator>     -->
 
 <app-model [isOpen]="isModelOpen" (closeModel)="closeModel()">
     <app-conductores-form

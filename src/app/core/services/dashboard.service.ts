@@ -25,4 +25,8 @@ export class DashboardService {
     getRutasCount(): Observable<number> {
         return this.http.get<number>(`${this.apiUrl}/Rutas`);
     }
+
+    getViajesCount(): Observable<number> {
+        return this.http.get<number>(`${this.apiUrl}/Viajes`);
+    }
 }

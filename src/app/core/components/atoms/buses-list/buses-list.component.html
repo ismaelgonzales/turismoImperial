@@ -1,0 +1,87 @@
+<div class="flex justify-between items-center mb-6">
+    <h4 class="font-bold text-2xl"></h4>
+    <button
+        type="button"
+        (click)="openModel()"
+        class="text-white bg-blue-700 hover:bg-blue-900 focus:outline-none font-medium rounded-full px-6 py-3 text-center mb-2">
+        Agregar Buses
+    </button>
+</div>
+
+<div
+    class="relative overflow-x-auto shadow-md sm:rounded-lg"
+    *ngIf="buses.length > 0; else noBuses">
+    <table
+        class="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-700">
+        <caption
+            class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-gray-900 dark:bg-white">
+            Detalles de Buses
+        </caption>
+        <thead
+            class="text-xs text-gray-800 uppercase bg-gray-50 dark:bg-white dark:text-gray-500">
+            <tr>
+                <th scope="col" class="p-2 border px-6 py-3">matricula</th>
+                <th scope="col" class="p-2 border px-6 py-3">marcaModelo</th>
+                <th scope="col" class="p-2 border px-6 py-3">precioMinimo</th>
+                <th scope="col" class="p-2 border px-6 py-3">precioPromedio</th>
+
+                <th scope="col" class="p-2 border px-6 py-3">numeroAsientos</th>
+                <th scope="col" class="p-2 border px-6 py-3">idConductor</th>
+                <th scope="col" class="p-2 border px-6 py-3">idRutas</th>
+                <th scope="col" class="p-2 border px-6 py-3">estado</th>
+                <th scope="col" class="p-2 border px-6 py-3">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                class="bg-white border-b dark:bg-white dark:border-gray-700"
+                *ngFor="let bus of buses">
+                <td class="px-6 py-4 p-2 border">{{ bus.matricula }}</td>
+                <td class="px-6 py-4 p-2 border">{{ bus.marcaModelo }}</td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ bus.precioMinimo }}
+                </td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ bus.precioPromedio }}
+                </td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ bus.numeroAsientos }}
+                </td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ bus.idConductor }}
+                </td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ bus.idRutas }}
+                </td>
+                <td class="px-6 py-4 p-2 border">
+                    {{ bus.estado }}
+                </td>
+
+                <td class="px-2 py-4 text-right p-2 border">
+                    <button
+                        type="button"
+                        (click)="bus.idBuses && loadBuses(bus)"
+                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4">
+                        Editar
+                    </button>
+
+                    <button
+                        type="button"
+                        (click)="bus.idBuses && deleteBuses(bus.idBuses)"
+                        class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                        Eliminar
+                    </button>
+                </td>
+                <!-- Agrega más campos según los datos de IConductores -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #noBuses>
+    <p>No hay Buses para mostrar.</p>
+</ng-template>
+
+<app-model [isOpen]="isModelOpen" (closeModel)="closeModel()">
+    <app-buses-form (onCloseModel)="closeModel()" [data]="bus"></app-buses-form>
+</app-model>

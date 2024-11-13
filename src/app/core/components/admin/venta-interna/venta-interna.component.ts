@@ -25,8 +25,6 @@ export class VentaInternaComponent {
     ventaConfirmada: boolean = false;
     busquedaForm: FormGroup;
 
-    servicio: string[] = ['regular', 'premium', 'VIP'];
-
     constructor(
         private fb: FormBuilder,
         private ventainternaService: VentaInternaService,
@@ -35,14 +33,12 @@ export class VentaInternaComponent {
             origen: ['', Validators.required],
             destino: ['', Validators.required],
             fechaSalida: ['', Validators.required],
-            servicio: ['', Validators.required],
         });
     }
 
     buscarViajes() {
         if (this.busquedaForm.valid) {
-            const { origen, destino, fechaSalida, servicio } =
-                this.busquedaForm.value;
+            const { origen, destino, fechaSalida } = this.busquedaForm.value;
             this.viajes = [
                 {
                     id: 1,
@@ -52,7 +48,6 @@ export class VentaInternaComponent {
                     horaSalida: '08:00',
                     horaLlegada: '12:00',
                     precio: 50,
-                    servicio: 'regular',
                 },
                 {
                     id: 2,
@@ -62,7 +57,6 @@ export class VentaInternaComponent {
                     horaSalida: '15:00',
                     horaLlegada: '19:00',
                     precio: 60,
-                    servicio: 'regular',
                 },
             ];
         }

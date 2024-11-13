@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { PaginadorComponent } from '../../atoms/paginador/paginador.component';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { ModelComponent } from '../../../models/pages/shared/ui/model/model.component';
@@ -7,11 +7,19 @@ import Swal from 'sweetalert2';
 import { ConductoresFormComponent } from '../../../models/pages/conductores-form/conductores-form.component';
 import { IConductores } from '../../../models/Conductores';
 import { ConductorService } from '../../../services/conductor.service';
-
+import { ConductorListComponent } from '../../atoms/conductor-list/conductor-list.component';
+import { CommonModule } from '@angular/common';
 @Component({
     selector: 'app-conductores',
     standalone: true,
-    imports: [ModelComponent, ConductoresFormComponent, FormsModule],
+    imports: [
+        ModelComponent,
+        ConductoresFormComponent,
+        FormsModule,
+        PaginadorComponent,
+        ConductorListComponent,
+        CommonModule,
+    ],
     templateUrl: './conductores.component.html',
     styleUrl: './conductores.component.scss',
 })
@@ -22,17 +30,24 @@ export class ConductoresComponent implements OnInit {
     nombreFiltro: string = '';
     apellidoFiltro: string = '';
 
-    get conductoresFiltrados() {
-        return this.conductores.filter(
-            conductor =>
-                conductor.nombre
-                    .toLowerCase()
-                    .includes(this.nombreFiltro.toLowerCase()) &&
-                conductor.apellidos
-                    .toLowerCase()
-                    .includes(this.apellidoFiltro.toLowerCase()),
-        );
-    }
+    conductoresPaginados: IConductores[] = [];
+    conductoresFiltrados: IConductores[] = [];
+    currentPage: number = 1;
+    itemsPerPage: number = 8;
+
+    // Variables de filtro
+
+    // get conductoresFiltrados() {
+    //     return this.conductores.filter(
+    //         conductor =>
+    //             conductor.nombre
+    //                 .toLowerCase()
+    //                 .includes(this.nombreFiltro.toLowerCase()) &&
+    //             conductor.apellidos
+    //                 .toLowerCase()
+    //                 .includes(this.apellidoFiltro.toLowerCase()),
+    //     );
+    // }
     constructor(
         private conductoresService: ConductorService,
         private toastr: ToastrService,
@@ -47,10 +62,54 @@ export class ConductoresComponent implements OnInit {
             next: response => {
                 if (response) {
                     this.conductores = response;
+                    this.filtrarConductores();
                 }
             },
         });
     }
+
+    // getAllConductores() {
+    //     this.conductoresService.getAllConductores().subscribe({
+    //         next: response => {
+    //             if (response) {
+    //                 this.conductores = response;
+    //                 this.filtrarConductores(); // Filtrar al cargar los datos
+    //             }
+    //         },
+    //     });
+    // }
+
+    filtrarConductores() {
+        this.conductoresFiltrados = this.conductores.filter(
+            conductor =>
+                (this.nombreFiltro
+                    ? conductor.nombre
+                          .toLowerCase()
+                          .includes(this.nombreFiltro.toLowerCase())
+                    : true) &&
+                (this.apellidoFiltro
+                    ? conductor.apellidos
+                          .toLowerCase()
+                          .includes(this.apellidoFiltro.toLowerCase())
+                    : true),
+        );
+        this.currentPage = 1; // Reinicia a la primera página después de filtrar
+        this.updateConductoresPaginados();
+    }
+
+    updateConductoresPaginados() {
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+        this.conductoresPaginados = this.conductoresFiltrados.slice(
+            startIndex,
+            endIndex,
+        );
+    }
+
+    // onPageChange(page: number) {
+    //     this.currentPage = page;
+    //     this.updateConductoresPaginados();
+    // }
 
     loadConductores(conductores: IConductores) {
         this.conductor = conductores;
@@ -93,5 +152,9 @@ export class ConductoresComponent implements OnInit {
     closeModel() {
         this.isModelOpen = false;
         this.getAllConductores();
+    }
+
+    onPageChange(pageItems: IConductores[]) {
+        this.conductoresPaginados = pageItems;
     }
 }

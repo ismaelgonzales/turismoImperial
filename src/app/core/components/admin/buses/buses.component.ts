@@ -5,10 +5,17 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { IBuses } from '../../../models/Buses';
 import { BusesService } from '../../../services/buses.service';
+import { PaginadorComponent } from '../../atoms/paginador/paginador.component';
+import { BusesListComponent } from '../../atoms/buses-list/buses-list.component';
 @Component({
     selector: 'app-buses',
     standalone: true,
-    imports: [ModelComponent, BusesFormComponent],
+    imports: [
+        ModelComponent,
+        BusesFormComponent,
+        PaginadorComponent,
+        BusesListComponent,
+    ],
     templateUrl: './buses.component.html',
     styleUrl: './buses.component.scss',
 })
@@ -16,6 +23,11 @@ export class BusesComponent implements OnInit {
     isModelOpen = false;
     buses: IBuses[] = [];
     bus!: IBuses;
+
+    busesPaginados: IBuses[] = [];
+    busesFiltrados: IBuses[] = [];
+    currentPage: number = 1;
+    itemsPerPage: number = 8;
 
     constructor(
         private busesService: BusesService,
@@ -77,5 +89,9 @@ export class BusesComponent implements OnInit {
     closeModel() {
         this.isModelOpen = false;
         this.getAllBuses();
+    }
+
+    onPageChange(pageItems: IBuses[]) {
+        this.busesPaginados = pageItems;
     }
 }

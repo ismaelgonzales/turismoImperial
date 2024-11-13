@@ -9,34 +9,6 @@ import { RutasBuses } from '../interfaces/RutasBuses.interface';
     providedIn: 'root',
 })
 export class RutasBusesService {
-    // private endpoint: string = environment.endPoint;
-    // private apiUrl: string = this.endpoint + 'RutasBuses';
-
-    // constructor(private http: HttpClient) {}
-
-    // getList(): Observable<RutasBuses[]> {
-    //     return this.http.get<RutasBuses[]>(`${this.endpoint}RutasBuses`);
-    // }
-
-    // add(request: RutasBuses): Observable<RutasBuses> {
-    //     return this.http.post<RutasBuses>(`${this.apiUrl}Agregar`, request);
-    // }
-
-    // delete(IdRutasBuses: number): Observable<void> {
-    //     return this.http.delete<void>(`${this.apiUrl}Eliminar/${IdRutasBuses}`);
-    // }
-
-    // createRuta(ruta: RutasBuses): Observable<RutasBuses> {
-    //     return this.http.post<RutasBuses>(this.apiUrl, ruta);
-    // }
-
-    // updateRuta(id: number, ruta: RutasBuses): Observable<RutasBuses> {
-    //     return this.http.put<RutasBuses>(`${this.apiUrl}/${id}`, ruta);
-    // }
-
-    // deleteRuta(id: number): Observable<void> {
-    //     return this.http.delete<void>(`${this.apiUrl}/${id}`);
-    // }
     private apiUrl: string =
         'https://www.turismoimperial.somee.com/api/RutasBuses'; // Usa la URL correcta para tu API
 

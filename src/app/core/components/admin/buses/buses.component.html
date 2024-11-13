@@ -1,4 +1,5 @@
-<div class="flex justify-between items-center mb-6">
+<app-buses-list [buses]="busesPaginados"></app-buses-list>
+<!-- <div class="flex justify-between items-center mb-6">
     <h4 class="font-bold text-2xl"></h4>
     <button
         type="button"
@@ -75,7 +76,12 @@
             }
         </tbody>
     </table>
-</div>
+</div> -->
+
+<app-paginador
+    [items]="buses"
+    [pageSize]="8"
+    (pageChange)="onPageChange($event)"></app-paginador>
 
 <app-model [isOpen]="isModelOpen" (closeModel)="closeModel()">
     <app-buses-form (onCloseModel)="closeModel()" [data]="bus"></app-buses-form>

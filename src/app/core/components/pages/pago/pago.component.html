@@ -1,125 +1,260 @@
 <app-header-page />
 
-<ol class="flex p-12 items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+<ol
+    class="flex p-12 items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
     <li
-        class="flex md:w-full items-center sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+        class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
         <span
             class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
             <span class="me-2">1</span>
-
             Selección
             <span class="hidden sm:inline-flex sm:ms-2">Asientos</span>
         </span>
     </li>
     <li
-        class="flex md:w-full items-center text-red-950 dark:text-red-950 after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+        class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
         <span
             class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor" viewBox="0 0 20 20">
-                <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-            </svg>
+            <span class="me-2">2</span>
             Datos <span class="hidden sm:inline-flex sm:ms-2">Pasajero</span>
         </span>
     </li>
 
-    <li class="flex items-center">
+    <li class="flex items-center text-red-950 dark:text-red-950">
+        <svg
+            class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20">
+            <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+        </svg>
         <span class="me-2">3</span>
         Pago
     </li>
 </ol>
+
 <div class="min-w-screen min-h-screen bg-gray-50">
-    <div class="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
+    <div
+        class="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
         <div class="w-full">
             <div class="-mx-3 md:flex items-start">
-                <div class="px-3 md:w-7/12 lg:pr-10 rounded-lg bg-white border border-gray-200 p-3">
+                <div
+                    class="px-3 md:w-7/12 lg:pr-10 rounded-lg bg-white border border-gray-200 p-3">
                     <div class="lg:col-span-2">
-                        <div class="w-full flex mb-3  items-center border-b-2">
-                            <span class="text-gray-600 font-semibold">Contacto
-                            </span>
-                        </div>
-                        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
-                            <div class="md:col-span-3">
-                                <input type="email" name="email" id="email"
-                                    class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" value=""
-                                    placeholder="Correo electronico*" />
+                        <form [formGroup]="compradorForm" class="w-full">
+                            <!-- Sección de Contacto -->
+                            <div
+                                class="w-full flex mb-3 items-center border-b-2">
+                                <span class="text-gray-600 font-semibold"
+                                    >Contacto</span
+                                >
                             </div>
-                            <div class="md:col-span-3">
-                                <input type="number" name="celular" id="celular"
-                                    class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" value=""
-                                    placeholder="Numero de Celular" />
+                            <div
+                                class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
+                                <!-- Campo de Correo -->
+                                <div class="md:col-span-3">
+                                    <input
+                                        type="email"
+                                        formControlName="correo"
+                                        class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                        [ngClass]="{
+                                            'border-red-500':
+                                                compradorForm.get('correo')
+                                                    ?.invalid &&
+                                                compradorForm.get('correo')
+                                                    ?.touched
+                                        }"
+                                        placeholder="Correo electrónico*" />
+                                    <div
+                                        *ngIf="
+                                            compradorForm.get('correo')
+                                                ?.invalid &&
+                                            compradorForm.get('correo')?.touched
+                                        "
+                                        class="text-red-500 text-xs mt-1">
+                                        <span
+                                            *ngIf="compradorForm.get('correo')?.errors?.['required']"
+                                            >Correo es obligatorio.</span
+                                        >
+                                        <span
+                                            *ngIf="compradorForm.get('correo')?.errors?.['email']"
+                                            >Correo no es válido.</span
+                                        >
+                                    </div>
+                                </div>
+
+                                <!-- Campo de Celular -->
+                                <div class="md:col-span-3">
+                                    <input
+                                        type="number"
+                                        formControlName="celular"
+                                        class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                        [ngClass]="{
+                                            'border-red-500':
+                                                compradorForm.get('celular')
+                                                    ?.invalid &&
+                                                compradorForm.get('celular')
+                                                    ?.touched
+                                        }"
+                                        placeholder="Número de Celular" />
+                                    <div
+                                        *ngIf="
+                                            compradorForm.get('celular')
+                                                ?.invalid &&
+                                            compradorForm.get('celular')
+                                                ?.touched
+                                        "
+                                        class="text-red-500 text-xs mt-1">
+                                        <span
+                                            *ngIf="compradorForm.get('celular')?.errors?.['required']"
+                                            >Número de celular es
+                                            obligatorio.</span
+                                        >
+                                    </div>
+                                </div>
                             </div>
 
-                        </div>
-                        <div class="w-full flex  mb-3 items-center border-b-2">
-                            <span class="text-gray-600 font-semibold">Facturacion
-                            </span>
-                        </div>
-                        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
-                            <div class="md:col-span-full">
-                                <input type="number" name="RUC" id="RUC"
-                                    class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" value=""
-                                    placeholder="RUC*" />
+                            <!-- Selección de Tipo de Comprobante -->
+                            <div
+                                class="w-full flex mb-3 mt-3 items-center border-b-2">
+                                <span class="text-gray-600 font-semibold"
+                                    >Selecciona Boleta/Factura</span
+                                >
+                            </div>
+                            <div
+                                class="h-10 gap-4 mt-1 gap-y-2 text-sm bg-gray-50 flex border border-gray-200 rounded-xl items-center">
+                                <select
+                                    formControlName="tipoDoc"
+                                    class="px-4 appearance-none outline-none text-gray-800 w-full bg-transparent">
+                                    <option value="">
+                                        Selecciona una opción
+                                    </option>
+                                    <option value="Boleta">Boleta</option>
+                                    <option value="Factura">Factura</option>
+                                </select>
                             </div>
 
-                            <div class="md:col-span-full">
-                                <input type="text" name="razonSocial" id="razonSocial"
-                                    class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" value=""
-                                    placeholder="Razon Social" />
-                            </div>
-                            <div class="md:col-span-full">
-                                <input type="text" name="direcion" id="direcion"
-                                    class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" value=""
-                                    placeholder="Direcion*" />
-                            </div>
+                            <!-- Mostrar campos adicionales si se selecciona "Factura" -->
+                            <ng-container
+                                [ngSwitch]="
+                                    compradorForm.get('tipoDoc')?.value
+                                ">
+                                <div
+                                    *ngSwitchCase="'Factura'"
+                                    class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
+                                    <!-- Campo de RUC -->
+                                    <div class="md:col-span-full">
+                                        <input
+                                            type="number"
+                                            formControlName="ruc"
+                                            class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                            [ngClass]="{
+                                                'border-red-500':
+                                                    compradorForm.get('ruc')
+                                                        ?.invalid &&
+                                                    compradorForm.get('ruc')
+                                                        ?.touched
+                                            }"
+                                            placeholder="RUC*" />
+                                        <div
+                                            *ngIf="
+                                                compradorForm.get('ruc')
+                                                    ?.invalid &&
+                                                compradorForm.get('ruc')
+                                                    ?.touched
+                                            "
+                                            class="text-red-500 text-xs mt-1">
+                                            <span
+                                                *ngIf="compradorForm.get('ruc')?.errors?.['required']"
+                                                >RUC es obligatorio.</span
+                                            >
+                                        </div>
+                                    </div>
 
-                        </div>
-                        <div class="w-full flex mb-3 items-center border-b-2">
-                            <span class="text-gray-600 font-semibold">Medio de pago
-                            </span>
-                        </div>
-                        <!-- <div
-                            class="grid gap-4 gap-y-2 text-sm grid-cols-1 ">
-                            <div class="card flex justify-content-center">
-                                <p-checkbox 
-                                    [(ngModel)]="checked"
-                                    [binary]="true"
-                                    inputId="binary"
-                                    class="ng-invalid ng-dirty" />
-                            </div>
-                            <span>adasd</span>
-                            
-                            
-                        </div> -->
-                        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
-                            <div class="md:col-span-3">
-                                <input type="text" name="nacionalidad" id="nacionalidad"
-                                    class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" value=""
-                                    placeholder="opcion1 *" />
-                            </div>
-                            <div class="md:col-span-3">
-                                <input type="text" name="nacionalidad" id="nacionalidad"
-                                    class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50" value=""
-                                    placeholder="opcion2 *" />
-                            </div>
+                                    <!-- Campo de Razón Social -->
+                                    <div class="md:col-span-full">
+                                        <input
+                                            type="text"
+                                            formControlName="razonSocial"
+                                            class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                            [ngClass]="{
+                                                'border-red-500':
+                                                    compradorForm.get(
+                                                        'razonSocial'
+                                                    )?.invalid &&
+                                                    compradorForm.get(
+                                                        'razonSocial'
+                                                    )?.touched
+                                            }"
+                                            placeholder="Razón Social" />
+                                        <div
+                                            *ngIf="
+                                                compradorForm.get('razonSocial')
+                                                    ?.invalid &&
+                                                compradorForm.get('razonSocial')
+                                                    ?.touched
+                                            "
+                                            class="text-red-500 text-xs mt-1">
+                                            <span
+                                                *ngIf="compradorForm.get('razonSocial')?.errors?.['required']"
+                                                >Razón Social es
+                                                obligatoria.</span
+                                            >
+                                        </div>
+                                    </div>
 
-                        </div>
+                                    <!-- Campo de Dirección -->
+                                    <div class="md:col-span-full">
+                                        <input
+                                            type="text"
+                                            formControlName="direccion"
+                                            class="h-10 border mt-1 rounded-xl px-4 w-full bg-gray-50"
+                                            [ngClass]="{
+                                                'border-red-500':
+                                                    compradorForm.get(
+                                                        'direccion'
+                                                    )?.invalid &&
+                                                    compradorForm.get(
+                                                        'direccion'
+                                                    )?.touched
+                                            }"
+                                            placeholder="Dirección*" />
+                                        <div
+                                            *ngIf="
+                                                compradorForm.get('direccion')
+                                                    ?.invalid &&
+                                                compradorForm.get('direccion')
+                                                    ?.touched
+                                            "
+                                            class="text-red-500 text-xs mt-1">
+                                            <span
+                                                *ngIf="compradorForm.get('direccion')?.errors?.['required']"
+                                                >Dirección es obligatoria.</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </form>
                     </div>
-
                 </div>
 
                 <div class="px-3 md:w-5/12">
                     <app-detallado-compra />
                     <div class="grid-cols-2">
                         <button
-                            class="   bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
-                            (click)="onBack()">Regresar a Datos del Pasajero</button>
+                            class="col-span-1 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
+                            (click)="onBack()">
+                            Regresar
+                        </button>
                         <button
-                            class=" ml-20 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold"
-                            (click)="onComplete()">Finalizar Compra</button>
-
-                        <app-checkout/>
+                            (click)="onContinue()"
+                            *ngIf="isFormValid"
+                            class="col-span-1 bg-yellow-950 hover:bg-red-950 focus:bg-red-950 text-white rounded-xl px-3 py-2 font-semibold">
+                            Generar Reserva
+                        </button>
                     </div>
                 </div>
             </div>
@@ -128,12 +263,13 @@
 
     <div class="p-5">
         <div class="text-center text-gray-400 text-sm">
-            <a href="https://www.facebook.com/p/Transportes-Turismo-Imperial-100057127734949/?locale=es_LA"
-                target="_blank" class="focus:outline-none underline text-gray-400"><i
-                    class="mdi mdi-beer-outline"></i>Siempre a su servicio</a>
+            <a
+                href="https://www.facebook.com/p/Transportes-Turismo-Imperial-100057127734949/?locale=es_LA"
+                target="_blank"
+                class="focus:outline-none underline text-gray-400"
+                ><i class="mdi mdi-beer-outline"></i>Siempre a su servicio</a
+            >
             Mejorando por ustedes y apliando nuestros horarios
         </div>
     </div>
 </div>
-
-<app-footer-page />
