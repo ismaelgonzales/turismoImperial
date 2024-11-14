@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DniService {
     private apiUrl = 'https://apiperu.dev/api/dni/'; 
-    private token = '25222079ce57429371cf6d908d8b283966aad65f8e64caf50c2fff09a5727ce6';
+    private token = '1a3d5c02bf235b35ed6732ee8a238cd0ed78458ae47b6a34a9b78b665fd8091a';
 
     constructor(private http: HttpClient) {}
 
