@@ -90,16 +90,16 @@ export class PagoComponent implements OnInit {
         total: this.compradorForm.value.total
       };
   
-      // Asegúrate de enviar los datos dentro de "data" como se hace en Postman
-      this.comprasService.postCompra({ data: compraData }).subscribe(
-        response => {
-          console.log('Compra registrada con éxito:', response);
-          this.continue.emit();
-        },
-        error => {
-          console.error('Error al registrar la compra:', error);
-        }
-      );
+      // // Asegúrate de enviar los datos dentro de "data" como se hace en Postman
+      // this.comprasService.postCompra({ data: compraData }).subscribe(
+      //   response => {
+      //     console.log('Compra registrada con éxito:', response);
+      //     this.continue.emit();
+      //   },
+      //   error => {
+      //     console.error('Error al registrar la compra:', error);
+      //   }
+      // );
     } else {
       console.log('Formulario inválido');
     }
