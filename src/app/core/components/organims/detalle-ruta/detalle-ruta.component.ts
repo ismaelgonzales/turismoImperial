@@ -41,12 +41,6 @@ export class DetalleRutaComponent implements OnInit {
                 this.rutasFiltradas = data; // Inicializamos con todas las rutas
                 console.log('RUTASSSS', this.rutasListas);
             });
-        // this._apiService.getRutasById(id).subscribe((data) => {
-        //     this.rutas = data;
-        // });
-        // this._apiService.getBusesById().subscribe((data) => {
-        //     this.buses = data;
-        // });
     }
 
     tomaObjetoButton(rutaSeleccionada: IBusesDetalles[]) {

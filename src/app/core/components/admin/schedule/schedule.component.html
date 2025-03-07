@@ -1,0 +1,171 @@
+<div class="container mx-auto mt-5 px-4">
+    <div class="flex justify-end">
+        <button
+            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+            (click)="isFormView = !isFormView">
+            {{ isFormView ? 'List View' : 'Create New Schedule' }}
+        </button>
+    </div>
+
+    <!-- Bus Schedule Form -->
+    <div
+        *ngIf="isFormView"
+        class="bg-white shadow-md rounded-lg overflow-hidden mt-5">
+        <div class="bg-blue-600 text-white px-4 py-2 font-bold">
+            Bus Schedule Form
+        </div>
+        <div class="p-4">
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <label class="block font-semibold">Bus Name</label>
+                    <input
+                        type="text"
+                        class="w-full border rounded p-2"
+                        [(ngModel)]="scheduleObj.busName"
+                        placeholder="Enter bus name" />
+                </div>
+                <div>
+                    <label class="block font-semibold">Bus Vehicle No</label>
+                    <input
+                        type="text"
+                        class="w-full border rounded p-2"
+                        [(ngModel)]="scheduleObj.busVehicleNo"
+                        placeholder="Enter vehicle number" />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mt-4">
+                <div>
+                    <label class="block font-semibold">From Location</label>
+                    <select
+                        class="w-full border rounded p-2"
+                        [(ngModel)]="scheduleObj.fromLocation">
+                        <option value="">Select Location</option>
+                        <option
+                            *ngFor="let item of locationList"
+                            [value]="item.locationId">
+                            {{ item.locationName }}
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-semibold">To Location</label>
+                    <select
+                        class="w-full border rounded p-2"
+                        [(ngModel)]="scheduleObj.toLocation">
+                        <option value="">Select Location</option>
+                        <option
+                            *ngFor="let item of locationList"
+                            [value]="item.locationId">
+                            {{ item.locationName }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mt-4">
+                <div>
+                    <label class="block font-semibold">Departure Time</label>
+                    <input
+                        type="datetime-local"
+                        class="w-full border rounded p-2"
+                        [(ngModel)]="scheduleObj.departureTime" />
+                </div>
+                <div>
+                    <label class="block font-semibold">Arrival Time</label>
+                    <input
+                        type="datetime-local"
+                        class="w-full border rounded p-2"
+                        [(ngModel)]="scheduleObj.arrivalTime" />
+                </div>
+                <div>
+                    <label class="block font-semibold">Schedule Date</label>
+                    <input
+                        type="date"
+                        class="w-full border rounded p-2"
+                        [(ngModel)]="scheduleObj.scheduleDate" />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mt-4">
+                <div>
+                    <label class="block font-semibold">Price</label>
+                    <input
+                        type="number"
+                        class="w-full border rounded p-2"
+                        [(ngModel)]="scheduleObj.price"
+                        placeholder="Enter price" />
+                </div>
+                <div>
+                    <label class="block font-semibold">Total Seats</label>
+                    <input
+                        type="number"
+                        class="w-full border rounded p-2"
+                        [(ngModel)]="scheduleObj.totalSeats"
+                        placeholder="Enter total seats" />
+                </div>
+            </div>
+
+            <button
+                class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+                (click)="onSave()">
+                Submit
+            </button>
+        </div>
+    </div>
+
+    <!-- Bus Schedule List -->
+    <div
+        *ngIf="!isFormView"
+        class="bg-white shadow-md rounded-lg overflow-hidden mt-5">
+        <div class="bg-gray-700 text-white px-4 py-2 font-bold">
+            Bus Schedule List
+        </div>
+        <div class="p-4 overflow-x-auto">
+            <table
+                class="w-full border border-gray-300 shadow-lg rounded-lg text-left">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="px-4 py-2 border">Sr No</th>
+                        <th class="px-4 py-2 border">Bus Name</th>
+                        <th class="px-4 py-2 border">From Location</th>
+                        <th class="px-4 py-2 border">To Location</th>
+                        <th class="px-4 py-2 border">Departure Time</th>
+                        <th class="px-4 py-2 border">Arrival Time</th>
+                        <th class="px-4 py-2 border">Schedule Date</th>
+                        <th class="px-4 py-2 border">Price</th>
+                        <th class="px-4 py-2 border">Total Seats</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="
+                            let item of scheduleList$ | async;
+                            let i = index
+                        "
+                        class="bg-gray-100 even:bg-gray-200 hover:bg-gray-300">
+                        <td class="px-4 py-2 border">{{ i + 1 }}</td>
+                        <td class="px-4 py-2 border">{{ item.busName }}</td>
+                        <td class="px-4 py-2 border">
+                            {{ item.fromLocationName }}
+                        </td>
+                        <td class="px-4 py-2 border">
+                            {{ item.toLocationName }}
+                        </td>
+                        <td class="px-4 py-2 border">
+                            {{ item.departureTime | date : 'HH:mm' }}
+                        </td>
+                        <td class="px-4 py-2 border">
+                            {{ item.arrivalTime | date : 'HH:mm' }}
+                        </td>
+                        <td class="px-4 py-2 border">
+                            {{ item.scheduleDate | date : 'dd-MMM-yy' }}
+                        </td>
+                        <td class="px-4 py-2 border">{{ item.price }}</td>
+                        <td class="px-4 py-2 border">{{ item.totalSeats }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

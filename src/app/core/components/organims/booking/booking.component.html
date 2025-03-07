@@ -1,0 +1,161 @@
+<!-- <section id="booking-form" class="my-4">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-4">
+
+                <div class="row">
+                    @for (seatNo of seatArray; track $index) { @if
+                    (checkIfSeatBooked(seatNo)!= -1) {
+                    <div class="col-3">
+                        <div class="seat reserved">{{ seatNo }}</div>
+                    </div>
+
+                    }@else{ @if (checkIsSeatSelected(seatNo)!= -1) {
+                    <div class="col-3">
+                        <div class="seat selected" (click)="selectSeat(seatNo)">
+                            {{ seatNo }}
+                        </div>
+                    </div>
+                    }@else {
+                    <div class="col-3">
+                        <div
+                            class="seat available"
+                            (click)="selectSeat(seatNo)">
+                            {{ seatNo }}
+                        </div>
+                    </div>
+                    } } }
+                </div>
+            </div>
+            <div class="col-8">
+                @for (item of userSelectedSeatArray; track $index) {
+                <div class="row">
+                    <div class="col-3">
+                        <label>Passenger </label>
+                        <input
+                            type="text"
+                            [(ngModel)]="item.passengerName"
+                            class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <label>Age</label>
+                        <input
+                            type="text"
+                            [(ngModel)]="item.age"
+                            class="form-control" />
+                    </div>
+                    <div class="col-2">
+                        <label>Gender</label>
+                        <select [(ngModel)]="item.gender" class="form-control">
+                            <option value="Male">Male</option>
+                            <option value="Fe-Male">Fe-Male</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <label>Seat No</label>
+                        <input
+                            disabled
+                            type="text"
+                            [(ngModel)]="item.seatNo"
+                            class="form-control" />
+                    </div>
+                </div>
+
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <button class="btn btn-danger" (click)="bookNow()">
+                    Book Now
+                </button>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<app-header-page />
+
+<section id="booking-form" class="my-4">
+    <div class="container mx-auto mt-5 px-4">
+        <div class="flex flex-col md:flex-row">
+            <div class="w-full md:w-1/3">
+                <div class="grid grid-cols-4 gap-2">
+                    <ng-container
+                        *ngFor="let seatNo of seatArray; let i = index">
+                        <div
+                            *ngIf="checkIfSeatBooked(seatNo) !== -1"
+                            class="seat reserved text-center bg-gray-500 text-white p-2 rounded">
+                            {{ seatNo }}
+                        </div>
+                        <div
+                            *ngIf="
+                                checkIfSeatBooked(seatNo) === -1 &&
+                                checkIsSeatSelected(seatNo) !== -1
+                            "
+                            class="seat selected text-center bg-red-950 text-white p-2 rounded cursor-pointer"
+                            (click)="selectSeat(seatNo)">
+                            {{ seatNo }}
+                        </div>
+                        <div
+                            *ngIf="
+                                checkIfSeatBooked(seatNo) === -1 &&
+                                checkIsSeatSelected(seatNo) === -1
+                            "
+                            class="seat available text-center bg-yellow-950 text-white p-2 rounded cursor-pointer"
+                            (click)="selectSeat(seatNo)">
+                            {{ seatNo }}
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="w-full md:w-2/3 mt-5 md:mt-0">
+                <div
+                    *ngFor="let item of userSelectedSeatArray; let i = index"
+                    class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium"
+                            >Nombre Pasajero</label
+                        >
+                        <input
+                            type="text"
+                            [(ngModel)]="item.passengerName"
+                            class="w-full border rounded p-2" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Edad</label>
+                        <input
+                            type="text"
+                            [(ngModel)]="item.age"
+                            class="w-full border rounded p-2" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Genero</label>
+                        <select
+                            [(ngModel)]="item.gender"
+                            class="w-full border rounded p-2">
+                            <option value="Male">Hombre</option>
+                            <option value="Female">Mujer</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Seat No</label>
+                        <input
+                            disabled
+                            type="text"
+                            [(ngModel)]="item.seatNo"
+                            class="w-full border rounded p-2 bg-gray-200" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <button
+                class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                (click)="bookNow()">
+                Reservar ahora
+            </button>
+        </div>
+    </div>
+</section>

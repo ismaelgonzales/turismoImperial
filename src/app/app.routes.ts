@@ -3,6 +3,10 @@ import { Routes } from '@angular/router';
 import { privateGuard, publicGuard } from './core/guards/auth.guard';
 import { AccesoGuard } from './core/guards/acceso.guard';
 import { AuthenticatedGuard } from './core/guards/authenticated.guard';
+import { SearchComponent } from './core/components/organims/search/search.component';
+import { BookingComponent } from './core/components/organims/booking/booking.component';
+import { ScheduleComponent } from './core/components/admin/schedule/schedule.component';
+import { BookingsComponent } from './core/components/admin/bookings/bookings.component';
 
 export const routes: Routes = [
     {
@@ -256,6 +260,10 @@ export const routes: Routes = [
             },
         ],
     },
+    { path: 'search', component: SearchComponent },
+    { path: 'booking/:id', component: BookingComponent },
+    { path: 'schedule', component: ScheduleComponent },
+    { path: 'bookings', component: BookingsComponent },
 
     {
         path: '**',

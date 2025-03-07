@@ -7,7 +7,7 @@ import { ApiResponse, IVenta } from '../models/Venta';
     providedIn: 'root',
 })
 export class VentaService {
-    apiUrl = 'https://www.turismoimperial.somee.com/Venta';
+    apiUrl = 'https://fruitful-broccoli-60c7faeb3a.strapiapp.com/api/compras';
 
     constructor(private http: HttpClient) {}
 
