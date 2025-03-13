@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { HeaderPageComponent } from '../../atoms/header-page/header-page.component';
+import { HeaderPageComponent } from '../../organims/header-page/header-page.component';
 import { DetalladoCompraComponent } from '../../organims/detallado-compra/detallado-compra.component';
-import { FooterPageComponent } from '../../atoms/footer-page/footer-page.component';
+import { FooterPageComponent } from '../../organims/footer-page/footer-page.component';
 import { SeleccionAsientosService } from '../../../services/seleccion-asientos.service';
 import { DniService } from '../../../services/dni.service';
 import { ToastrService } from 'ngx-toastr';

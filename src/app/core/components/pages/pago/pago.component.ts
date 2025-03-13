@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { DetalladoCompraComponent } from "../../organims/detallado-compra/detallado-compra.component";
-import { FooterPageComponent } from "../../atoms/footer-page/footer-page.component";
-import { HeaderPageComponent } from "../../atoms/header-page/header-page.component";
+import { FooterPageComponent } from "../../organims/footer-page/footer-page.component";
+import { HeaderPageComponent } from "../../organims/header-page/header-page.component";
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import CheckoutComponent from "../checkout/checkout.component";

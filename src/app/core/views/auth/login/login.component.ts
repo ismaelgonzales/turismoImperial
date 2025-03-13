@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { HeaderPageComponent } from '../../../components/atoms/header-page/header-page.component';
+import { HeaderPageComponent } from '../../../components/organims/header-page/header-page.component';
 import { SharedModule } from '../../../models/shared/shared.module';
 import { FacebookButtonComponent } from '../ui/facebook-button/facebook-button.component';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { NgIf } from '@angular/common';
 import { GoogleButtonComponent } from '../ui/google-button/google-button.component';
 import { toast } from 'ngx-sonner';
 import { isRequired, hasEmailError } from '../../../utils/validators';
-import { FooterPageComponent } from '../../../components/atoms/footer-page/footer-page.component';
+import { FooterPageComponent } from '../../../components/organims/footer-page/footer-page.component';
 
 export interface FormSignIn {
     email: FormControl<string | null>;

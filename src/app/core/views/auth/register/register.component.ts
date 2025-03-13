@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { HeaderPageComponent } from '../../../components/atoms/header-page/header-page.component';
+import { HeaderPageComponent } from '../../../components/organims/header-page/header-page.component';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
 import { isRequired, hasEmailError } from '../../../utils/validators';
 import { GoogleButtonComponent } from '../ui/google-button/google-button.component';
 import { FacebookButtonComponent } from '../ui/facebook-button/facebook-button.component';
-import { FooterPageComponent } from '../../../components/atoms/footer-page/footer-page.component';
+import { FooterPageComponent } from '../../../components/organims/footer-page/footer-page.component';
 
 interface FormSignUp {
     email: FormControl<string | null>;

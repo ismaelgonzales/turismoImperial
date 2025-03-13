@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FooterPageComponent } from '../../atoms/footer-page/footer-page.component';
-import { HeaderPageComponent } from '../../atoms/header-page/header-page.component';
+import { FooterPageComponent } from '../../organims/footer-page/footer-page.component';
+import { HeaderPageComponent } from '../../organims/header-page/header-page.component';
 import {
     FormBuilder,
     FormControl,

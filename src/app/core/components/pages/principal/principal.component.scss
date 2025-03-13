@@ -4,12 +4,12 @@
     border: 1;
     // margin-top: 90px;
 
-    &-section {
-        padding-left: 35vh;
-        padding-right: 35vh;
-        margin-top: 60px;
-        margin-bottom: 60px;
-    }
+    // &-section {
+    //     padding-left: 35vh;
+    //     padding-right: 35vh;
+    //     margin-top: 60px;
+    //     margin-bottom: 60px;
+    // }
 
     &-title {
         h1 {
@@ -27,11 +27,7 @@
         }
     }
 
-    &-cards {
-        display: flex;
-        grid-column: 4;
-        gap: 15px;
-    }
+    
 
     &-credit-card {
         height: 10px;

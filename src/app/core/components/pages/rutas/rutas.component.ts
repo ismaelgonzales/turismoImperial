@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderPageComponent } from '../../atoms/header-page/header-page.component';
+import { HeaderPageComponent } from '../../organims/header-page/header-page.component';
 import { SearchBarTravelComponent } from '../../organims/search-bar-travel/search-bar-travel.component';
 import { DetalleRutaComponent } from '../../organims/detalle-ruta/detalle-ruta.component';
 
