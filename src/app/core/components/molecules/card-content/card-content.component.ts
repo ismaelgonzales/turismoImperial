@@ -15,4 +15,5 @@ export class CardContentComponent {
   @Input() description: string = '';
   @Input() linkText: string = '';
   @Input() linkUrl: string = '#';
+  @Input() linkClass : string = '';
 }

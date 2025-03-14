@@ -10,4 +10,5 @@ import { Component, Input } from '@angular/core';
 export class LinkComponent {
   @Input() text: string = '';
   @Input() url: string = '#';
+  @Input () class : string =' ';
 }

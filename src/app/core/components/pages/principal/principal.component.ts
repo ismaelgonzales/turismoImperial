@@ -5,18 +5,20 @@ import { IImageSlide } from '../../../interfaces/global/generics.interface';
 import { SearchBarTravelComponent } from '../../organims/search-bar-travel/search-bar-travel.component';
 import { CardComponent } from '../../organims/card/card.component';
 import { FooterPageComponent } from '../../organims/footer-page/footer-page.component';
+import { IconMetPagoComponent } from "../../organims/icon-met-pago/icon-met-pago.component";
 
 @Component({
     selector: 'app-principal',
     standalone: true,
     imports: [
-        HeaderPageComponent,
-        HeaderPageComponent,
-        SlideCorruselleComponent,
-        SearchBarTravelComponent,
-        CardComponent,
-        FooterPageComponent,
-    ],
+    HeaderPageComponent,
+    HeaderPageComponent,
+    SlideCorruselleComponent,
+    SearchBarTravelComponent,
+    CardComponent,
+    FooterPageComponent,
+    IconMetPagoComponent
+],
     templateUrl: './principal.component.html',
     styleUrl: './principal.component.scss',
 })

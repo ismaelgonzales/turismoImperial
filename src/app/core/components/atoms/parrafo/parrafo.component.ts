@@ -9,4 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ParrafoComponent {
   @Input() text: string = '';
+  @Input() class:string ='';
 }
